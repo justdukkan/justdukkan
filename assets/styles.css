@@ -82,7 +82,7 @@ svg { display: block; }
 .container {
   max-width: var(--container);
   margin: 0 auto;
-  padding: 0 clamp(24px, 10.5vw, 220px);
+  padding: 0 clamp(24px, 12vw, 260px);
 }
 
 /* ---------- Type ---------- */
