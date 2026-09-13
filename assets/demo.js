@@ -32,7 +32,7 @@
           { t: 'tool', call: 'ocr.extract("invoice_2291.pdf")', out: 'vendor=Norda Ltd · total=€7,420 · ref=PO-1187', spoke: 2 },
           { t: 'agent', who: 'Finance agent', text: 'Matching against open purchase orders', spoke: 1 },
           { t: 'tool', call: 'erp.match_po("PO-1187")', out: '3-way match OK · goods received 09-11', spoke: 2 },
-          { t: 'human', text: 'Total above €5,000 — approval required before posting', spoke: 3 },
+          { t: 'human', text: 'Total above €5,000, approval required before posting', spoke: 3 },
           { t: 'tool', call: 'erp.post_invoice(vendor="Norda Ltd", total=7420)', out: 'posted · INV-30412', spoke: 2 },
           { t: 'done', text: 'Done · 13 invoices remaining in queue · 41s · $0.06' }
         ]
@@ -81,7 +81,7 @@
           { t: 'tool', call: 'ocr.extract("invoice_2291.pdf")', out: 'tedarikçi=Norda Ltd · toplam=€7.420 · ref=PO-1187', spoke: 2 },
           { t: 'agent', who: 'Finans ajanı', text: 'Açık satınalma siparişleriyle eşleştiriliyor', spoke: 1 },
           { t: 'tool', call: 'erp.match_po("PO-1187")', out: '3 yönlü eşleşme OK · mal kabul 09-11', spoke: 2 },
-          { t: 'human', text: 'Toplam €5.000 üzerinde — kayıt öncesi onay gerekli', spoke: 3 },
+          { t: 'human', text: 'Toplam €5.000 üzerinde, kayıt öncesi onay gerekli', spoke: 3 },
           { t: 'tool', call: 'erp.post_invoice(vendor="Norda Ltd", total=7420)', out: 'kaydedildi · INV-30412', spoke: 2 },
           { t: 'done', text: 'Tamamlandı · kuyrukta 13 fatura · 41 sn · $0,06' }
         ]
