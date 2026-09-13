@@ -30,6 +30,7 @@ No packages and no price list. We look at a process, propose an architecture and
 ## Contact
 
 - LinkedIn: https://www.linkedin.com/company/justdukkan-llc/
+- GitHub: https://github.com/justdukkan (open-source reference implementations, e.g. invoice-intake-mcp)
 
 - Email: enes@justdukkan.com
 - Phone / WhatsApp: +1 (910) 679-9657
@@ -40,6 +41,10 @@ No packages and no price list. We look at a process, propose an architecture and
 - [Hub-and-spoke agent architecture: how to build multi-agent systems that stay explainable](https://justdukkan.com/insights/hub-and-spoke-agent-architecture/)
 - [Designing MCP servers and tools that agents can use safely](https://justdukkan.com/insights/mcp-server-and-tool-design/)
 - [From manual process to automated flow: an architecture playbook](https://justdukkan.com/insights/process-automation-architecture/)
+
+## Open source
+
+- [invoice-intake-mcp](https://github.com/justdukkan/invoice-intake-mcp) — reference MCP servers for supplier invoice intake: read/draft/commit split, typed errors, server-side approval gate, audit log, replayable evals.
 
 ## FAQ
 

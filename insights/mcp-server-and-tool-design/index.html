@@ -110,7 +110,7 @@
   ]
 }
   </script>
-  <link rel="stylesheet" href="/assets/styles.css?v=9">
+  <link rel="stylesheet" href="/assets/styles.css?v=8">
 </head>
 <body>
   <header class="site-header">
@@ -201,6 +201,8 @@ helpdesk.send_reply(draft_id)            → {sent_at}</code></pre>
 
 <h2>Rule 7: log for the auditor, not the developer</h2>
 <p>Each call record should include: run id, calling agent, tool name, input (redacted where required), output summary, duration, cost, and the approval reference for commit tools. From that log you should be able to answer "who changed this record and why" without opening a model transcript.</p>
+
+<p class="callout">A small, runnable reference implementation of these rules on an invoice-intake process is open source: <a href="https://github.com/justdukkan/invoice-intake-mcp">github.com/justdukkan/invoice-intake-mcp</a>.</p>
 
 <h2>A checklist before an MCP server goes to production</h2>
 <ol>
