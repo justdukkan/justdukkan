@@ -128,7 +128,8 @@ h2.display { font-size: clamp(1.7rem, 3.2vw, 2.25rem); }
 }
 .btn-primary { background: var(--btn-bg); color: var(--btn-fg); }
 .btn-primary:hover { background: var(--accent); color: #fff; }
-.btn-ghost { border-color: var(--border-strong); color: var(--fg); }
+.btn-ghost { background: transparent; border-color: var(--border-strong); color: var(--fg); }
+button.btn { font: inherit; cursor: pointer; }
 .btn-ghost:hover { background: var(--card); color: var(--fg); border-color: var(--fg-40); }
 .btn-sm { padding: 0.5em 0.9em 0.52em; font-size: 0.875rem; }
 .btn .arrow { transition: transform 0.15s ease; }
@@ -365,6 +366,12 @@ section + section { border-top: 1px solid var(--border); }
 .cta-email { margin-top: 20px; font-size: 0.9rem; color: var(--fg-60); }
 .cta-email a { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--border-strong); }
 
+/* Cookie consent */
+.consent { position: fixed; left: 20px; bottom: 20px; z-index: 50; max-width: 420px; padding: 18px; background: var(--card); border: 1px solid var(--border); border-radius: 12px; font-size: 0.9rem; line-height: 1.5; color: var(--fg-60); }
+.consent p { margin: 0 0 14px; }
+.consent a { color: var(--fg); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--border-strong); }
+.consent-actions { display: flex; justify-content: flex-end; gap: 8px; }
+
 /* Footer */
 .site-footer { border-top: 1px solid var(--border); padding: 48px 0 32px; font-size: 0.875rem; color: var(--fg-60); }
 .footer-top { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 36px; }
@@ -441,6 +448,7 @@ section + section { border-top: 1px solid var(--border); }
 }
 
 @media (max-width: 640px) {
+  .consent { left: 12px; right: 12px; bottom: 12px; max-width: none; }
   section { padding: 72px 0; }
   .hero { padding: 72px 0 64px; }
   .nav-links { display: none; }

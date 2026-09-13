@@ -30,6 +30,10 @@
 - [x] IndexNow kuruldu, 7 URL gönderildi
 - [x] invoice-intake-mcp: PyPI 0.1.1 + MCP Registry com.justdukkan (DNS auth); awesome-mcp-servers PR #14311
 - [x] 4. makale (human-in-the-loop); LinkedIn kapak; CLAUDE.md
+# 2026-09-13 (gece)
+- [x] Cal branding form adımında da gizli (clip-path)
+- [x] GA4 + çerez onay banner'ı (assets/consent.js, yalnız Accept sonrası yüklenir) + /privacy/ ve /tr/gizlilik/ + footer linkleri + sitemap
+- [ ] GA4 Measurement ID'yi consent.js'e yaz (Enes property oluşturuyor)
 # Açık
 - [ ] www → apex 308 (Vercel, Enes)
 - [ ] GSC/Bing indeks kontrolü (48s), dizin profilleri, vaka çalışması — bkz. CLAUDE.md §9

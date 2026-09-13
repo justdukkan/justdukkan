@@ -34,4 +34,18 @@
     <loc>https://justdukkan.com/insights/human-in-the-loop-for-agentic-systems/</loc>
     <lastmod>2026-09-13</lastmod>
   </url>
+  <url>
+    <loc>https://justdukkan.com/privacy/</loc>
+    <lastmod>2026-09-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://justdukkan.com/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://justdukkan.com/tr/gizlilik/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://justdukkan.com/privacy/"/>
+  </url>
+  <url>
+    <loc>https://justdukkan.com/tr/gizlilik/</loc>
+    <lastmod>2026-09-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://justdukkan.com/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://justdukkan.com/tr/gizlilik/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://justdukkan.com/privacy/"/>
+  </url>
 </urlset>

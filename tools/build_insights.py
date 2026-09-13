@@ -80,7 +80,7 @@ FOOTER = '''  <footer class="site-footer">
           <p>''' + '<br>'.join(f'<a href="/insights/{a["slug"]}/">{a["short"]}</a>' for a in ARTICLES) + '''</p>
         </div>
       </div>
-      <div class="footer-bottom">© 2026 JustDukkan, LLC</div>
+      <div class="footer-bottom">© 2026 JustDukkan, LLC · <a href="/privacy/">Privacy</a></div>
     </div>
   </footer>
 '''
@@ -112,7 +112,8 @@ def head(title, desc, url, ld):
   <script type="application/ld+json">
 {json.dumps(ld, ensure_ascii=False, indent=2)}
   </script>
-  <link rel="stylesheet" href="/assets/styles.css?v=15">
+  <link rel="stylesheet" href="/assets/styles.css?v=16">
+  <script src="/assets/consent.js?v=1" defer></script>
 </head>
 <body>
 '''

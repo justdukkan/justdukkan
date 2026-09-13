@@ -13,6 +13,7 @@ Kararlar (Enes, 2026-09-13):
 - Varsayılan dil **EN**, ikinci dil **TR** (`/tr/`). Otomatik dil yönlendirmesi yok.
 - Sertifikalar (Claude Certified Architect – Foundations alınıyor; AWS SA ve Google Cloud AI Architect planlı) sitede **gösterilmiyor**; onların yerine "designed to work with the models your business already uses" model logoları bandı var.
 - Uydurma metrik/rakam yazma; vaka çalışması gelene kadar sonuçlar nitel.
+- **Google Analytics 4** yalnızca çerez banner'ında "Accept" sonrası yüklenir (Consent Mode değil; onay yokken Google'a hiç istek gitmez). Gizlilik sayfası `/privacy/` + `/tr/gizlilik/`.
 - Site sıfırdan yeniden yazıldı 2026-09-13; eski "Digital Products & Creative Services" sayfasından hiçbir şey kalmadı.
 
 ## 2. Şirket bilgileri (sitede ve tüm dış profillerde birebir aynı)
@@ -46,6 +47,9 @@ tools/articles.py             Makale içerikleri (KAYNAK). Python list of dicts:
 tools/build_insights.py       Üretici: head/header/footer/JSON-LD (Article+Breadcrumb+FAQPage)/theme script/Cal snippet. THEME_JS ve CAL_SNIPPET sabitleri; styles.css?v= burada da güncellenir
 assets/styles.css             Tüm CSS: tokenlar, light/dark, header, hero, models, cards, expertise, demo, outcomes, steps, FAQ, contact, footer, articles, responsive
 assets/demo.js                İnteraktif "orchestrator" demosu (§5)
+assets/consent.js             Çerez banner'ı + GA4 yükleyici. Başta GA_ID; localStorage["jd-consent"]=granted|denied; banner DOM'u JS'te (EN/TR lang'a göre); window.jdConsent.open() tercihi sıfırlayıp banner'ı yeniden açar
+privacy/index.html            Gizlilik ve çerez sayfası (EN); "Change cookie choice" butonu jdConsent.open()
+tr/gizlilik/index.html        Aynısı TR. İkisi de elle yazılmış (header/footer index.html / tr/index.html'den); metin değişince ikisini de güncelle
 assets/wordmark.png           ".justdukkan" logosu — beyaz harfler + alfa; CSS `mask` + currentColor ile tema rengini alır
 assets/favicon.svg/-32.png/-512.png, apple-touch-icon.png   ".j" glifi (wordmark'tan kırpıldı), koyu yuvarlak kare
 brand/linkedin-cover.png (2256×382), linkedin-cover-1x.png  LinkedIn kapak: koyu zemin, sağda ".j"
@@ -89,12 +93,13 @@ Bölüm başlıklarının üstünde küçük "eyebrow" etiket **yok** (kaldırı
 
 ## 7. Cache-bust kuralı (ÖNEMLİ)
 
-Cloudflare `styles.css` ve `demo.js`'i cache'ler. Bunlar değişince **`?v=N`'i artır**: `index.html`, `tr/index.html`, `tools/build_insights.py` (sonra build). Şu an **styles.css?v=15**, **demo.js?v=8**. Artırmazsan canlıda eski CSS + yeni HTML görünür ("site bozuldu" olayının sebebi buydu). HTML cache'lenmez; canlı kontrolde yine de `?x=<rastgele>` ekle. Favicon linkleri `?v=2`.
+Cloudflare `styles.css`, `demo.js` ve `consent.js`'i cache'ler. Bunlar değişince **`?v=N`'i artır**: `index.html`, `tr/index.html`, `tools/build_insights.py` (sonra build), **`privacy/index.html`, `tr/gizlilik/index.html`**. Şu an **styles.css?v=16**, **demo.js?v=8**, **consent.js?v=1**. Artırmazsan canlıda eski CSS + yeni HTML görünür ("site bozuldu" olayının sebebi buydu). HTML cache'lenmez; canlı kontrolde yine de `?x=<rastgele>` ekle. Favicon linkleri `?v=2`.
 
 ## 8. SEO / GEO — yapılanlar
 
 - **JSON-LD `@graph`** (ana sayfalar): `Organization`+`ProfessionalService` (yasal ad, adres, EIN=`taxID`, telefon, e-posta, diller, `knowsAbout`, 3 hizmetlik `OfferCatalog`, `contactPoint`→Cal, `sameAs`: LinkedIn, GitHub org, Cal), `WebSite`, `WebPage`, `FAQPage`. Makalelerde `Article` + `BreadcrumbList` + `FAQPage`. Değişiklikte JSON geçerliliğini kontrol et.
-- `llms.txt`, `robots.txt`, `sitemap.xml`, `<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">`, canonical, hreflang en/tr/x-default, OG meta, theme-color.
+- **GA4**: Measurement ID `consent.js` başında (`GA_ID`). Property Enes'in Google hesabında. Onay modeli §1.
+- `llms.txt`, `robots.txt`, `sitemap.xml` (/, /tr/, insights ×5, /privacy/, /tr/gizlilik/), `<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">`, canonical, hreflang en/tr/x-default, OG meta, theme-color.
 - **Google Search Console**: domain property doğrulandı (DNS TXT), sitemap gönderildi (2026-09-13). Insights sayfaları indekslendi; `/` beklemede (eski içerikli URL yeniden değerlendiriliyor; www dublikasyonu olası neden).
 - **Bing Webmaster**: GSC'den import edildi (sitemap 48 saat sonra görünür dendi).
 - **IndexNow**: anahtar `9ab21623bd51863e0413867377354055` (dosya repoda). 7 URL gönderildi (202). Yeni/değişen sayfa için:
@@ -119,7 +124,7 @@ Cloudflare `styles.css` ve `demo.js`'i cache'ler. Bunlar değişince **`?v=N`'i 
 ## 10. Rutin işlemler
 
 - **Metin/HTML değişikliği**: `index.html` + `tr/index.html` **ikisini de** güncelle → commit → push → 1 dk sonra `curl -sL "https://justdukkan.com/?x=$RANDOM" | grep …` ile doğrula.
-- **CSS/JS değişikliği**: düzenle → `?v=N` artır (3 yerde) → build_insights → commit/push.
+- **CSS/JS değişikliği**: düzenle → `?v=N` artır (index, tr/index, build_insights, privacy ×2) → build_insights → commit/push.
 - **Yeni makale**: `tools/articles.py`'a dict ekle → `python3 tools/build_insights.py` → `sitemap.xml` + `llms.txt` + ana sayfa footer "Insights" listesi (EN ve TR) → IndexNow ping.
 - **Hizmet/şirket bilgisi değişikliği**: HTML + JSON-LD + `llms.txt` + LinkedIn/dış profiller senkron.
 - **invoice-intake-mcp yeni sürüm**: `pyproject.toml` + `server.json` version → `.venv/bin/python -m build` → Enes: `.venv/bin/twine upload dist/*` (`__token__` + PyPI token) → `mcp-publisher login dns --domain justdukkan.com --private-key "$(/opt/homebrew/opt/openssl@3/bin/openssl pkey -in ~/.config/mcp-registry/justdukkan-ed25519.pem -noout -text | grep -A3 priv: | tail -n +2 | tr -d ' :\n')" && mcp-publisher publish`.
@@ -131,5 +136,6 @@ Cloudflare `styles.css` ve `demo.js`'i cache'ler. Bunlar değişince **`?v=N`'i 
 - Vercel CLI `vercel ls` çıktısı bazen boş görünür; deploy'u `https://justdukkan.com` içeriğinden doğrula.
 - Cloudflare e-posta adreslerini `/cdn-cgi/l/email-protection` ile değiştirir; canlı HTML'de `enes@` aramak başarısız olabilir.
 - Cal.com embed dar ekranda (<~768px) mobil düzene geçer (takvim tek sütun).
+- ≤~410px genişlikte header'daki CTA butonu yüzünden hafif yatay taşma var (banner'dan önce de vardı).
 - Search Console'da property "Domain" tipi olduğu için Bing import'unda "https://" boş görünmüştü; normal.
 - Cal.com embed'i, Enes'in cal.com'a giriş yaptığı tarayıcıda formu hesap bilgileriyle (ad/e-posta) dolu ve hesap dilinde (TR) gösterir; ziyaretçi bunları görmez. Dil ziyaretçinin `Accept-Language`'ına göre gelir, embed'de dil zorlayan parametre yok (`lang/locale/hl/lng`, `NEXT_LOCALE` denendi, işlemiyor). Kontrol için gizli pencere kullan.

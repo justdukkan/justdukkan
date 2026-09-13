@@ -3,13 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Insights — JustDukkan</title>
-  <meta name="description" content="Practical notes on AI solutions architecture: agentic systems, MCP tool design and process automation.">
-  <link rel="canonical" href="https://justdukkan.com/insights/">
-  <meta property="og:type" content="article">
-  <meta property="og:title" content="Insights — JustDukkan">
-  <meta property="og:description" content="Practical notes on AI solutions architecture: agentic systems, MCP tool design and process automation.">
-  <meta property="og:url" content="https://justdukkan.com/insights/">
+  <title>Privacy and cookies — JustDukkan</title>
+  <meta name="description" content="What JustDukkan collects on this site, which cookies are used, and how to change your choice.">
+  <link rel="canonical" href="https://justdukkan.com/privacy/">
+  <link rel="alternate" hreflang="en" href="https://justdukkan.com/privacy/">
+  <link rel="alternate" hreflang="tr" href="https://justdukkan.com/tr/gizlilik/">
+  <link rel="alternate" hreflang="x-default" href="https://justdukkan.com/privacy/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Privacy and cookies — JustDukkan">
+  <meta property="og:description" content="What JustDukkan collects on this site, which cookies are used, and how to change your choice.">
+  <meta property="og:url" content="https://justdukkan.com/privacy/">
   <meta property="og:site_name" content="JustDukkan">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
   <meta name="theme-color" content="#f7f7f4" media="(prefers-color-scheme: light)">
@@ -29,34 +32,22 @@
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "CollectionPage",
-  "@id": "https://justdukkan.com/insights/",
-  "url": "https://justdukkan.com/insights/",
-  "name": "Insights — JustDukkan",
+  "@type": "WebPage",
+  "@id": "https://justdukkan.com/privacy/",
+  "url": "https://justdukkan.com/privacy/",
+  "name": "Privacy and cookies — JustDukkan",
+  "description": "What JustDukkan collects on this site, which cookies are used, and how to change your choice.",
   "inLanguage": "en",
-  "description": "Practical notes on AI solutions architecture: agentic systems, MCP tool design and process automation.",
-  "hasPart": [
-    {
-      "@type": "Article",
-      "headline": "Hub-and-spoke agent architecture: how to build multi-agent systems that stay explainable",
-      "url": "https://justdukkan.com/insights/hub-and-spoke-agent-architecture/"
-    },
-    {
-      "@type": "Article",
-      "headline": "Designing MCP servers and tools that agents can use safely",
-      "url": "https://justdukkan.com/insights/mcp-server-and-tool-design/"
-    },
-    {
-      "@type": "Article",
-      "headline": "From manual process to automated flow: an architecture playbook",
-      "url": "https://justdukkan.com/insights/process-automation-architecture/"
-    },
-    {
-      "@type": "Article",
-      "headline": "Human-in-the-loop for agentic systems: where people belong, and where they only slow things down",
-      "url": "https://justdukkan.com/insights/human-in-the-loop-for-agentic-systems/"
-    }
-  ]
+  "isPartOf": {
+    "@type": "WebSite",
+    "@id": "https://justdukkan.com/#website"
+  },
+  "about": {
+    "@type": "Organization",
+    "@id": "https://justdukkan.com/#org"
+  },
+  "datePublished": "2026-09-13",
+  "dateModified": "2026-09-13"
 }
   </script>
   <link rel="stylesheet" href="/assets/styles.css?v=16">
@@ -72,7 +63,7 @@
         <a href="/#services">Services</a>
         <a href="/#expertise">Expertise</a>
         <a href="/#approach">Approach</a>
-        <a href="/insights/" aria-current="page">Insights</a>
+        <a href="/insights/">Insights</a>
         <a href="/#contact">Contact</a>
       </nav>
       <div class="nav-right">
@@ -93,37 +84,44 @@
   <main>
     <section class="article-hero">
       <div class="container">
-        <h1 class="display">Notes from the architecture desk.</h1>
-        <p class="lede">How we design automation and agentic systems that hold up in production: patterns, checklists and the trade-offs behind them.</p>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">JustDukkan</a><span>/</span><span>Privacy</span></nav>
+        <h1 class="display">Privacy and cookies.</h1>
+        <p class="lede">What this site collects, why, and how to change your choice.</p>
+        <p class="article-meta">Effective 13 September 2026</p>
       </div>
     </section>
-    <section style="border-top:0;padding-top:0">
+    <section class="article" style="border-top:0;padding-top:0">
       <div class="container">
-        <div class="insights-list">
-          <a class="insight-card" href="/insights/hub-and-spoke-agent-architecture/">
-            <span class="label">Agentic systems</span>
-            <h3>Hub-and-spoke agent architecture: how to build multi-agent systems that stay explainable</h3>
-            <p>A hub-and-spoke architecture puts one orchestrator in charge of planning, routing and verification, and gives every specialist agent, tool and human reviewer a bounded job. Here is how the pattern works, when to use it, and the design rules that keep it safe in production.</p>
-            <span class="more">Read →</span>
-          </a>
-          <a class="insight-card" href="/insights/mcp-server-and-tool-design/">
-            <span class="label">MCP & tools</span>
-            <h3>Designing MCP servers and tools that agents can use safely</h3>
-            <p>MCP gives agents a standard way to call tools, but a badly designed tool is still a badly designed tool. These are the rules we use for tool contracts, permissions, error handling and logging when we build Model Context Protocol servers for company systems.</p>
-            <span class="more">Read →</span>
-          </a>
-          <a class="insight-card" href="/insights/process-automation-architecture/">
-            <span class="label">Process automation</span>
-            <h3>From manual process to automated flow: an architecture playbook</h3>
-            <p>Most automation projects fail before the first model call, in the mapping and the boundaries. This is the sequence we use to take a process like invoice intake or support triage from hours of manual work to a running system with humans only where they matter.</p>
-            <span class="more">Read →</span>
-          </a>
-          <a class="insight-card" href="/insights/human-in-the-loop-for-agentic-systems/">
-            <span class="label">Agentic systems</span>
-            <h3>Human-in-the-loop for agentic systems: where people belong, and where they only slow things down</h3>
-            <p>"Keep a human in the loop" is easy to say and usually done badly: either every step waits for someone, or nothing does. This is how we decide which decisions get a human checkpoint, how the checkpoint is built so it is actually used, and how the loop shrinks over time without losing control.</p>
-            <span class="more">Read →</span>
-          </a>
+        <div class="prose">
+<h2>Who we are</h2>
+<p>This site is operated by JustDukkan, LLC, 1111B S Governors Ave, Suite 46654, Dover, DE 19904, USA. Questions about this page: <a href="mailto:enes@justdukkan.com">enes@justdukkan.com</a>.</p>
+
+<h2>What we collect</h2>
+<p><strong>Server logs.</strong> The site is hosted on Vercel and served through Cloudflare. They process standard request data (IP address, user agent, requested URL) to deliver the site and protect it from abuse. We do not use this data to identify you.</p>
+<p><strong>Analytics, only with your consent.</strong> If you accept cookies in the banner, we load Google Analytics 4. It records which pages you view, how you arrived, your approximate location (city level), and your device and browser type. We use this to understand which content is useful. We do not use it for advertising and we do not sell data.</p>
+<p><strong>What you send us.</strong> If you email us or book a call, we keep that correspondence to reply and to prepare for the call.</p>
+
+<h2>Cookies and local storage</h2>
+<ul>
+  <li><strong>jd-theme</strong> (local storage): remembers your light or dark theme choice. Functional, no consent needed.</li>
+  <li><strong>jd-consent</strong> (local storage): remembers whether you accepted or declined analytics. Functional, no consent needed.</li>
+  <li><strong>_ga, _ga_*</strong> (cookies, Google Analytics): set only after you accept. They distinguish visitors and sessions and last up to two years.</li>
+</ul>
+<p>Declining does not limit anything on the site. Analytics simply does not run.</p>
+
+<h2>Third parties</h2>
+<ul>
+  <li><strong>Google Analytics</strong> (Google LLC): only after consent, as described above.</li>
+  <li><strong>Cal.com</strong>: the booking calendar on the contact section is loaded from cal.com. When you book, Cal.com processes the details you enter to create the meeting. Their own privacy policy applies.</li>
+  <li><strong>Google Fonts</strong>: the site's font is loaded from Google's servers, which see your IP address to serve the file.</li>
+</ul>
+
+<h2>Your rights</h2>
+<p>You can ask what data we hold about you, ask us to correct or delete it, or withdraw consent at any time. Email <a href="mailto:enes@justdukkan.com">enes@justdukkan.com</a>. To change your analytics choice on this device, use the button below.</p>
+<p><button type="button" class="btn btn-ghost" onclick="jdConsent.open()">Change cookie choice</button></p>
+
+<h2>Changes</h2>
+<p>If we change what the site collects, we will update this page and the date above.</p>
         </div>
       </div>
     </section>
