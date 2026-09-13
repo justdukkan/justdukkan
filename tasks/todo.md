@@ -15,5 +15,5 @@
 - Fonts: Inter + EB Garamond + JetBrains Mono via Google Fonts.
 
 ## Open
-- [ ] Calendar link for "Book a call"
+- [x] Calendar link for "Book a call" — Cal.com secret event
 - [ ] Enes to review TR copy
