@@ -1,9 +1,19 @@
 # justdukkan.com — AI Solutions Architecture relaunch (2026-09-13)
 
-- [ ] assets/styles.css — Cursor-derived tokens, light/dark, components, responsive
-- [ ] index.html (EN) — 10 sections
-- [ ] tr/index.html (TR) — mirror + hreflang
-- [ ] assets/favicon.svg + OG meta
-- [ ] Local verify: screenshots 1280/400, light/dark, links
-- [ ] Commit → push → Vercel → live verify (/ and /tr/)
-- [ ] Memory update
+- [x] assets/styles.css — Cursor-derived tokens, light/dark, components, responsive
+- [x] index.html (EN) — 10 sections
+- [x] tr/index.html (TR) — mirror + hreflang
+- [x] assets/favicon.svg + OG meta
+- [x] Local verify: screenshots 1280/500, light/dark, no horizontal overflow, anchors resolve
+- [x] Commit c962e0d → push → Vercel → live verify (/ lang=en, /tr/ lang=tr, css 200)
+- [x] Memory update
+
+## Review
+- Single static site, no build step. Two HTML files share one stylesheet.
+- "Book a call" currently opens mailto with subject; swap to Cal.com/Calendly link when provided.
+- Certifications shown as text badges (no third-party logos).
+- Fonts: Inter + EB Garamond + JetBrains Mono via Google Fonts.
+
+## Open
+- [ ] Calendar link for "Book a call"
+- [ ] Enes to review TR copy
