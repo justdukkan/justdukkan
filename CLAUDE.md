@@ -53,7 +53,7 @@ tasks/todo.md              İş listesi
 
 ## Cache-bust kuralı (ÖNEMLİ)
 
-Cloudflare `styles.css` ve `demo.js`'i cache'ler. CSS/JS değişince **her HTML'de** `?v=N` sürümünü artır (`index.html`, `tr/index.html`, `insights/**/index.html`; build_insights.py içindeki `styles.css?v=` de). Şu an **v=11**. Artırmazsan canlıda eski CSS + yeni HTML görünür ("site bozuldu" şikayetinin sebebi buydu).
+Cloudflare `styles.css` ve `demo.js`'i cache'ler. CSS/JS değişince **her HTML'de** `?v=N` sürümünü artır (`index.html`, `tr/index.html`, `insights/**/index.html`; build_insights.py içindeki `styles.css?v=` de). Şu an **v=12**. Artırmazsan canlıda eski CSS + yeni HTML görünür ("site bozuldu" şikayetinin sebebi buydu).
 
 ## Sayfa bölümleri (ana sayfa, EN/TR)
 

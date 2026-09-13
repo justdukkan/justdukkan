@@ -354,7 +354,8 @@ section + section { border-top: 1px solid var(--border); }
 
 /* CTA */
 .cta { background: var(--card); }
-.cal-inline { margin-top: 32px; min-height: 560px; max-width: 1040px; }
+.cal-inline { margin-top: 32px; min-height: 560px; max-width: 1040px; overflow: hidden; }
+.cal-inline iframe { display: block; margin-bottom: -100px !important; }
 .cta-email { margin-top: 20px; font-size: 0.9rem; color: var(--fg-60); }
 .cta-email a { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--border-strong); }
 
