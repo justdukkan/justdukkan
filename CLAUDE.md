@@ -63,11 +63,14 @@ Hero → Model logoları bandı (Claude, ChatGPT, Gemini, Kimi, DeepSeek, Mistra
 - JSON-LD `@graph`: Organization+ProfessionalService (adres, EIN, telefon, `knowsAbout`, 3 hizmetlik OfferCatalog, `sameAs`: LinkedIn, GitHub, Cal), WebSite, WebPage, FAQPage. Makalelerde Article + BreadcrumbList + FAQPage.
 - `llms.txt`, `robots.txt` (GPTBot, ClaudeBot, PerplexityBot, Google-Extended vb. Allow), `sitemap.xml`, `<meta name="robots" content="index, follow, max-snippet:-1">`, canonical + hreflang (en/tr/x-default), OG meta.
 - 4 EN makale (`/insights/`): hub-and-spoke, MCP tool design, process automation playbook, human-in-the-loop. TR makale yok.
-- Google Search Console: domain property doğrulandı, sitemap gönderildi (2026-09-13). Bing Webmaster: GSC'den import edildi. İndeksleme bekleniyor (48 saat).
+- Google Search Console: domain property doğrulandı, sitemap gönderildi (2026-09-13); insights sayfaları indekslendi, `/` bekliyor. Bing Webmaster: GSC'den import edildi.
+- **IndexNow** kuruldu: anahtar dosyası `/9ab21623bd51863e0413867377354055.txt` (repoda). Yeni/değişen URL'leri anında Bing'e bildirmek için:
+  `curl -X POST https://api.indexnow.org/indexnow -H 'Content-Type: application/json' -d '{"host":"justdukkan.com","key":"9ab21623bd51863e0413867377354055","keyLocation":"https://justdukkan.com/9ab21623bd51863e0413867377354055.txt","urlList":["https://justdukkan.com/…"]}'` (202 = kabul).
 - Dış varlıklar: LinkedIn şirket sayfası (kapak `brand/linkedin-cover.png`), GitHub org, açık kaynak referans repo **`github.com/justdukkan/invoice-intake-mcp`** — PyPI'da (`uvx invoice-intake-mcp`) ve **MCP Registry'de `com.justdukkan/invoice-intake-mcp`** (DNS auth: apex TXT `v=MCPv1; k=ed25519; p=…`, özel anahtar `~/.config/mcp-registry/justdukkan-ed25519.pem`). awesome-mcp-servers PR #14311 açık.
 
 ## SEO / GEO — yapılacaklar
 
+- [ ] **www → apex 308 yönlendirmesi** (Vercel → Project → Settings → Domains → www.justdukkan.com → Redirect to justdukkan.com). Şu an www ayrı 200 dönüyor; canonical apex'i gösterse de Google eski www/eski içerik yüzünden `/`'i geç indeksliyor olabilir.
 - [ ] 48 saat sonra Search Console: indekslenen sayfalar, hatalar; URL Inspection ile makaleleri "request indexing".
 - [ ] Bing Webmaster: sitemap görünüyor mu, URL Submission ile makaleler.
 - [ ] Clutch.co, GoodFirms, Crunchbase profilleri (Enes; metinler LinkedIn About ile aynı).
