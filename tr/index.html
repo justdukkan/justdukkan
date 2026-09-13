@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/styles.css?v=4">
+  <link rel="stylesheet" href="/assets/styles.css?v=5">
 </head>
 <body>
 
@@ -42,7 +42,7 @@
           <span aria-hidden="true">/</span>
           <a href="/tr/" class="active" aria-current="page" hreflang="tr">TR</a>
         </div>
-        <a href="https://cal.com/enes-ertas-5wscht/solution-consultation" data-cal-link="enes-ertas-5wscht/solution-consultation" data-cal-namespace="consultation" data-cal-config='{"layout":"month_view","theme":"auto"}' class="btn btn-primary btn-sm">Görüşme planla <span class="arrow">→</span></a>
+        <a href="#contact" class="btn btn-primary btn-sm">Görüşme planla <span class="arrow">→</span></a>
       </div>
     </div>
   </header>
@@ -55,7 +55,7 @@
         <h1 class="display">Şirketinizin iş yapış şeklinin arkasındaki yapay zeka mimarisini tasarlıyoruz.</h1>
         <p class="lede">İşin nasıl yapıldığını ve neye mal olduğunu değiştirmek isteyen şirketler için otomasyon, sistem tasarımı ve agentic sistemler.</p>
         <div class="hero-actions">
-          <a href="https://cal.com/enes-ertas-5wscht/solution-consultation" data-cal-link="enes-ertas-5wscht/solution-consultation" data-cal-namespace="consultation" data-cal-config='{"layout":"month_view","theme":"auto"}' class="btn btn-primary">Görüşme planla <span class="arrow">→</span></a>
+          <a href="#contact" class="btn btn-primary">Görüşme planla <span class="arrow">→</span></a>
           <a href="#services" class="btn btn-ghost">Ne yapıyoruz</a>
         </div>
       </div>
@@ -247,12 +247,8 @@
           <h2 class="display" style="margin-top:16px">Değiştirmek istediğiniz süreci anlatın.</h2>
           <p class="lede" style="margin-top:16px">Paket yok, fiyat listesi yok. Sürecinize bakar, bir mimari öneririz ve inşa etmeye değip değmediğine birlikte karar veririz.</p>
         </div>
-        <div>
-          <div class="cta-actions">
-            <a href="https://cal.com/enes-ertas-5wscht/solution-consultation" data-cal-link="enes-ertas-5wscht/solution-consultation" data-cal-namespace="consultation" data-cal-config='{"layout":"month_view","theme":"auto"}' class="btn btn-primary">Görüşme planla <span class="arrow">→</span></a>
-            <a href="mailto:enes@justdukkan.com" class="btn btn-ghost">enes@justdukkan.com</a>
-          </div>
-        </div>
+        <div class="cal-inline" id="cal-inline" aria-label="Booking calendar"></div>
+        <p class="cta-email">ya da yazın: <a href="mailto:enes@justdukkan.com">enes@justdukkan.com</a></p>
       </div>
     </section>
 
@@ -279,8 +275,9 @@
   <script>
     (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
     Cal("init", "consultation", { origin: "https://app.cal.com" });
+    Cal.ns.consultation("inline", { elementOrSelector: "#cal-inline", calLink: "enes-ertas-5wscht/solution-consultation", config: { layout: "month_view", theme: "auto" } });
     Cal.ns.consultation("ui", { theme: "auto", hideEventTypeDetails: false, layout: "month_view" });
   </script>
-<script src="/assets/demo.js?v=4" defer></script>
+<script src="/assets/demo.js?v=5" defer></script>
 </body>
 </html>
