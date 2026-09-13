@@ -12,7 +12,7 @@ THEME_JS = '''  <script>
     (function () { var k = "jd-theme"; try { var t = localStorage.getItem(k); if (t) document.documentElement.setAttribute("data-theme", t); } catch (e) {}
       window.jdTheme = { current: function () { return document.documentElement.getAttribute("data-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"); },
         toggle: function () { var n = jdTheme.current() === "dark" ? "light" : "dark"; document.documentElement.setAttribute("data-theme", n); try { localStorage.setItem(k, n); } catch (e) {}
-          if (window.Cal && Cal.ns && Cal.ns.consultation) Cal.ns.consultation("ui", { theme: n }); } }; })();
+          var el = document.getElementById("cal-inline"); if (el && window.Cal && Cal.ns && Cal.ns.consultation) { Cal.ns.consultation("ui", { theme: n }); el.innerHTML = ""; Cal.ns.consultation("inline", { elementOrSelector: "#cal-inline", calLink: "justdukkan/solution-consultation", config: { layout: "month_view", theme: n } }); } } }; })();
   </script>
 '''
 
