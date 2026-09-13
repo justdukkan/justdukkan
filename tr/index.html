@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/styles.css">
+  <link rel="stylesheet" href="/assets/styles.css?v=3">
 </head>
 <body>
 
@@ -176,55 +176,10 @@
         <div class="section-head">
           <span class="label">Referans desen</span>
           <h2 class="display" id="arch-title">Tek orkestratör. Çok uzman. Net sınırlar.</h2>
-          <p>Hub-and-spoke deseni sorumluluğu açık tutar: hub karar verir, spoke'lar uygular ve her tool çağrısı tanımlı bir sınırdan geçer.</p>
+          <p>Hub-and-spoke bir sistem çalışırken böyle görünür: orkestratör planlar, uzman ajanlar tipli tool'lar üzerinden uygular, insanlar yalnızca gereken yerde karar verir.</p>
         </div>
-        <div class="diagram-wrap">
-          <svg class="diagram" viewBox="0 0 760 340" role="img" aria-label="Hub-and-spoke mimarisi: uzman ajanlara, veri ve bilgiye, insan onayına, MCP tool'larına, iç sistemlere ve bulut servislerine bağlı bir orkestratör">
-            <line class="link" x1="190" y1="60"  x2="336" y2="152"/>
-            <line class="link" x1="190" y1="170" x2="332" y2="170"/>
-            <line class="link" x1="190" y1="280" x2="336" y2="188"/>
-            <line class="link" x1="570" y1="60"  x2="424" y2="152"/>
-            <line class="link" x1="570" y1="170" x2="428" y2="170"/>
-            <line class="link" x1="570" y1="280" x2="424" y2="188"/>
-            <circle class="hub-ring" cx="380" cy="170" r="76"/>
-            <circle class="hub" cx="380" cy="170" r="58"/>
-            <text class="t-hub" x="380" y="163" text-anchor="middle">ORKESTRATÖR</text>
-            <text class="t-hub t-hub-sub" x="380" y="177" text-anchor="middle">planla · yönlendir</text>
-            <text class="t-hub t-hub-sub" x="380" y="189" text-anchor="middle">doğrula</text>
-            <g>
-              <rect class="node" x="40" y="38" width="150" height="44" rx="8"/>
-              <text x="115" y="57" text-anchor="middle">Uzman ajanlar</text>
-              <text class="t-muted" x="115" y="72" text-anchor="middle">sınırlı kapsam</text>
-            </g>
-            <g>
-              <rect class="node" x="40" y="148" width="150" height="44" rx="8"/>
-              <text x="115" y="167" text-anchor="middle">Veri &amp; bilgi</text>
-              <text class="t-muted" x="115" y="182" text-anchor="middle">retrieval · grounding</text>
-            </g>
-            <g>
-              <rect class="node" x="40" y="258" width="150" height="44" rx="8"/>
-              <text x="115" y="277" text-anchor="middle">İnsan onayı</text>
-              <text class="t-muted" x="115" y="292" text-anchor="middle">yalnızca gereken yerde</text>
-            </g>
-            <g>
-              <rect class="node" x="570" y="38" width="150" height="44" rx="8"/>
-              <text x="645" y="57" text-anchor="middle">MCP tool'ları</text>
-              <text class="t-muted" x="645" y="72" text-anchor="middle">tipli · yetkili</text>
-            </g>
-            <g>
-              <rect class="node" x="570" y="148" width="150" height="44" rx="8"/>
-              <text x="645" y="167" text-anchor="middle">İç sistemler</text>
-              <text class="t-muted" x="645" y="182" text-anchor="middle">CRM · ERP · API'ler</text>
-            </g>
-            <g>
-              <rect class="node" x="570" y="258" width="150" height="44" rx="8"/>
-              <text x="645" y="277" text-anchor="middle">Bulut servisleri</text>
-              <text class="t-muted" x="645" y="292" text-anchor="middle">AWS · Google Cloud</text>
-            </g>
-            <text class="t-muted" x="380" y="326" text-anchor="middle">her bağlantı = tanımlı bir tool sözleşmesi, yetki ve kayıt</text>
-          </svg>
-          <p class="diagram-caption">Yeni bir yetenek eklemek için yeni bir spoke ekleyin — hub, kontroller ve denetim izi aynı kalır.</p>
-        </div>
+        <div class="demo" id="demo" aria-label="İnteraktif orkestratör demosu"></div>
+        <p class="diagram-caption">Soldan bir çalıştırma seç. Her adım bir ajan, MCP üzerinden tipli bir tool çağrısı ya da bir insan kararı — orkestratör gereken yerde bekler.</p>
       </div>
     </section>
 
@@ -297,7 +252,6 @@
             <a href="mailto:enes@justdukkan.com?subject=Mimari%20g%C3%B6r%C3%BC%C5%9Fme%20talebi" class="btn btn-primary">Görüşme planla <span class="arrow">→</span></a>
             <a href="mailto:enes@justdukkan.com" class="btn btn-ghost">enes@justdukkan.com</a>
           </div>
-          <p class="note">İki iş günü içinde yanıt veriyoruz. <a href="/#contact" hreflang="en" lang="en">English version.</a></p>
         </div>
       </div>
     </section>
@@ -322,5 +276,6 @@
     </div>
   </footer>
 
+<script src="/assets/demo.js?v=3" defer></script>
 </body>
 </html>
