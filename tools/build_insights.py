@@ -112,7 +112,7 @@ def head(title, desc, url, ld):
   <script type="application/ld+json">
 {json.dumps(ld, ensure_ascii=False, indent=2)}
   </script>
-  <link rel="stylesheet" href="/assets/styles.css?v=16">
+  <link rel="stylesheet" href="/assets/styles.css?v=17">
   <script src="/assets/consent.js?v=1" defer></script>
 </head>
 <body>
