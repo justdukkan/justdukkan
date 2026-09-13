@@ -384,7 +384,7 @@ section + section { border-top: 1px solid var(--border); }
 .breadcrumb a:hover { color: var(--fg); }
 
 /* Insights list */
-.insights-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.insights-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
 .insight-card { display: block; background: var(--card); border: 1px solid var(--border); border-radius: var(--r-lg); padding: 28px; transition: background 0.15s ease, border-color 0.15s ease; }
 .insight-card:hover { background: var(--card-hover); border-color: var(--border-strong); color: inherit; }
 .insight-card .label { display: block; margin-bottom: 14px; }

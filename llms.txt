@@ -41,6 +41,7 @@ No packages and no price list. We look at a process, propose an architecture and
 - [Hub-and-spoke agent architecture: how to build multi-agent systems that stay explainable](https://justdukkan.com/insights/hub-and-spoke-agent-architecture/)
 - [Designing MCP servers and tools that agents can use safely](https://justdukkan.com/insights/mcp-server-and-tool-design/)
 - [From manual process to automated flow: an architecture playbook](https://justdukkan.com/insights/process-automation-architecture/)
+- [Human-in-the-loop for agentic systems: where people belong](https://justdukkan.com/insights/human-in-the-loop-for-agentic-systems/)
 
 ## Open source
 

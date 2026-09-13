@@ -240,4 +240,71 @@ savings        = (current_cost − automated_cost) × items_per_month</code></pr
   ('How long until the first process is live?', 'A read-only assistant for one process is typically live within weeks of discovery; auto-commit for the safe path follows once the evaluation set confirms accuracy and the review data supports the threshold.'),
  ],
 },
+{
+ 'slug': 'human-in-the-loop-for-agentic-systems',
+ 'short': 'Human-in-the-loop design',
+ 'kicker': 'Agentic systems',
+ 'title': 'Human-in-the-loop for agentic systems: where people belong, and where they only slow things down',
+ 'desc': '"Keep a human in the loop" is easy to say and usually done badly: either every step waits for someone, or nothing does. This is how we decide which decisions get a human checkpoint, how the checkpoint is built so it is actually used, and how the loop shrinks over time without losing control.',
+ 'read': 8,
+ 'about': ['Human-in-the-loop', 'AI governance', 'Agentic systems'],
+ 'keywords': ['human in the loop', 'HITL', 'AI approval workflow', 'agent guardrails', 'risk threshold', 'agentic automation'],
+ 'body': """
+<h2>Two ways to get it wrong</h2>
+<p><strong>Everything waits.</strong> The system prepares work and a person approves each item. Handling time drops a little, the review queue becomes the bottleneck, reviewers start approving without reading, and the checkpoint stops meaning anything. The company paid for automation and got a rubber stamp.</p>
+<p><strong>Nothing waits.</strong> The system acts end to end. The first bad outcome that reaches a customer, an auditor or a bank account ends the project, regardless of how well the other thousand items went.</p>
+<p>The useful version sits between the two: humans decide exactly where the consequence of a wrong action is real and hard to reverse, and nowhere else.</p>
+
+<h2>Classify decisions by consequence, not by difficulty</h2>
+<p>The instinct is to send "hard" decisions to people. Difficulty is the wrong axis; models are often better than tired humans at hard-but-bounded judgement. The right axis is what happens if the decision is wrong:</p>
+<table>
+  <tr><th>If wrong…</th><th>Example</th><th>Who decides</th></tr>
+  <tr><td>Nothing leaves the system; easy to redo</td><td>Extract fields from a PDF, classify a ticket, draft a reply</td><td>Model, verified by rules</td></tr>
+  <tr><td>Something changes internally, reversible</td><td>Stage an invoice, assign a ticket, create a draft vendor</td><td>Model, logged, reviewable after the fact</td></tr>
+  <tr><td>Something leaves the company or moves money, below a threshold</td><td>Send a standard reply, post a matched invoice under the limit</td><td>Model, with sampling review (e.g. 5% audited weekly)</td></tr>
+  <tr><td>Above the threshold, or novel, or affects a relationship</td><td>Post a large invoice, reply to an escalated customer, onboard a new vendor</td><td>Human, presented with the prepared decision</td></tr>
+</table>
+<p>The threshold is a business rule written by the process owner (amount, customer tier, first-time counterpart, confidence below a bar). It is never the model's own opinion of its confidence alone.</p>
+
+<h2>Design the checkpoint so it gets used</h2>
+<p>A checkpoint people skip is worse than none, because it creates the appearance of control. Rules we apply:</p>
+<ol>
+  <li><strong>Show the decision, not the transcript.</strong> The reviewer sees the invoice fields, the matched PO, the variance, the reason it was flagged and the exact action that will happen on approval. Not a chat log.</li>
+  <li><strong>One click, typed outcome.</strong> Approve / Reject / Correct. The outcome is data the orchestrator reads, not a message it interprets.</li>
+  <li><strong>In the tool they already use.</strong> Slack, Teams, the helpdesk, the ERP inbox. A new dashboard is a new place to forget.</li>
+  <li><strong>Deadline and fallback.</strong> Every request has an owner, a due time and a defined outcome when nobody answers (escalate, or return to requester). Silence must not mean approval.</li>
+  <li><strong>Server-side enforcement.</strong> The system that performs the irreversible action checks that an approval exists. The agent cannot talk itself past the gate; neither can a prompt injected through a document.</li>
+  <li><strong>Every decision is logged with the reviewer's identity.</strong> This is what an auditor asks for, and it is what lets you widen the safe path later.</li>
+</ol>
+
+<h2>Reject is a first-class path</h2>
+<p>Most designs handle approval and forget rejection. A rejection should return the item to the requester with the reviewer's note, leave the systems of record untouched, and be visible in metrics. Recurring rejections are the most valuable signal in the whole system: each one is either a rule you have not written yet or a spoke you have not built.</p>
+
+<h2>Shrink the loop deliberately</h2>
+<p>Start conservative and widen the automated path on evidence, not on optimism:</p>
+<ol>
+  <li><strong>Read-only phase.</strong> The system prepares; humans commit everything. You collect the approval log.</li>
+  <li><strong>Auto-commit under the threshold.</strong> Only items that pass every rule and fall under the limit go straight through. Measure: straight-through rate, corrections, complaints.</li>
+  <li><strong>Raise the threshold or add rules</strong> when the approval log shows reviewers approving a category without changes for a defined period (say 200 items, zero corrections).</li>
+  <li><strong>Keep sampling.</strong> Even fully automated categories get a random audit. That is how you notice drift when a vendor changes its invoice format or a model version changes behaviour.</li>
+</ol>
+
+<h2>What to measure</h2>
+<ul>
+  <li>Straight-through rate (no human touch) per category</li>
+  <li>Review queue age and time-to-decision</li>
+  <li>Approval rate without changes vs. corrected vs. rejected</li>
+  <li>Items reversed after auto-commit (the number that must stay near zero)</li>
+  <li>Reviewer minutes per item, which is the cost the whole design is trying to reduce</li>
+</ul>
+
+<h2>The principle</h2>
+<p>People should make decisions, not do work. A well-designed loop presents a person with a prepared, consequential choice a few times a day and keeps everything else moving. If reviewers are reading PDFs or re-keying numbers, the loop is in the wrong place.</p>
+""",
+ 'faq': [
+  ('Does a human have to approve every AI action?', 'No. Approvals belong where a wrong action is consequential and hard to reverse: money above a limit, customer-facing messages in sensitive cases, new counterparties. Reads, drafts and low-risk commits run without approval and are audited by sampling.'),
+  ('Who sets the approval threshold?', 'The process owner, as a written business rule (amount, customer tier, novelty, confidence bar). The system enforces it server-side; the model cannot lower it.'),
+  ('How do we keep reviewers from rubber-stamping?', 'Show a prepared decision rather than a transcript, keep the queue short by automating the safe path, give each request a deadline and fallback, and measure the approve-without-change rate; when it is near 100% for a category, that category is ready to automate.'),
+ ],
+},
 ]

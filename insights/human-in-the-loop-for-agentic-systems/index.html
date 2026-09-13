@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Human-in-the-loop for agentic systems: where people belong, and where they only slow things down — JustDukkan</title>
+  <meta name="description" content=""Keep a human in the loop" is easy to say and usually done badly: either every step waits for someone, or nothing does. This is how we decide which decisions get a human checkpoint, how the checkpoint is built so it is actually used, and how the loop shrinks over time without losing control.">
+  <link rel="canonical" href="https://justdukkan.com/insights/human-in-the-loop-for-agentic-systems/">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Human-in-the-loop for agentic systems: where people belong, and where they only slow things down — JustDukkan">
+  <meta property="og:description" content=""Keep a human in the loop" is easy to say and usually done badly: either every step waits for someone, or nothing does. This is how we decide which decisions get a human checkpoint, how the checkpoint is built so it is actually used, and how the loop shrinks over time without losing control.">
+  <meta property="og:url" content="https://justdukkan.com/insights/human-in-the-loop-for-agentic-systems/">
+  <meta property="og:site_name" content="JustDukkan">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+  <meta name="theme-color" content="#f7f7f4" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#14120b" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="/assets/favicon.svg?v=2" type="image/svg+xml">
+  <link rel="icon" href="/assets/favicon-32.png?v=2" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png?v=2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://justdukkan.com/insights/human-in-the-loop-for-agentic-systems/#article",
+      "headline": "Human-in-the-loop for agentic systems: where people belong, and where they only slow things down",
+      "description": "\"Keep a human in the loop\" is easy to say and usually done badly: either every step waits for someone, or nothing does. This is how we decide which decisions get a human checkpoint, how the checkpoint is built so it is actually used, and how the loop shrinks over time without losing control.",
+      "url": "https://justdukkan.com/insights/human-in-the-loop-for-agentic-systems/",
+      "datePublished": "2026-09-13",
+      "dateModified": "2026-09-13",
+      "inLanguage": "en",
+      "author": {
+        "@id": "https://justdukkan.com/#org"
+      },
+      "publisher": {
+        "@id": "https://justdukkan.com/#org"
+      },
+      "mainEntityOfPage": "https://justdukkan.com/insights/human-in-the-loop-for-agentic-systems/",
+      "about": [
+        "Human-in-the-loop",
+        "AI governance",
+        "Agentic systems"
+      ],
+      "keywords": "human in the loop, HITL, AI approval workflow, agent guardrails, risk threshold, agentic automation"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "JustDukkan",
+          "item": "https://justdukkan.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Insights",
+          "item": "https://justdukkan.com/insights/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Human-in-the-loop design",
+          "item": "https://justdukkan.com/insights/human-in-the-loop-for-agentic-systems/"
+        }
+      ]
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://justdukkan.com/#org",
+      "name": "JustDukkan",
+      "legalName": "JustDukkan, LLC",
+      "url": "https://justdukkan.com/"
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://justdukkan.com/insights/human-in-the-loop-for-agentic-systems/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Does a human have to approve every AI action?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Approvals belong where a wrong action is consequential and hard to reverse: money above a limit, customer-facing messages in sensitive cases, new counterparties. Reads, drafts and low-risk commits run without approval and are audited by sampling."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Who sets the approval threshold?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The process owner, as a written business rule (amount, customer tier, novelty, confidence bar). The system enforces it server-side; the model cannot lower it."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do we keep reviewers from rubber-stamping?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Show a prepared decision rather than a transcript, keep the queue short by automating the safe path, give each request a deadline and fallback, and measure the approve-without-change rate; when it is near 100% for a category, that category is ready to automate."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <link rel="stylesheet" href="/assets/styles.css?v=8">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="brand" aria-label="JustDukkan home">
+        <span class="wordmark" role="img" aria-label="justdukkan"></span>
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="/#services">Services</a>
+        <a href="/#expertise">Expertise</a>
+        <a href="/#approach">Approach</a>
+        <a href="/insights/" aria-current="page">Insights</a>
+        <a href="/#contact">Contact</a>
+      </nav>
+      <div class="nav-right">
+        <div class="lang" aria-label="Language">
+          <a href="/" class="active" hreflang="en">EN</a>
+          <span aria-hidden="true">/</span>
+          <a href="/tr/" hreflang="tr" lang="tr">TR</a>
+        </div>
+        <a href="/#contact" class="btn btn-primary btn-sm">Book a call <span class="arrow">→</span></a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="article-hero">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">JustDukkan</a><span>/</span><a href="/insights/">Insights</a><span>/</span><span>Human-in-the-loop design</span></nav>
+        <h1 class="display" style="margin-top:28px">Human-in-the-loop for agentic systems: where people belong, and where they only slow things down</h1>
+        <p class="lede">"Keep a human in the loop" is easy to say and usually done badly: either every step waits for someone, or nothing does. This is how we decide which decisions get a human checkpoint, how the checkpoint is built so it is actually used, and how the loop shrinks over time without losing control.</p>
+        <p class="article-meta">JustDukkan · 8 min read · Updated 2026-09-13</p>
+      </div>
+    </section>
+    <section class="article" style="border-top:0;padding-top:0">
+      <div class="container">
+        <div class="prose">
+
+<h2>Two ways to get it wrong</h2>
+<p><strong>Everything waits.</strong> The system prepares work and a person approves each item. Handling time drops a little, the review queue becomes the bottleneck, reviewers start approving without reading, and the checkpoint stops meaning anything. The company paid for automation and got a rubber stamp.</p>
+<p><strong>Nothing waits.</strong> The system acts end to end. The first bad outcome that reaches a customer, an auditor or a bank account ends the project, regardless of how well the other thousand items went.</p>
+<p>The useful version sits between the two: humans decide exactly where the consequence of a wrong action is real and hard to reverse, and nowhere else.</p>
+
+<h2>Classify decisions by consequence, not by difficulty</h2>
+<p>The instinct is to send "hard" decisions to people. Difficulty is the wrong axis; models are often better than tired humans at hard-but-bounded judgement. The right axis is what happens if the decision is wrong:</p>
+<table>
+  <tr><th>If wrong…</th><th>Example</th><th>Who decides</th></tr>
+  <tr><td>Nothing leaves the system; easy to redo</td><td>Extract fields from a PDF, classify a ticket, draft a reply</td><td>Model, verified by rules</td></tr>
+  <tr><td>Something changes internally, reversible</td><td>Stage an invoice, assign a ticket, create a draft vendor</td><td>Model, logged, reviewable after the fact</td></tr>
+  <tr><td>Something leaves the company or moves money, below a threshold</td><td>Send a standard reply, post a matched invoice under the limit</td><td>Model, with sampling review (e.g. 5% audited weekly)</td></tr>
+  <tr><td>Above the threshold, or novel, or affects a relationship</td><td>Post a large invoice, reply to an escalated customer, onboard a new vendor</td><td>Human, presented with the prepared decision</td></tr>
+</table>
+<p>The threshold is a business rule written by the process owner (amount, customer tier, first-time counterpart, confidence below a bar). It is never the model's own opinion of its confidence alone.</p>
+
+<h2>Design the checkpoint so it gets used</h2>
+<p>A checkpoint people skip is worse than none, because it creates the appearance of control. Rules we apply:</p>
+<ol>
+  <li><strong>Show the decision, not the transcript.</strong> The reviewer sees the invoice fields, the matched PO, the variance, the reason it was flagged and the exact action that will happen on approval. Not a chat log.</li>
+  <li><strong>One click, typed outcome.</strong> Approve / Reject / Correct. The outcome is data the orchestrator reads, not a message it interprets.</li>
+  <li><strong>In the tool they already use.</strong> Slack, Teams, the helpdesk, the ERP inbox. A new dashboard is a new place to forget.</li>
+  <li><strong>Deadline and fallback.</strong> Every request has an owner, a due time and a defined outcome when nobody answers (escalate, or return to requester). Silence must not mean approval.</li>
+  <li><strong>Server-side enforcement.</strong> The system that performs the irreversible action checks that an approval exists. The agent cannot talk itself past the gate; neither can a prompt injected through a document.</li>
+  <li><strong>Every decision is logged with the reviewer's identity.</strong> This is what an auditor asks for, and it is what lets you widen the safe path later.</li>
+</ol>
+
+<h2>Reject is a first-class path</h2>
+<p>Most designs handle approval and forget rejection. A rejection should return the item to the requester with the reviewer's note, leave the systems of record untouched, and be visible in metrics. Recurring rejections are the most valuable signal in the whole system: each one is either a rule you have not written yet or a spoke you have not built.</p>
+
+<h2>Shrink the loop deliberately</h2>
+<p>Start conservative and widen the automated path on evidence, not on optimism:</p>
+<ol>
+  <li><strong>Read-only phase.</strong> The system prepares; humans commit everything. You collect the approval log.</li>
+  <li><strong>Auto-commit under the threshold.</strong> Only items that pass every rule and fall under the limit go straight through. Measure: straight-through rate, corrections, complaints.</li>
+  <li><strong>Raise the threshold or add rules</strong> when the approval log shows reviewers approving a category without changes for a defined period (say 200 items, zero corrections).</li>
+  <li><strong>Keep sampling.</strong> Even fully automated categories get a random audit. That is how you notice drift when a vendor changes its invoice format or a model version changes behaviour.</li>
+</ol>
+
+<h2>What to measure</h2>
+<ul>
+  <li>Straight-through rate (no human touch) per category</li>
+  <li>Review queue age and time-to-decision</li>
+  <li>Approval rate without changes vs. corrected vs. rejected</li>
+  <li>Items reversed after auto-commit (the number that must stay near zero)</li>
+  <li>Reviewer minutes per item, which is the cost the whole design is trying to reduce</li>
+</ul>
+
+<h2>The principle</h2>
+<p>People should make decisions, not do work. A well-designed loop presents a person with a prepared, consequential choice a few times a day and keeps everything else moving. If reviewers are reading PDFs or re-keying numbers, the loop is in the wrong place.</p>
+
+<h2>Frequently asked questions</h2>
+<h3>Does a human have to approve every AI action?</h3>
+<p>No. Approvals belong where a wrong action is consequential and hard to reverse: money above a limit, customer-facing messages in sensitive cases, new counterparties. Reads, drafts and low-risk commits run without approval and are audited by sampling.</p>
+<h3>Who sets the approval threshold?</h3>
+<p>The process owner, as a written business rule (amount, customer tier, novelty, confidence bar). The system enforces it server-side; the model cannot lower it.</p>
+<h3>How do we keep reviewers from rubber-stamping?</h3>
+<p>Show a prepared decision rather than a transcript, keep the queue short by automating the safe path, give each request a deadline and fallback, and measure the approve-without-change rate; when it is near 100% for a category, that category is ready to automate.</p>
+
+        </div>
+        <div class="article-cta">
+          <strong>Have a process like this?</strong>
+          <p>We look at the process, propose an architecture, and decide together whether it is worth building. No packages, no price list.</p>
+          <a href="/#contact" class="btn btn-primary">Book a Solution Consultation <span class="arrow">→</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <a href="/" class="brand">
+          <span class="wordmark" role="img" aria-label="justdukkan"></span>
+        </a>
+        <div class="lang">
+          <a href="/" class="active" hreflang="en" lang="en">EN</a>
+          <span aria-hidden="true">/</span>
+          <a href="/tr/" hreflang="tr" lang="tr">TR</a>
+        </div>
+      </div>
+      <div class="footer-grid">
+        <div>
+          <span class="footer-h">Company</span>
+          <p>JustDukkan, LLC<br>1111B S Governors Ave, Suite 46654<br>Dover, DE 19904, USA<br>EIN 38-4388070</p>
+        </div>
+        <div>
+          <span class="footer-h">Contact</span>
+          <p><a href="mailto:enes@justdukkan.com">enes@justdukkan.com</a><br><a href="tel:+19106799657">+1 (910) 679-9657</a><br><a href="https://wa.me/19106799657" target="_blank" rel="noopener">WhatsApp</a></p>
+        </div>
+        <div>
+          <span class="footer-h">Insights</span>
+          <p><a href="/insights/hub-and-spoke-agent-architecture/">Hub-and-spoke agent architecture</a><br><a href="/insights/mcp-server-and-tool-design/">MCP server & tool design</a><br><a href="/insights/process-automation-architecture/">Process automation architecture</a><br><a href="/insights/human-in-the-loop-for-agentic-systems/">Human-in-the-loop design</a></p>
+        </div>
+      </div>
+      <div class="footer-bottom">© 2026 JustDukkan, LLC</div>
+    </div>
+  </footer>
+  <script>
+    (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+    Cal("init", "consultation", { origin: "https://app.cal.com" });
+    Cal.ns.consultation("ui", { theme: "auto", hideEventTypeDetails: false, layout: "month_view" });
+  </script>
+</body>
+</html>
