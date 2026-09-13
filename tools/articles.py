@@ -87,11 +87,16 @@ ARTICLES = [
 
 <h2>Rule 1: model the business operation, not the API</h2>
 <p>The most common mistake is to auto-generate a tool per REST endpoint. Agents then get <code>GET /invoices</code>, <code>PATCH /invoices/{id}</code> and forty siblings, and have to reconstruct business meaning from HTTP verbs. Instead, expose the operations a competent employee would name:</p>
-<pre><code>erp.match_po(invoice_ref, vendor, total)      → {status, po_number, variance}
-erp.post_invoice(invoice_id, po_number)      → {posted_id}          # write, needs approval
-helpdesk.fetch_new(since)                    → [ticket]
-helpdesk.draft_reply(ticket_id, body)        → {draft_id}           # write, no side effect on customer
-helpdesk.send_reply(draft_id)                → {sent_at}            # write, customer-visible</code></pre>
+<pre><code># reads: no side effect
+erp.match_po(invoice_ref, vendor, total) → {status, po_number, variance}
+helpdesk.fetch_new(since)                → [ticket]
+
+# writes: reversible, not visible to the customer
+helpdesk.draft_reply(ticket_id, body)    → {draft_id}
+
+# writes: irreversible or customer-visible, need approval
+erp.post_invoice(invoice_id, po_number)  → {posted_id}
+helpdesk.send_reply(draft_id)            → {sent_at}</code></pre>
 <p>Fewer, meaningful tools produce better plans, fewer wrong calls and a permission model humans can read.</p>
 
 <h2>Rule 2: separate reads, drafts and sends</h2>
