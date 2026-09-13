@@ -4,17 +4,17 @@
 
   var T = {
     en: {
-      title: 'JustDukkan Orchestrator — Acme Ops',
+      title: 'JustDukkan Orchestrator · Acme Ops',
       runs: 'Runs', spokes: 'Spokes', tools: 'Tool calls', replay: 'Replay',
       approve: 'Approve', reject: 'Reject', running: 'Running', done: 'Done', waiting: 'Waiting for approval',
-      rejected: 'Returned to requester — nothing changed', request: 'Request',
+      rejected: 'Returned to requester, nothing changed', request: 'Request',
       orchestrator: 'Orchestrator', human: 'Human review'
     },
     tr: {
-      title: 'JustDukkan Orkestratör — Acme Ops',
+      title: 'JustDukkan Orkestratör · Acme Ops',
       runs: 'Çalıştırmalar', spokes: 'Spoke\'lar', tools: 'Tool çağrısı', replay: 'Tekrar oynat',
       approve: 'Onayla', reject: 'Reddet', running: 'Çalışıyor', done: 'Tamamlandı', waiting: 'Onay bekliyor',
-      rejected: 'Talep sahibine iade edildi — hiçbir şey değişmedi', request: 'Talep',
+      rejected: 'Talep sahibine iade edildi, hiçbir şey değişmedi', request: 'Talep',
       orchestrator: 'Orkestratör', human: 'İnsan onayı'
     }
   }[lang];
