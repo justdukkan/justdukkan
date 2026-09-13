@@ -8,10 +8,18 @@ ROOT = os.path.join(os.path.dirname(__file__), '..')
 SITE = 'https://justdukkan.com'
 DATE = '2026-09-13'
 
+THEME_JS = '''  <script>
+    (function () { var k = "jd-theme"; try { var t = localStorage.getItem(k); if (t) document.documentElement.setAttribute("data-theme", t); } catch (e) {}
+      window.jdTheme = { current: function () { return document.documentElement.getAttribute("data-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"); },
+        toggle: function () { var n = jdTheme.current() === "dark" ? "light" : "dark"; document.documentElement.setAttribute("data-theme", n); try { localStorage.setItem(k, n); } catch (e) {}
+          if (window.Cal && Cal.ns && Cal.ns.consultation) Cal.ns.consultation("ui", { theme: n }); } }; })();
+  </script>
+'''
+
 CAL_SNIPPET = '''  <script>
     (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
     Cal("init", "consultation", { origin: "https://app.cal.com" });
-    Cal.ns.consultation("ui", { theme: "auto", hideEventTypeDetails: false, layout: "month_view" });
+    Cal.ns.consultation("ui", { theme: jdTheme.current(), hideEventTypeDetails: false, layout: "month_view" });
   </script>
 '''
 
@@ -30,6 +38,10 @@ def header(active=''):
         <a href="/#contact">Contact</a>
       </nav>
       <div class="nav-right">
+        <button class="theme-toggle" type="button" onclick="jdTheme.toggle()" aria-label="Toggle light/dark theme">
+          <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+          <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        </button>
         <div class="lang" aria-label="Language">
           <a href="/" class="active" hreflang="en">EN</a>
           <span aria-hidden="true">/</span>
@@ -91,7 +103,7 @@ def head(title, desc, url, ld):
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
   <meta name="theme-color" content="#f7f7f4" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#14120b" media="(prefers-color-scheme: dark)">
-  <link rel="icon" href="/assets/favicon.svg?v=2" type="image/svg+xml">
+{THEME_JS}  <link rel="icon" href="/assets/favicon.svg?v=2" type="image/svg+xml">
   <link rel="icon" href="/assets/favicon-32.png?v=2" type="image/png" sizes="32x32">
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png?v=2">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -100,7 +112,7 @@ def head(title, desc, url, ld):
   <script type="application/ld+json">
 {json.dumps(ld, ensure_ascii=False, indent=2)}
   </script>
-  <link rel="stylesheet" href="/assets/styles.css?v=8">
+  <link rel="stylesheet" href="/assets/styles.css?v=11">
 </head>
 <body>
 '''
