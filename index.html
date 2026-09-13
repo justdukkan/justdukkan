@@ -3,478 +3,337 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JustDukkan — Digital Products & Creative Services</title>
-  <meta name="description" content="JustDukkan builds and operates SaaS products, digital marketplaces, and creative services for online businesses and creators.">
+  <title>JustDukkan — AI Solutions Architecture</title>
+  <meta name="description" content="JustDukkan designs the AI architecture behind how companies work: process automation, system design and agentic systems built on hub-and-spoke orchestration, MCP and tools.">
+  <link rel="canonical" href="https://justdukkan.com/">
+  <link rel="alternate" hreflang="en" href="https://justdukkan.com/">
+  <link rel="alternate" hreflang="tr" href="https://justdukkan.com/tr/">
+  <link rel="alternate" hreflang="x-default" href="https://justdukkan.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="JustDukkan — AI Solutions Architecture">
+  <meta property="og:description" content="Automation, system design and agentic systems for companies that want to change how work gets done — and what it costs.">
+  <meta property="og:url" content="https://justdukkan.com/">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="tr_TR">
+  <meta name="theme-color" content="#f7f7f4" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#14120b" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg-primary: #FBF8F5;
-      --bg-secondary: #F3EDE7;
-      --bg-card: #FFFFFF;
-      --text-primary: #2C1810;
-      --text-secondary: #8C7060;
-      --accent: #A47764;
-      --accent-light: #C49585;
-      --accent-glow: rgba(164, 119, 100, 0.12);
-      --border: rgba(164, 119, 100, 0.15);
-    }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--bg-primary);
-      color: var(--text-primary);
-      line-height: 1.7;
-      overflow-x: hidden;
-    }
-
-    /* Grain overlay */
-    body::after {
-      content: '';
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.02'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 9999;
-    }
-
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 32px;
-    }
-
-    /* NAV */
-    nav {
-      padding: 28px 0;
-      border-bottom: 1px solid var(--border);
-      position: relative;
-      z-index: 10;
-    }
-    nav .container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 24px;
-      font-weight: 600;
-      color: var(--text-primary);
-      text-decoration: none;
-      letter-spacing: -0.5px;
-    }
-    .logo span { color: var(--accent); }
-    nav a.nav-link {
-      color: var(--text-secondary);
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 500;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      transition: color 0.3s;
-    }
-    nav a.nav-link:hover { color: var(--accent); }
-
-    /* HERO */
-    .hero {
-      padding: 120px 0 100px;
-      position: relative;
-    }
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -100px;
-      right: -200px;
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .hero-badge {
-      display: inline-block;
-      padding: 6px 16px;
-      border: 1px solid var(--accent);
-      border-radius: 100px;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 32px;
-      animation: fadeUp 0.8s ease both;
-    }
-    .hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(40px, 6vw, 72px);
-      font-weight: 600;
-      line-height: 1.1;
-      letter-spacing: -1.5px;
-      margin-bottom: 28px;
-      max-width: 800px;
-      animation: fadeUp 0.8s ease 0.1s both;
-    }
-    .hero h1 em {
-      font-style: italic;
-      color: var(--accent);
-    }
-    .hero p {
-      font-size: 18px;
-      color: var(--text-secondary);
-      max-width: 560px;
-      margin-bottom: 48px;
-      animation: fadeUp 0.8s ease 0.2s both;
-    }
-
-    /* DIVIDER */
-    .divider {
-      width: 60px;
-      height: 1px;
-      background: var(--accent);
-      margin: 80px 0;
-    }
-
-    /* ABOUT */
-    .about {
-      padding: 60px 0;
-    }
-    .section-label {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 20px;
-    }
-    .about h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 36px;
-      font-weight: 500;
-      line-height: 1.3;
-      margin-bottom: 24px;
-      max-width: 600px;
-    }
-    .about p {
-      font-size: 16px;
-      color: var(--text-secondary);
-      max-width: 600px;
-      margin-bottom: 16px;
-    }
-
-    /* SERVICES */
-    .services {
-      padding: 80px 0;
-    }
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 24px;
-      margin-top: 48px;
-    }
-    .service-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 40px 32px;
-      transition: all 0.4s ease;
-      position: relative;
-      overflow: hidden;
-    }
-    .service-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--accent), transparent);
-      opacity: 0;
-      transition: opacity 0.4s;
-    }
-    .service-card:hover::before { opacity: 1; }
-    .service-card:hover {
-      border-color: rgba(164, 119, 100, 0.3);
-      transform: translateY(-4px);
-    }
-    .service-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
-      background: var(--accent-glow);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 24px;
-      font-size: 22px;
-    }
-    .service-card h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 22px;
-      font-weight: 500;
-      margin-bottom: 12px;
-    }
-    .service-card p {
-      font-size: 15px;
-      color: var(--text-secondary);
-      line-height: 1.7;
-    }
-
-    /* PRODUCTS */
-    .products {
-      padding: 80px 0;
-      border-top: 1px solid var(--border);
-    }
-    .products-list {
-      margin-top: 48px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-    .product-item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 28px 32px;
-      background: var(--bg-secondary);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      transition: all 0.3s;
-    }
-    .product-item:hover {
-      border-color: rgba(164, 119, 100, 0.3);
-      background: var(--bg-card);
-    }
-    .product-item h4 {
-      font-family: 'Playfair Display', serif;
-      font-size: 20px;
-      font-weight: 500;
-    }
-    .product-item span {
-      font-size: 14px;
-      color: var(--text-secondary);
-    }
-    .product-status {
-      font-size: 12px !important;
-      padding: 4px 14px;
-      border-radius: 100px;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-    }
-    .status-live {
-      background: rgba(76, 175, 80, 0.12);
-      color: #81C784;
-    }
-    .status-dev {
-      background: rgba(201, 169, 110, 0.12);
-      color: var(--accent-light);
-    }
-
-    /* LEGAL / CONTACT */
-    .legal {
-      padding: 80px 0;
-      border-top: 1px solid var(--border);
-    }
-    .legal-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 48px;
-      margin-top: 40px;
-    }
-    .legal-item h4 {
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 12px;
-    }
-    .legal-item p {
-      font-size: 15px;
-      color: var(--text-secondary);
-      line-height: 1.8;
-    }
-    .legal-item a {
-      color: var(--text-primary);
-      text-decoration: none;
-      border-bottom: 1px solid var(--border);
-      transition: border-color 0.3s;
-    }
-    .legal-item a:hover { border-color: var(--accent); }
-
-    /* FOOTER */
-    footer {
-      padding: 40px 0;
-      border-top: 1px solid var(--border);
-      text-align: center;
-    }
-    footer p {
-      font-size: 13px;
-      color: var(--text-secondary);
-    }
-
-    /* ANIMATIONS */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .fade-in {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: all 0.6s ease;
-    }
-    .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* RESPONSIVE */
-    @media (max-width: 768px) {
-      .hero { padding: 80px 0 60px; }
-      .services-grid { grid-template-columns: 1fr; }
-      .legal-grid { grid-template-columns: 1fr; }
-      .product-item { flex-direction: column; align-items: flex-start; gap: 8px; }
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=EB+Garamond:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/styles.css">
 </head>
 <body>
 
-  <nav>
+  <header class="site-header">
     <div class="container">
-      <a href="/" class="logo">Just<span>Dukkan</span></a>
-    </div>
-  </nav>
-
-  <section class="hero">
-    <div class="container">
-      <div class="hero-badge">Delaware, USA — Est. 2026</div>
-      <h1>Digital products & creative <em>services</em> for the modern web</h1>
-      <p>JustDukkan builds and operates SaaS products, digital marketplaces, and aggregator platforms — empowering online businesses and creators worldwide.</p>
-    </div>
-  </section>
-
-  <section class="about">
-    <div class="container">
-      <div class="section-label">About Us</div>
-      <h2>Technology company building tools for the creator economy</h2>
-      <p>JustDukkan, LLC is a US-based technology company that designs, develops, and operates digital products. We specialize in SaaS platforms, e-commerce tools, and AI-powered creative services.</p>
-      <p>Our mission is to make powerful digital tools accessible to businesses and creators everywhere — from custom AI art services to marketplace platforms that simplify online selling.</p>
-    </div>
-  </section>
-
-  <section class="services">
-    <div class="container">
-      <div class="section-label">What We Do</div>
-      <h2 style="font-family:'Playfair Display',serif; font-size:36px; font-weight:500; margin-bottom:8px;">Our Services</h2>
-      <div class="services-grid">
-        <div class="service-card fade-in">
-          <div class="service-icon">🎨</div>
-          <h3>AI-Powered Art & Portraits</h3>
-          <p>Custom digital art created with cutting-edge AI technology. Pet portraits, family portraits, and personalized artwork in various artistic styles delivered digitally.</p>
+      <a href="/" class="brand" aria-label="JustDukkan home">
+        <svg class="mark" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="12" cy="12" r="3.2" fill="currentColor"/>
+          <circle cx="12" cy="3" r="2" fill="currentColor"/>
+          <circle cx="21" cy="12" r="2" fill="currentColor"/>
+          <circle cx="12" cy="21" r="2" fill="currentColor"/>
+          <circle cx="3" cy="12" r="2" fill="currentColor"/>
+          <path d="M12 5v3.8M19 12h-3.8M12 19v-3.8M5 12h3.8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+        </svg>
+        JustDukkan
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#services">Services</a>
+        <a href="#expertise">Expertise</a>
+        <a href="#approach">Approach</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="nav-right">
+        <div class="lang" aria-label="Language">
+          <a href="/" class="active" aria-current="page" hreflang="en">EN</a>
+          <span aria-hidden="true">/</span>
+          <a href="/tr/" hreflang="tr" lang="tr">TR</a>
         </div>
-        <div class="service-card fade-in">
-          <div class="service-icon">⚡</div>
-          <h3>SaaS Products</h3>
-          <p>We build and operate software-as-a-service platforms for online businesses. From digital storefronts to creator economy tools, our products serve thousands of users.</p>
-        </div>
-        <div class="service-card fade-in">
-          <div class="service-icon">🛒</div>
-          <h3>Digital Marketplaces</h3>
-          <p>Aggregator platforms and marketplace solutions that connect buyers with sellers. We design commerce experiences optimized for conversion and user satisfaction.</p>
-        </div>
+        <a href="#contact" class="btn btn-primary btn-sm">Book a call <span class="arrow">→</span></a>
       </div>
     </div>
-  </section>
+  </header>
 
-  <section class="products">
-    <div class="container">
-      <div class="section-label">Portfolio</div>
-      <h2 style="font-family:'Playfair Display',serif; font-size:36px; font-weight:500;">Our Products</h2>
-      <div class="products-list">
-        <div class="product-item fade-in">
-          <div>
-            <h4>AuraArtHive</h4>
-            <span>Custom AI-powered art & portrait service on Etsy</span>
-          </div>
-          <div class="product-status status-live">Live</div>
+  <main>
+
+    <section class="hero" id="top">
+      <div class="container">
+        <span class="label">AI Solutions Architecture</span>
+        <h1 class="display">We design the AI architecture behind how your company works.</h1>
+        <p class="lede">Automation, system design and agentic systems for companies that want to change how work gets done — and what it costs.</p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary">Book a call <span class="arrow">→</span></a>
+          <a href="#services" class="btn btn-ghost">What we do</a>
         </div>
-        <div class="product-item fade-in">
-          <div>
-            <h4>JustDukkan Platform</h4>
-            <span>Digital storefront builder for creators and small businesses</span>
-          </div>
-          <div class="product-status status-dev">In Development</div>
+        <p class="hero-email">or write to <a href="mailto:hello@justdukkan.com">hello@justdukkan.com</a></p>
+      </div>
+    </section>
+
+    <section class="trust" aria-label="Certifications">
+      <div class="container">
+        <span class="label">Our architects are certified on</span>
+        <span class="badge">Anthropic · Claude Certified Architect</span>
+        <span class="badge">AWS · Certified Solutions Architect</span>
+        <span class="badge">Google Cloud · AI Architect</span>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <div class="section-head">
+          <span class="label">Services</span>
+          <h2 class="display">Three ways we change how work gets done.</h2>
+          <p>Every engagement starts from a real process and ends with a system your team runs — not a slide deck.</p>
         </div>
-        <div class="product-item fade-in">
-          <div>
-            <h4>JustBoard.co</h4>
-            <span>Digital split-flap display SaaS for businesses and events</span>
-          </div>
-          <div class="product-status status-dev">In Development</div>
+        <div class="grid grid-3">
+          <article class="card">
+            <span class="num">01</span>
+            <h3>Process Automation</h3>
+            <p>We map the internal processes that consume your team's hours and rebuild them as automated flows with AI in the loop where judgment is needed.</p>
+            <ul>
+              <li>Operations, finance, sales and support workflows</li>
+              <li>Document, email and data processing</li>
+              <li>Human review only where it matters</li>
+            </ul>
+          </article>
+          <article class="card">
+            <span class="num">02</span>
+            <h3>System &amp; Solution Architecture</h3>
+            <p>We design the target architecture before anything is built: components, data flows, integrations, security boundaries and cost model.</p>
+            <ul>
+              <li>Architecture reviews and target-state design</li>
+              <li>Cloud foundations on AWS and Google Cloud</li>
+              <li>Build-vs-buy and model selection decisions</li>
+            </ul>
+          </article>
+          <article class="card">
+            <span class="num">03</span>
+            <h3>Agentic Systems</h3>
+            <p>We build multi-agent systems on a hub-and-spoke pattern: an orchestrator that delegates to specialist agents, tools and MCP servers under clear controls.</p>
+            <ul>
+              <li>Orchestrator and specialist agent design</li>
+              <li>MCP servers, tool contracts and permissions</li>
+              <li>Evaluation, guardrails and observability</li>
+            </ul>
+          </article>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="legal">
-    <div class="container">
-      <div class="section-label">Company Information</div>
-      <h2 style="font-family:'Playfair Display',serif; font-size:36px; font-weight:500; margin-bottom:8px;">Legal & Contact</h2>
-      <div class="legal-grid">
-        <div class="legal-item fade-in">
-          <h4>Registered Entity</h4>
-          <p>
-            JustDukkan, LLC<br>
-            Delaware Limited Liability Company<br>
-            File Number: 10528021
-          </p>
+    <section id="expertise">
+      <div class="container">
+        <div class="section-head">
+          <span class="label">Expertise</span>
+          <h2 class="display">Fluent in the details that make agentic systems work in production.</h2>
         </div>
-        <div class="legal-item fade-in">
-          <h4>Registered Address</h4>
-          <p>
-            1111B S Governors Ave<br>
-            Suite 46654<br>
-            Dover, DE 19904<br>
-            United States
-          </p>
+        <ul class="expertise-list">
+          <li>
+            <span class="num">01</span>
+            <strong>Hub-and-spoke orchestration</strong>
+            <p>A central orchestrator routes work to specialist agents with bounded scope, so systems stay explainable and easy to extend.</p>
+          </li>
+          <li>
+            <span class="num">02</span>
+            <strong>MCP servers &amp; tool design</strong>
+            <p>Model Context Protocol servers and well-specified tool contracts that give agents safe, auditable access to your systems and data.</p>
+          </li>
+          <li>
+            <span class="num">03</span>
+            <strong>Multi-agent workflows</strong>
+            <p>Planning, delegation, hand-offs and retries designed as explicit workflows rather than hoping a single prompt does everything.</p>
+          </li>
+          <li>
+            <span class="num">04</span>
+            <strong>Knowledge &amp; retrieval pipelines</strong>
+            <p>Ingestion, chunking, retrieval and grounding so agents answer from your documents and databases, not from memory.</p>
+          </li>
+          <li>
+            <span class="num">05</span>
+            <strong>Evaluation &amp; guardrails</strong>
+            <p>Test sets, evals, permission boundaries and human checkpoints that let you trust what the system does on its own.</p>
+          </li>
+          <li>
+            <span class="num">06</span>
+            <strong>Cloud architecture</strong>
+            <p>Secure, cost-aware foundations on AWS and Google Cloud: identity, networking, data stores, model access and observability.</p>
+          </li>
+          <li>
+            <span class="num">07</span>
+            <strong>Integration</strong>
+            <p>APIs, CRM/ERP, ticketing, messaging and internal tools connected so automation runs where work already happens.</p>
+          </li>
+          <li>
+            <span class="num">08</span>
+            <strong>Cost &amp; operations</strong>
+            <p>Token budgets, model routing, caching and monitoring so running the system costs less than the work it replaces.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="architecture" aria-labelledby="arch-title">
+      <div class="container">
+        <div class="section-head">
+          <span class="label">Reference pattern</span>
+          <h2 class="display" id="arch-title">One orchestrator. Many specialists. Clear boundaries.</h2>
+          <p>The hub-and-spoke pattern keeps responsibility explicit: the hub decides, the spokes execute, and every tool call crosses a defined boundary.</p>
         </div>
-        <div class="legal-item fade-in">
-          <h4>Contact</h4>
-          <p>
-            <a href="mailto:hello@justdukkan.com">hello@justdukkan.com</a><br>
-            <a href="https://justdukkan.com">justdukkan.com</a>
-          </p>
-        </div>
-        <div class="legal-item fade-in">
-          <h4>Payment Processing</h4>
-          <p>
-            Payments are securely processed through Stripe.<br>
-            All transactions are encrypted and PCI-DSS compliant.
-          </p>
+        <div class="diagram-wrap">
+          <svg class="diagram" viewBox="0 0 760 340" role="img" aria-label="Hub-and-spoke architecture: an orchestrator connected to specialist agents, data and knowledge, human review, MCP tools, internal systems and cloud services">
+            <!-- links -->
+            <line class="link" x1="190" y1="60"  x2="336" y2="152"/>
+            <line class="link" x1="190" y1="170" x2="332" y2="170"/>
+            <line class="link" x1="190" y1="280" x2="336" y2="188"/>
+            <line class="link" x1="570" y1="60"  x2="424" y2="152"/>
+            <line class="link" x1="570" y1="170" x2="428" y2="170"/>
+            <line class="link" x1="570" y1="280" x2="424" y2="188"/>
+            <!-- hub -->
+            <circle class="hub-ring" cx="380" cy="170" r="76"/>
+            <circle class="hub" cx="380" cy="170" r="58"/>
+            <text class="t-hub" x="380" y="167" text-anchor="middle">ORCHESTRATOR</text>
+            <text class="t-hub t-hub-sub" x="380" y="182" text-anchor="middle">plan · route · verify</text>
+            <!-- left spokes -->
+            <g>
+              <rect class="node" x="40" y="38" width="150" height="44" rx="8"/>
+              <text x="115" y="57" text-anchor="middle">Specialist agents</text>
+              <text class="t-muted" x="115" y="72" text-anchor="middle">bounded scope</text>
+            </g>
+            <g>
+              <rect class="node" x="40" y="148" width="150" height="44" rx="8"/>
+              <text x="115" y="167" text-anchor="middle">Data &amp; knowledge</text>
+              <text class="t-muted" x="115" y="182" text-anchor="middle">retrieval · grounding</text>
+            </g>
+            <g>
+              <rect class="node" x="40" y="258" width="150" height="44" rx="8"/>
+              <text x="115" y="277" text-anchor="middle">Human review</text>
+              <text class="t-muted" x="115" y="292" text-anchor="middle">only where it matters</text>
+            </g>
+            <!-- right spokes -->
+            <g>
+              <rect class="node" x="570" y="38" width="150" height="44" rx="8"/>
+              <text x="645" y="57" text-anchor="middle">MCP tools</text>
+              <text class="t-muted" x="645" y="72" text-anchor="middle">typed · permissioned</text>
+            </g>
+            <g>
+              <rect class="node" x="570" y="148" width="150" height="44" rx="8"/>
+              <text x="645" y="167" text-anchor="middle">Internal systems</text>
+              <text class="t-muted" x="645" y="182" text-anchor="middle">CRM · ERP · APIs</text>
+            </g>
+            <g>
+              <rect class="node" x="570" y="258" width="150" height="44" rx="8"/>
+              <text x="645" y="277" text-anchor="middle">Cloud services</text>
+              <text class="t-muted" x="645" y="292" text-anchor="middle">AWS · Google Cloud</text>
+            </g>
+            <!-- boundary label -->
+            <text class="t-muted" x="380" y="326" text-anchor="middle">every edge = a defined tool contract, permission and log</text>
+          </svg>
+          <p class="diagram-caption">Add a new capability by adding a spoke — the hub, the controls and the audit trail stay the same.</p>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <footer>
+    <section id="outcomes">
+      <div class="container">
+        <div class="section-head">
+          <span class="label">Outcomes</span>
+          <h2 class="display">We change how work gets done — and lower what it costs.</h2>
+        </div>
+        <div class="outcomes">
+          <div class="outcome">
+            <span class="from">manual hours</span>
+            <div class="to">Automated flows</div>
+            <p>Repetitive work moves to systems that run around the clock; people handle the exceptions.</p>
+          </div>
+          <div class="outcome">
+            <span class="from">cost per process</span>
+            <div class="to">Lower unit cost</div>
+            <p>Each process is redesigned with a cost model, so the automation is cheaper than the work it replaces.</p>
+          </div>
+          <div class="outcome">
+            <span class="from">days of turnaround</span>
+            <div class="to">Faster cycle time</div>
+            <p>Requests that waited in queues get handled as they arrive, with review only where risk requires it.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="approach">
+      <div class="container">
+        <div class="section-head">
+          <span class="label">Approach</span>
+          <h2 class="display">From process to running system in four steps.</h2>
+        </div>
+        <div class="steps">
+          <div class="step">
+            <span class="num">01 — Discover</span>
+            <h3>Map the process</h3>
+            <p>We sit with the people who do the work, map the flow, and find where hours and cost actually go.</p>
+          </div>
+          <div class="step">
+            <span class="num">02 — Architect</span>
+            <h3>Design the system</h3>
+            <p>Target architecture, agent and tool boundaries, data flows, security, and the cost model — written down before we build.</p>
+          </div>
+          <div class="step">
+            <span class="num">03 — Build</span>
+            <h3>Ship in increments</h3>
+            <p>We build spoke by spoke, with evals and human checkpoints, so value lands early and risk stays contained.</p>
+          </div>
+          <div class="step">
+            <span class="num">04 — Operate</span>
+            <h3>Hand over and improve</h3>
+            <p>Monitoring, documentation and training so your team owns the system — and we keep improving it with you.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="cta">
+      <div class="container">
+        <div>
+          <span class="label">Contact</span>
+          <h2 class="display" style="margin-top:16px">Tell us about the process you want to change.</h2>
+          <p class="lede" style="margin-top:16px">No packages, no price list. We look at your process, propose an architecture, and decide together whether it is worth building.</p>
+        </div>
+        <div>
+          <div class="cta-actions">
+            <a href="mailto:hello@justdukkan.com?subject=Architecture%20call%20request" class="btn btn-primary">Book a call <span class="arrow">→</span></a>
+            <a href="mailto:hello@justdukkan.com" class="btn btn-ghost">hello@justdukkan.com</a>
+          </div>
+          <p class="note">We reply within two business days. Prefer Turkish? <a href="/tr/#contact" hreflang="tr" lang="tr">Türkçe yazın.</a></p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
     <div class="container">
-      <p>&copy; 2026 JustDukkan, LLC. All rights reserved. Registered in Delaware, United States.</p>
+      <a href="/" class="brand">
+        <svg class="mark" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="12" cy="12" r="3.2" fill="currentColor"/>
+          <circle cx="12" cy="3" r="2" fill="currentColor"/>
+          <circle cx="21" cy="12" r="2" fill="currentColor"/>
+          <circle cx="12" cy="21" r="2" fill="currentColor"/>
+          <circle cx="3" cy="12" r="2" fill="currentColor"/>
+          <path d="M12 5v3.8M19 12h-3.8M12 19v-3.8M5 12h3.8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+        </svg>
+        JustDukkan
+      </a>
+      <div class="meta">
+        <span>JustDukkan LLC · Delaware, USA</span>
+        <a href="mailto:hello@justdukkan.com">hello@justdukkan.com</a>
+        <div class="lang">
+          <a href="/" class="active" aria-current="page" hreflang="en">EN</a>
+          <span aria-hidden="true">/</span>
+          <a href="/tr/" hreflang="tr" lang="tr">TR</a>
+        </div>
+        <span>© 2026</span>
+      </div>
     </div>
   </footer>
-
-  <script>
-    // Scroll reveal
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-  </script>
 
 </body>
 </html>
