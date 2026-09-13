@@ -47,7 +47,7 @@ def header(active=''):
           <span aria-hidden="true">/</span>
           <a href="/tr/" hreflang="tr" lang="tr">TR</a>
         </div>
-        <a href="/#contact" class="btn btn-primary btn-sm">Book a call <span class="arrow">→</span></a>
+        <a href="mailto:enes@justdukkan.com?subject=Solution%20consultation" class="btn btn-primary btn-sm">Write to us <span class="arrow">→</span></a>
       </div>
     </div>
   </header>
@@ -112,7 +112,7 @@ def head(title, desc, url, ld):
   <script type="application/ld+json">
 {json.dumps(ld, ensure_ascii=False, indent=2)}
   </script>
-  <link rel="stylesheet" href="/assets/styles.css?v=13">
+  <link rel="stylesheet" href="/assets/styles.css?v=14">
 </head>
 <body>
 '''
@@ -156,7 +156,7 @@ def article_page(a):
         <div class="article-cta">
           <strong>Have a process like this?</strong>
           <p>We look at the process, propose an architecture, and decide together whether it is worth building. No packages, no price list.</p>
-          <a href="/#contact" class="btn btn-primary">Book a Solution Consultation <span class="arrow">→</span></a>
+          <a href="mailto:enes@justdukkan.com?subject=Solution%20consultation" class="btn btn-primary">Write to us <span class="arrow">→</span></a> <a href="/#contact" class="btn btn-ghost">Book a call</a>
         </div>
       </div>
     </section>

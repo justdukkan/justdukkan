@@ -46,14 +46,14 @@ tasks/todo.md              İş listesi
 - **Tek font: Inter** (Google Fonts). Serif yok, JetBrains Mono yok. Kod için sistem mono stack.
 - Container akışkan: `padding: 0 clamp(20px, 9vw, 180px)`, max 1800px. Metin blokları 680–720px. Demo ve takvim 1040px.
 - Bölüm başlıklarının üstünde küçük "eyebrow" etiket YOK (kaldırıldı). Metinlerde uzun çizgi (—) kullanma; virgül/noktalı virgül.
-- Header: wordmark solda, linkler (Services, Expertise, Approach, Insights, Contact), **tema toggle** (ay/güneş), EN/TR, "Book a call" → `#contact`.
+- Header: wordmark solda, linkler (Services, Expertise, Approach, Insights, Contact), **tema toggle** (ay/güneş), EN/TR, "Write to us / Bize yazın" → `mailto:enes@justdukkan.com`. Birincil CTA e-posta; Cal.com ikincil.
 - Tema: varsayılan sistem tercihi; toggle `data-theme="light|dark"` yazar, `localStorage['jd-theme']`'de tutar. Head'deki inline `jdTheme` script'i flash'ı önler (her HTML'de + build_insights.py `THEME_JS`). CSS'te dark tokenlar iki yerde: `@media (prefers-color-scheme: dark) :root:not([data-theme="light"])` ve `:root[data-theme="dark"]` — token eklerken ikisini de güncelle. Cal.com teması `jdTheme.current()` ile senkron.
 - Logo: sadece wordmark görseli; ekstra işaret/ikon ekleme.
 - Cal.com iletişim bölümünde **inline embed** (`#cal-inline`), popup değil; renkler `cssVarsPerTheme` ile siteye eşlenmiş.
 
 ## Cache-bust kuralı (ÖNEMLİ)
 
-Cloudflare `styles.css` ve `demo.js`'i cache'ler. CSS/JS değişince **her HTML'de** `?v=N` sürümünü artır (`index.html`, `tr/index.html`, `insights/**/index.html`; build_insights.py içindeki `styles.css?v=` de). Şu an **v=13**. Artırmazsan canlıda eski CSS + yeni HTML görünür ("site bozuldu" şikayetinin sebebi buydu).
+Cloudflare `styles.css` ve `demo.js`'i cache'ler. CSS/JS değişince **her HTML'de** `?v=N` sürümünü artır (`index.html`, `tr/index.html`, `insights/**/index.html`; build_insights.py içindeki `styles.css?v=` de). Şu an **v=14**. Artırmazsan canlıda eski CSS + yeni HTML görünür ("site bozuldu" şikayetinin sebebi buydu).
 
 ## Sayfa bölümleri (ana sayfa, EN/TR)
 
