@@ -98,7 +98,7 @@ Cloudflare `styles.css`, `demo.js` ve `consent.js`'i cache'ler. Bunlar değişin
 ## 8. SEO / GEO — yapılanlar
 
 - **JSON-LD `@graph`** (ana sayfalar): `Organization`+`ProfessionalService` (yasal ad, adres, EIN=`taxID`, telefon, e-posta, diller, `knowsAbout`, 3 hizmetlik `OfferCatalog`, `contactPoint`→Cal, `sameAs`: LinkedIn, GitHub org, Cal), `WebSite`, `WebPage`, `FAQPage`. Makalelerde `Article` + `BreadcrumbList` + `FAQPage`. Değişiklikte JSON geçerliliğini kontrol et.
-- **GA4**: Measurement ID `consent.js` başında (`GA_ID`). Property Enes'in Google hesabında. Onay modeli §1.
+- **GA4**: Measurement ID **`G-C8T8T596HD`** (`consent.js` başında `GA_ID`; property `justdukkan.com`, time zone Türkiye, USD). Property Enes'in Google hesabında. Onay modeli §1.
 - `llms.txt`, `robots.txt`, `sitemap.xml` (/, /tr/, insights ×5, /privacy/, /tr/gizlilik/), `<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">`, canonical, hreflang en/tr/x-default, OG meta, theme-color.
 - **Google Search Console**: domain property doğrulandı (DNS TXT), sitemap gönderildi (2026-09-13). Insights sayfaları indekslendi; `/` beklemede (eski içerikli URL yeniden değerlendiriliyor; www dublikasyonu olası neden).
 - **Bing Webmaster**: GSC'den import edildi (sitemap 48 saat sonra görünür dendi).

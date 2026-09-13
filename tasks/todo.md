@@ -33,7 +33,7 @@
 # 2026-09-13 (gece)
 - [x] Cal branding form adımında da gizli (clip-path)
 - [x] GA4 + çerez onay banner'ı (assets/consent.js, yalnız Accept sonrası yüklenir) + /privacy/ ve /tr/gizlilik/ + footer linkleri + sitemap
-- [ ] GA4 Measurement ID'yi consent.js'e yaz (Enes property oluşturuyor)
+- [x] GA4 Measurement ID G-C8T8T596HD consent.js'e yazıldı
 # Açık
 - [ ] www → apex 308 (Vercel, Enes)
 - [ ] GSC/Bing indeks kontrolü (48s), dizin profilleri, vaka çalışması — bkz. CLAUDE.md §9

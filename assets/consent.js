@@ -1,5 +1,5 @@
 (function () {
-  var GA_ID = 'G-XXXXXXXXXX';
+  var GA_ID = 'G-C8T8T596HD';
   var KEY = 'jd-consent';
   var lang = document.documentElement.lang === 'tr' ? 'tr' : 'en';
   var T = {
