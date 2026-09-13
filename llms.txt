@@ -1,0 +1,39 @@
+# JustDukkan
+
+> JustDukkan, LLC is an AI solutions architecture practice. We design the AI architecture behind how companies work: process automation, system and solution architecture, and agentic systems built on hub-and-spoke orchestration, MCP (Model Context Protocol) servers and typed tools. Based in Delaware, USA; we work with companies internationally in English and Turkish.
+
+## What we do
+
+- **Process Automation** — map the internal processes that consume a team's hours and rebuild them as automated flows with AI in the loop where judgment is needed (operations, finance, sales, support; document, email and data processing; human review only where it matters).
+- **System & Solution Architecture** — design the target architecture before anything is built: components, data flows, integrations, security boundaries and cost model; architecture reviews; cloud foundations on AWS and Google Cloud; build-vs-buy and model selection.
+- **Agentic Systems** — multi-agent systems on a hub-and-spoke pattern: an orchestrator that plans, routes and verifies, delegating to specialist agents, tools and MCP servers under clear controls; evaluation, guardrails and observability.
+
+## Expertise
+
+Hub-and-spoke orchestration · MCP servers & tool design · Multi-agent workflows · Knowledge & retrieval (RAG) pipelines · Evaluation & guardrails · Cloud architecture (AWS, Google Cloud) · Integration (APIs, CRM/ERP, ticketing, messaging, internal tools) · Cost & operations (token budgets, model routing, caching, monitoring)
+
+We design for the models companies already use: Claude, ChatGPT, Gemini, Kimi, DeepSeek, Mistral, Llama, Qwen, Grok.
+
+## How we work
+
+1. Discover — map the process with the people who do the work.
+2. Architect — target architecture, agent and tool boundaries, data flows, security, cost model, written down before building.
+3. Build — ship spoke by spoke with evals and human checkpoints.
+4. Operate — monitoring, documentation and training so the client's team owns the system.
+
+Outcomes we design for: manual hours → automated flows; lower cost per process; faster cycle time.
+
+## Engagement
+
+No packages and no price list. We look at a process, propose an architecture and decide together with the client whether it is worth building. Start with a Solution Consultation call: https://cal.com/justdukkan/solution-consultation
+
+## Contact
+
+- Email: enes@justdukkan.com
+- Phone / WhatsApp: +1 (910) 679-9657
+- JustDukkan, LLC · 1111B S Governors Ave, Suite 46654, Dover, DE 19904, USA · EIN 38-4388070
+
+## Pages
+
+- [Home (English)](https://justdukkan.com/)
+- [Ana sayfa (Türkçe)](https://justdukkan.com/tr/)
