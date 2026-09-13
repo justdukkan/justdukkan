@@ -361,7 +361,7 @@ section + section { border-top: 1px solid var(--border); }
 .contact-or { display: flex; align-items: center; gap: 16px; max-width: 1040px; margin: 40px 0 8px; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; color: var(--fg-40); }
 .contact-or::before, .contact-or::after { content: ""; flex: 1; height: 1px; background: var(--border); }
 .cal-inline { margin-top: 8px; min-height: 560px; max-width: 1040px; overflow: hidden; }
-.cal-inline iframe { display: block; margin-bottom: -100px !important; }
+.cal-inline iframe { display: block; margin-bottom: -90px !important; clip-path: inset(0 0 90px 0); }
 .cta-email { margin-top: 20px; font-size: 0.9rem; color: var(--fg-60); }
 .cta-email a { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--border-strong); }
 

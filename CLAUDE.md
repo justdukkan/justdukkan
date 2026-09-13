@@ -84,12 +84,12 @@ Bölüm başlıklarının üstünde küçük "eyebrow" etiket **yok** (kaldırı
 - Container akışkan: `padding: 0 clamp(20px, 9vw, 180px)`, `max-width 1800px`. Prose 680–720px. Demo, takvim, FAQ ~820–1040px.
 - Butonlar: primary (fg zemin, bg yazı, hover accent) + ghost (1px border). Kartlar 1px border, radius 12px, gölge yok.
 - Logo: yalnızca wordmark; ekstra işaret/ikon ekleme.
-- Cal.com: inline embed (`Cal.ns.consultation("inline", …)`), tema `jdTheme.current()`; toggle'da embed **yeniden oluşturulur** (Cal'ın `ui` tema güncellemesi inline'da işlemiyor). Renkler `cssVarsPerTheme` ile site paletine eşlenmiş. Alt "Cal.com" yazısı iframe'in alt 100px'i kırpılarak gizleniyor (`.cal-inline iframe { margin-bottom:-100px }`); `hideEventTypeDetails:false` (sol panelde "JustDukkan · Solution Consultation" görünür).
+- Cal.com: inline embed (`Cal.ns.consultation("inline", …)`), tema `jdTheme.current()`; toggle'da embed **yeniden oluşturulur** (Cal'ın `ui` tema güncellemesi inline'da işlemiyor). Renkler `cssVarsPerTheme` ile site paletine eşlenmiş. Alt "Cal.com" yazısı iframe'in alt 90px'i kırpılarak gizleniyor (`.cal-inline iframe { margin-bottom:-90px; clip-path: inset(0 0 90px 0) }`; `clip-path` şart, çünkü form adımında iframe 530px'e düşüyor ve `.cal-inline`'ın `min-height:560px`'i yalnız negatif margin ile kırpmayı boşa çıkarıyordu); `hideEventTypeDetails:false` (sol panelde "JustDukkan · Solution Consultation" görünür).
 - Responsive: ≤900px grid'ler 2 sütun, demo sağ panel gizli; ≤640px tek sütun, nav linkleri gizli, demo yüksekliği auto. Yatay taşma olmamalı.
 
 ## 7. Cache-bust kuralı (ÖNEMLİ)
 
-Cloudflare `styles.css` ve `demo.js`'i cache'ler. Bunlar değişince **`?v=N`'i artır**: `index.html`, `tr/index.html`, `tools/build_insights.py` (sonra build). Şu an **styles.css?v=14**, **demo.js?v=8**. Artırmazsan canlıda eski CSS + yeni HTML görünür ("site bozuldu" olayının sebebi buydu). HTML cache'lenmez; canlı kontrolde yine de `?x=<rastgele>` ekle. Favicon linkleri `?v=2`.
+Cloudflare `styles.css` ve `demo.js`'i cache'ler. Bunlar değişince **`?v=N`'i artır**: `index.html`, `tr/index.html`, `tools/build_insights.py` (sonra build). Şu an **styles.css?v=15**, **demo.js?v=8**. Artırmazsan canlıda eski CSS + yeni HTML görünür ("site bozuldu" olayının sebebi buydu). HTML cache'lenmez; canlı kontrolde yine de `?x=<rastgele>` ekle. Favicon linkleri `?v=2`.
 
 ## 8. SEO / GEO — yapılanlar
 
@@ -115,7 +115,6 @@ Cloudflare `styles.css` ve `demo.js`'i cache'ler. Bunlar değişince **`?v=N`'i 
 - [ ] İlk gerçek işten **vaka çalışması** — en güçlü sinyal.
 - [ ] Sertifikalar alındıkça siteye/LinkedIn'e rozet (Enes onayıyla).
 - [ ] Haftalık görünürlük testi: ChatGPT/Perplexity'de "AI solutions architecture consultancy", "MCP tool design consultant" vb.
-- [ ] Cal.com'da event açıklaması "40 minute" diyor; süre/metin tutarlılığı Enes'te.
 
 ## 10. Rutin işlemler
 
@@ -133,3 +132,4 @@ Cloudflare `styles.css` ve `demo.js`'i cache'ler. Bunlar değişince **`?v=N`'i 
 - Cloudflare e-posta adreslerini `/cdn-cgi/l/email-protection` ile değiştirir; canlı HTML'de `enes@` aramak başarısız olabilir.
 - Cal.com embed dar ekranda (<~768px) mobil düzene geçer (takvim tek sütun).
 - Search Console'da property "Domain" tipi olduğu için Bing import'unda "https://" boş görünmüştü; normal.
+- Cal.com embed'i, Enes'in cal.com'a giriş yaptığı tarayıcıda formu hesap bilgileriyle (ad/e-posta) dolu ve hesap dilinde (TR) gösterir; ziyaretçi bunları görmez. Dil ziyaretçinin `Accept-Language`'ına göre gelir, embed'de dil zorlayan parametre yok (`lang/locale/hl/lng`, `NEXT_LOCALE` denendi, işlemiyor). Kontrol için gizli pencere kullan.
