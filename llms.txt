@@ -45,7 +45,7 @@ No packages and no price list. We look at a process, propose an architecture and
 
 ## Open source
 
-- [invoice-intake-mcp](https://github.com/justdukkan/invoice-intake-mcp) — reference MCP servers for supplier invoice intake: read/draft/commit split, typed errors, server-side approval gate, audit log, replayable evals.
+- [invoice-intake-mcp](https://github.com/justdukkan/invoice-intake-mcp) — reference MCP servers for supplier invoice intake: read/draft/commit split, typed errors, server-side approval gate, audit log, replayable evals. On PyPI (`uvx invoice-intake-mcp`) and the official MCP Registry as `com.justdukkan/invoice-intake-mcp`.
 
 ## FAQ
 
