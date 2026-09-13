@@ -35,5 +35,5 @@
 - [x] GA4 + çerez onay banner'ı (assets/consent.js, yalnız Accept sonrası yüklenir) + /privacy/ ve /tr/gizlilik/ + footer linkleri + sitemap
 - [x] GA4 Measurement ID G-C8T8T596HD consent.js'e yazıldı
 # Açık
-- [ ] www → apex 308 (Vercel, Enes)
+- [x] www → apex yönlendirme (Vercel, 307; 308'e çevirmek opsiyonel)
 - [ ] GSC/Bing indeks kontrolü (48s), dizin profilleri, vaka çalışması — bkz. CLAUDE.md §9

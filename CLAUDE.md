@@ -32,7 +32,7 @@ Kararlar (Enes, 2026-09-13):
 - Repo **`github.com/justdukkan/justdukkan`**, **public** (Vercel Hobby org'a ait private repoyu desteklemiyor), branch `main`. Lokal: `~/projects/justdukkan`.
 - **Vercel** projesi `justdukkan` (team `enes-projects-d11e82d9`, id `prj_GkA9hqmjpvcXCZeSBcnWATODEAL6`), GitHub'a bağlı → **push = production deploy** (~1 dk). `vercel deploy` gerekmez. Vercel CLI `ertasenes` olarak giriş yapmış; `~/Library/Application Support/com.vercel.cli/auth.json` token'ı REST API için geçersiz (CLI çalışıyor).
 - Vercel GitHub App org'da **sadece `justdukkan` reposuna** erişmeli. Yeni repo eklenirse Vercel otomatik proje açıp build hatası verir (invoice-intake-mcp'de oldu, proje silindi).
-- Domain **justdukkan.com** + www. DNS **Cloudflare** (proxy açık; e-posta adreslerini obfuscate ediyor; CSS/JS'i cache'liyor → §7). HTTP→HTTPS 308 var; **www → apex yönlendirmesi YOK** (www ayrı 200 dönüyor; yapılacaklar §9).
+- Domain **justdukkan.com** + www. DNS **Cloudflare** (proxy açık; e-posta adreslerini obfuscate ediyor; CSS/JS'i cache'liyor → §7). HTTP→HTTPS 308 var; **www → apex 307** Vercel Domains'te tanımlı (2026-09-13; www DNS-only CNAME → vercel-dns, apex Cloudflare proxy'li → Vercel "Proxy Detected" uyarısı normal). 308'e çevirmek ve apex'i DNS-only yapmak opsiyonel.
 - Build/framework yok: düz statik HTML + CSS + biraz JS.
 - Cloudflare DNS'te ayrıca: Search Console TXT, **MCP Registry TXT** (`v=MCPv1; k=ed25519; p=tHH6Ral+Br4oXDYJjId2KfdlL4GnJtUgHXrgnwy4Ums=`, apex).
 
@@ -110,7 +110,8 @@ Cloudflare `styles.css`, `demo.js` ve `consent.js`'i cache'ler. Bunlar değişin
 
 ## 9. SEO / GEO — yapılacaklar
 
-- [ ] **www → apex 308** (Vercel → Project → Settings → Domains → www.justdukkan.com → Redirect to justdukkan.com). API token'ım geçersiz; Enes dashboard'dan yapacak.
+- [ ] Vercel www redirect 307 → 308 (Edit → status code); opsiyonel: Cloudflare apex DNS-only.
+- [ ] GA4: internal traffic (kendi IP) tanımla; Admin → Product links → Search Console bağla.
 - [ ] 48 saat sonra Search Console: `/` indekslendi mi, hata var mı; gerekirse URL Inspection → Request indexing.
 - [ ] Bing Webmaster: sitemap ve IndexNow sekmesi; URL Submission ile makaleler.
 - [ ] Clutch.co, GoodFirms, Crunchbase profilleri (Enes; §2 bilgileri + LinkedIn About metni; hizmet ağırlığı AI Consulting 40 / BPA 30 / Architecture 30).
