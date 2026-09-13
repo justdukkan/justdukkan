@@ -33,7 +33,18 @@ No packages and no price list. We look at a process, propose an architecture and
 - Phone / WhatsApp: +1 (910) 679-9657
 - JustDukkan, LLC · 1111B S Governors Ave, Suite 46654, Dover, DE 19904, USA · EIN 38-4388070
 
+## Insights (articles)
+
+- [Hub-and-spoke agent architecture: how to build multi-agent systems that stay explainable](https://justdukkan.com/insights/hub-and-spoke-agent-architecture/)
+- [Designing MCP servers and tools that agents can use safely](https://justdukkan.com/insights/mcp-server-and-tool-design/)
+- [From manual process to automated flow: an architecture playbook](https://justdukkan.com/insights/process-automation-architecture/)
+
+## FAQ
+
+See the FAQ section on the home page (also marked up as FAQPage schema): engagement shape, pricing (no price list; fixed-scope phases after discovery), models we work with, what hub-and-spoke means, build vs. design, data safety, location.
+
 ## Pages
 
 - [Home (English)](https://justdukkan.com/)
 - [Ana sayfa (Türkçe)](https://justdukkan.com/tr/)
+- [Insights](https://justdukkan.com/insights/)

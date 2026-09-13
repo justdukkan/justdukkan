@@ -140,11 +140,73 @@
         "@id": "https://justdukkan.com/#org"
       },
       "inLanguage": "tr"
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://justdukkan.com/tr/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Tipik bir çalışma nasıl ilerler?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Bir Solution Consultation görüşmesi ve kısa bir keşif aşamasıyla başlarız; gerçek bir süreci, o işi yapan kişilerle birlikte haritalarız. Ardından hedef mimariyi yazarız: ajanlar, tool'lar, veri akışları, güvenlik sınırları ve maliyet modeli. İnşa etmeye değerse spoke spoke kurar, eval'ler ve insan kontrol noktalarıyla ilerler; izleme, dokümantasyon ve eğitimle devrederiz. İlk otomatik süreç genellikle aylar değil haftalar içinde canlıya çıkar."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Fiyatlandırma nasıl?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Fiyat listesi ve paket yok. Keşiften sonra kapsamı ve teslimatı net, sabit fiyatlı bir faz öneririz; faz faz karar verirsiniz. Yalnızca otomasyon, yerini aldığı işten daha ucuza geldiğinde inşa etmeyi öneririz."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Hangi modeller ve platformlarla çalışıyorsunuz?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Şirketlerin zaten kullandığı modeller için tasarlıyoruz: Claude, ChatGPT, Gemini, Kimi, DeepSeek, Mistral, Llama, Qwen ve Grok. Mimariler mümkün olduğunca modelden bağımsızdır; her görev, kalite çıtasını geçen en ucuz modele yönlendirilir. Bulut altyapısı AWS veya Google Cloud üzerinde, sizin hesabınızda çalışır."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Hub-and-spoke ajan mimarisi nedir?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Merkezi bir orkestratör (hub) işi planlar, yönlendirir ve doğrular; uzman ajanlar, MCP tool sunucuları, veri kaynakları ve insan onaylayıcılar (spoke'lar) her biri sınırlı tek bir işi yapar. Her bağlantı, açık yetkileri ve kaydı olan tipli bir tool sözleşmesidir. Çok ajanlı sistemleri açıklanabilir, test edilebilir ve genişletilebilir tutar: yeni bir yetenek eklemek, sistemi yeniden yazmak değil bir spoke eklemektir."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Sistemi siz mi kuruyorsunuz, sadece tasarlıyor musunuz?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "İkisi de. Önce mimariyi tasarlarız; sonra ya biz kurar ve işletiriz ya da dokümante edilmiş mimariyi iç ekibinize devredip destekleriz. Her durumda tasarım, ilk kod satırından önce yazıya dökülür."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Yapay zeka ajanları şirket verisiyle nasıl güvende kalıyor?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ajanlar ham erişim almaz. Yetkileri sınırlı MCP sunucuları ve tipli tool'lar üzerinden çalışır, her çağrı kaydedilir ve gerçek risk taşıyan adımlar (fatura kaydı, müşteriye yanıt, tedarikçi oluşturma) insan onayı bekler. Veri sizin bulut hesabınızda kalır; retrieval'ı ajanlar ezberlemek yerine dokümanlarınızdan yanıt verecek şekilde tasarlarız."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Neredesiniz ve kimlerle çalışıyorsunuz?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "JustDukkan, LLC Delaware, ABD'de kayıtlıdır; şirketlerle uluslararası ölçekte, uzaktan, İngilizce ve Türkçe çalışır."
+          }
+        }
+      ]
     }
   ]
 }
   </script>
-  <link rel="stylesheet" href="/assets/styles.css?v=7">
+  <link rel="stylesheet" href="/assets/styles.css?v=8">
 </head>
 <body>
 
@@ -157,6 +219,7 @@
         <a href="#services">Hizmetler</a>
         <a href="#expertise">Uzmanlık</a>
         <a href="#approach">Yaklaşım</a>
+        <a href="/insights/" hreflang="en" lang="en">Insights</a>
         <a href="#contact">İletişim</a>
       </nav>
       <div class="nav-right">
@@ -357,6 +420,44 @@
       </div>
     </section>
 
+    <section id="faq">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="display">İlk görüşmeden önce sorulan sorular.</h2>
+        </div>
+        <div class="faq">
+          <details class="faq-item" open>
+            <summary>Tipik bir çalışma nasıl ilerler?</summary>
+            <p>Bir Solution Consultation görüşmesi ve kısa bir keşif aşamasıyla başlarız; gerçek bir süreci, o işi yapan kişilerle birlikte haritalarız. Ardından hedef mimariyi yazarız: ajanlar, tool'lar, veri akışları, güvenlik sınırları ve maliyet modeli. İnşa etmeye değerse spoke spoke kurar, eval'ler ve insan kontrol noktalarıyla ilerler; izleme, dokümantasyon ve eğitimle devrederiz. İlk otomatik süreç genellikle aylar değil haftalar içinde canlıya çıkar.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Fiyatlandırma nasıl?</summary>
+            <p>Fiyat listesi ve paket yok. Keşiften sonra kapsamı ve teslimatı net, sabit fiyatlı bir faz öneririz; faz faz karar verirsiniz. Yalnızca otomasyon, yerini aldığı işten daha ucuza geldiğinde inşa etmeyi öneririz.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Hangi modeller ve platformlarla çalışıyorsunuz?</summary>
+            <p>Şirketlerin zaten kullandığı modeller için tasarlıyoruz: Claude, ChatGPT, Gemini, Kimi, DeepSeek, Mistral, Llama, Qwen ve Grok. Mimariler mümkün olduğunca modelden bağımsızdır; her görev, kalite çıtasını geçen en ucuz modele yönlendirilir. Bulut altyapısı AWS veya Google Cloud üzerinde, sizin hesabınızda çalışır.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Hub-and-spoke ajan mimarisi nedir?</summary>
+            <p>Merkezi bir orkestratör (hub) işi planlar, yönlendirir ve doğrular; uzman ajanlar, MCP tool sunucuları, veri kaynakları ve insan onaylayıcılar (spoke'lar) her biri sınırlı tek bir işi yapar. Her bağlantı, açık yetkileri ve kaydı olan tipli bir tool sözleşmesidir. Çok ajanlı sistemleri açıklanabilir, test edilebilir ve genişletilebilir tutar: yeni bir yetenek eklemek, sistemi yeniden yazmak değil bir spoke eklemektir.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Sistemi siz mi kuruyorsunuz, sadece tasarlıyor musunuz?</summary>
+            <p>İkisi de. Önce mimariyi tasarlarız; sonra ya biz kurar ve işletiriz ya da dokümante edilmiş mimariyi iç ekibinize devredip destekleriz. Her durumda tasarım, ilk kod satırından önce yazıya dökülür.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Yapay zeka ajanları şirket verisiyle nasıl güvende kalıyor?</summary>
+            <p>Ajanlar ham erişim almaz. Yetkileri sınırlı MCP sunucuları ve tipli tool'lar üzerinden çalışır, her çağrı kaydedilir ve gerçek risk taşıyan adımlar (fatura kaydı, müşteriye yanıt, tedarikçi oluşturma) insan onayı bekler. Veri sizin bulut hesabınızda kalır; retrieval'ı ajanlar ezberlemek yerine dokümanlarınızdan yanıt verecek şekilde tasarlarız.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Neredesiniz ve kimlerle çalışıyorsunuz?</summary>
+            <p>JustDukkan, LLC Delaware, ABD'de kayıtlıdır; şirketlerle uluslararası ölçekte, uzaktan, İngilizce ve Türkçe çalışır.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
     <section id="contact" class="cta">
       <div class="container">
         <div>
@@ -389,6 +490,10 @@
         <div>
           <span class="footer-h">İletişim</span>
           <p><a href="mailto:enes@justdukkan.com">enes@justdukkan.com</a><br><a href="tel:+19106799657">+1 (910) 679-9657</a><br><a href="https://wa.me/19106799657" target="_blank" rel="noopener">WhatsApp</a></p>
+        </div>
+        <div>
+          <span class="footer-h">Insights (EN)</span>
+          <p><a href="/insights/hub-and-spoke-agent-architecture/" hreflang="en" lang="en">Hub-and-spoke agent architecture</a><br><a href="/insights/mcp-server-and-tool-design/" hreflang="en" lang="en">MCP server &amp; tool design</a><br><a href="/insights/process-automation-architecture/" hreflang="en" lang="en">Process automation architecture</a></p>
         </div>
       </div>
       <div class="footer-bottom">© 2026 JustDukkan, LLC</div>

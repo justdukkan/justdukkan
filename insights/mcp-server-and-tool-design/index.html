@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Designing MCP servers and tools that agents can use safely — JustDukkan</title>
+  <meta name="description" content="MCP gives agents a standard way to call tools, but a badly designed tool is still a badly designed tool. These are the rules we use for tool contracts, permissions, error handling and logging when we build Model Context Protocol servers for company systems.">
+  <link rel="canonical" href="https://justdukkan.com/insights/mcp-server-and-tool-design/">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Designing MCP servers and tools that agents can use safely — JustDukkan">
+  <meta property="og:description" content="MCP gives agents a standard way to call tools, but a badly designed tool is still a badly designed tool. These are the rules we use for tool contracts, permissions, error handling and logging when we build Model Context Protocol servers for company systems.">
+  <meta property="og:url" content="https://justdukkan.com/insights/mcp-server-and-tool-design/">
+  <meta property="og:site_name" content="JustDukkan">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+  <meta name="theme-color" content="#f7f7f4" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#14120b" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="/assets/favicon.svg?v=2" type="image/svg+xml">
+  <link rel="icon" href="/assets/favicon-32.png?v=2" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png?v=2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://justdukkan.com/insights/mcp-server-and-tool-design/#article",
+      "headline": "Designing MCP servers and tools that agents can use safely",
+      "description": "MCP gives agents a standard way to call tools, but a badly designed tool is still a badly designed tool. These are the rules we use for tool contracts, permissions, error handling and logging when we build Model Context Protocol servers for company systems.",
+      "url": "https://justdukkan.com/insights/mcp-server-and-tool-design/",
+      "datePublished": "2026-09-13",
+      "dateModified": "2026-09-13",
+      "inLanguage": "en",
+      "author": {
+        "@id": "https://justdukkan.com/#org"
+      },
+      "publisher": {
+        "@id": "https://justdukkan.com/#org"
+      },
+      "mainEntityOfPage": "https://justdukkan.com/insights/mcp-server-and-tool-design/",
+      "about": [
+        "Model Context Protocol",
+        "Tool design",
+        "AI agent security"
+      ],
+      "keywords": "MCP server, Model Context Protocol, tool design, agent tools, tool contract, permissions, prompt injection"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "JustDukkan",
+          "item": "https://justdukkan.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Insights",
+          "item": "https://justdukkan.com/insights/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "MCP server & tool design",
+          "item": "https://justdukkan.com/insights/mcp-server-and-tool-design/"
+        }
+      ]
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://justdukkan.com/#org",
+      "name": "JustDukkan",
+      "legalName": "JustDukkan, LLC",
+      "url": "https://justdukkan.com/"
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://justdukkan.com/insights/mcp-server-and-tool-design/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Can I expose my whole API through MCP automatically?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You can, and it is a fast way to prototype, but for production we model business operations rather than endpoints. Fewer, meaningful, schema-strict tools give agents better plans and give you a permission model people can review."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How many tools should one MCP server expose?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "As few as the domain needs; a dozen is common, more than thirty is a signal the server covers too many risk levels or too many domains and should be split."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does MCP handle authentication and permissions?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "MCP standardises how tools are described and called. Which credential a server uses, and which client may reach which server, is your architecture. We scope credentials per server and keep commit tools reachable only by the orchestrator."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <link rel="stylesheet" href="/assets/styles.css?v=8">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="brand" aria-label="JustDukkan home">
+        <span class="wordmark" role="img" aria-label="justdukkan"></span>
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="/#services">Services</a>
+        <a href="/#expertise">Expertise</a>
+        <a href="/#approach">Approach</a>
+        <a href="/insights/" aria-current="page">Insights</a>
+        <a href="/#contact">Contact</a>
+      </nav>
+      <div class="nav-right">
+        <div class="lang" aria-label="Language">
+          <a href="/" class="active" hreflang="en">EN</a>
+          <span aria-hidden="true">/</span>
+          <a href="/tr/" hreflang="tr" lang="tr">TR</a>
+        </div>
+        <a href="/#contact" class="btn btn-primary btn-sm">Book a call <span class="arrow">→</span></a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="article-hero">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">JustDukkan</a><span>/</span><a href="/insights/">Insights</a><span>/</span><span>MCP server & tool design</span></nav>
+        <h1 class="display" style="margin-top:28px">Designing MCP servers and tools that agents can use safely</h1>
+        <p class="lede">MCP gives agents a standard way to call tools, but a badly designed tool is still a badly designed tool. These are the rules we use for tool contracts, permissions, error handling and logging when we build Model Context Protocol servers for company systems.</p>
+        <p class="article-meta">JustDukkan · 7 min read · Updated 2026-09-13</p>
+      </div>
+    </section>
+    <section class="article" style="border-top:0;padding-top:0">
+      <div class="container">
+        <div class="prose">
+
+<h2>What an MCP server is, in one paragraph</h2>
+<p>The <strong>Model Context Protocol (MCP)</strong> is an open standard that lets an AI application discover and call tools, read resources and use prompts exposed by a server, over a common wire format. An <strong>MCP server</strong> wraps something you already have, an ERP, a helpdesk, a document store, an internal API, and presents it to agents as a list of named tools with JSON schemas. The agent side (Claude, an orchestrator you built, an IDE) is the client. The protocol solves the plumbing; it does not decide what the tools should be. That is the design work.</p>
+
+<h2>Rule 1: model the business operation, not the API</h2>
+<p>The most common mistake is to auto-generate a tool per REST endpoint. Agents then get <code>GET /invoices</code>, <code>PATCH /invoices/{id}</code> and forty siblings, and have to reconstruct business meaning from HTTP verbs. Instead, expose the operations a competent employee would name:</p>
+<pre><code>erp.match_po(invoice_ref, vendor, total)      → {status, po_number, variance}
+erp.post_invoice(invoice_id, po_number)      → {posted_id}          # write, needs approval
+helpdesk.fetch_new(since)                    → [ticket]
+helpdesk.draft_reply(ticket_id, body)        → {draft_id}           # write, no side effect on customer
+helpdesk.send_reply(draft_id)                → {sent_at}            # write, customer-visible</code></pre>
+<p>Fewer, meaningful tools produce better plans, fewer wrong calls and a permission model humans can read.</p>
+
+<h2>Rule 2: separate reads, drafts and sends</h2>
+<p>Split every side-effecting operation into stages that map to risk:</p>
+<ul>
+  <li><strong>Read</strong>: no side effect. Agents may call freely within a budget.</li>
+  <li><strong>Draft / stage</strong>: creates something reversible and invisible to the outside world (a draft reply, a pending journal entry).</li>
+  <li><strong>Commit / send</strong>: irreversible or externally visible. Gated by policy and, above a threshold, by a human.</li>
+</ul>
+<p>This lets the orchestrator do all the work up to the last step, show a human exactly what will happen, and then commit with one call. It also makes evaluation cheap: you can run the whole pipeline in tests without ever hitting a commit tool.</p>
+
+<h2>Rule 3: schemas are the contract, so make them strict</h2>
+<ul>
+  <li>Use enums for anything that has a fixed set of values (status, currency, category). Free text invites hallucinated values.</li>
+  <li>Require identifiers, not names, for anything that is looked up (<code>vendor_id</code>, not <code>vendor_name</code>). Provide a separate search tool that returns identifiers.</li>
+  <li>Bound every list and string (<code>maxItems</code>, <code>maxLength</code>); bound every numeric field the business bounds.</li>
+  <li>Return structured results with a stable shape. Never return a blob of prose for the model to parse.</li>
+  <li>Write the tool description for the model: what it does, when to use it, when not to, and what it costs. This text is part of the prompt.</li>
+</ul>
+
+<h2>Rule 4: permissions belong to the server and the credential</h2>
+<p>An MCP server should run with the narrowest credential that its tools need, and one server should not mix read-only and commit tools unless they share a risk level. In practice we deploy separate servers (or separate credentials on one server) for <em>read</em> and <em>commit</em>, and the orchestrator is the only client that holds the commit connection. Specialist agents get the read server. Whatever a prompt injection inside a document manages to convince a specialist agent to do, it cannot post an invoice.</p>
+
+<h2>Rule 5: treat every tool result as untrusted input</h2>
+<p>Tool results carry data from outside: PDF contents, email bodies, ticket text, web pages. That data can contain instructions aimed at the model. Defences that work in practice:</p>
+<ul>
+  <li>Wrap external content in clearly delimited fields and tell the model it is data, not instruction.</li>
+  <li>Keep commit tools out of reach of any agent that reads external content.</li>
+  <li>Have the orchestrator verify results against the plan rather than accept them.</li>
+  <li>Log the raw input of every tool call so an incident can be traced to its source document.</li>
+</ul>
+
+<h2>Rule 6: errors are part of the contract</h2>
+<p>Return typed errors the model can act on: <code>not_found</code>, <code>ambiguous(candidates=[...])</code>, <code>permission_denied</code>, <code>rate_limited(retry_after)</code>, <code>validation_failed(field, reason)</code>. A generic 500 with a stack trace teaches the model nothing and usually triggers a retry loop. Decide per error whether the correct behaviour is retry, ask the user, or stop.</p>
+
+<h2>Rule 7: log for the auditor, not the developer</h2>
+<p>Each call record should include: run id, calling agent, tool name, input (redacted where required), output summary, duration, cost, and the approval reference for commit tools. From that log you should be able to answer "who changed this record and why" without opening a model transcript.</p>
+
+<h2>A checklist before an MCP server goes to production</h2>
+<ol>
+  <li>Every tool has a one-sentence purpose a business owner would recognise.</li>
+  <li>Reads, drafts and commits are distinct tools with distinct credentials.</li>
+  <li>All inputs are schema-validated server-side; enums and identifiers used wherever possible.</li>
+  <li>Descriptions say when not to use the tool.</li>
+  <li>Typed errors; no retries on non-retryable errors.</li>
+  <li>Rate limits and per-run budgets enforced by the server, not the prompt.</li>
+  <li>Structured audit log with approval references.</li>
+  <li>A replayable test set of calls with expected outputs, run on every change.</li>
+</ol>
+
+<h2>Frequently asked questions</h2>
+<h3>Can I expose my whole API through MCP automatically?</h3>
+<p>You can, and it is a fast way to prototype, but for production we model business operations rather than endpoints. Fewer, meaningful, schema-strict tools give agents better plans and give you a permission model people can review.</p>
+<h3>How many tools should one MCP server expose?</h3>
+<p>As few as the domain needs; a dozen is common, more than thirty is a signal the server covers too many risk levels or too many domains and should be split.</p>
+<h3>Does MCP handle authentication and permissions?</h3>
+<p>MCP standardises how tools are described and called. Which credential a server uses, and which client may reach which server, is your architecture. We scope credentials per server and keep commit tools reachable only by the orchestrator.</p>
+
+        </div>
+        <div class="article-cta">
+          <strong>Have a process like this?</strong>
+          <p>We look at the process, propose an architecture, and decide together whether it is worth building. No packages, no price list.</p>
+          <a href="/#contact" class="btn btn-primary">Book a Solution Consultation <span class="arrow">→</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <a href="/" class="brand">
+          <span class="wordmark" role="img" aria-label="justdukkan"></span>
+        </a>
+        <div class="lang">
+          <a href="/" class="active" hreflang="en" lang="en">EN</a>
+          <span aria-hidden="true">/</span>
+          <a href="/tr/" hreflang="tr" lang="tr">TR</a>
+        </div>
+      </div>
+      <div class="footer-grid">
+        <div>
+          <span class="footer-h">Company</span>
+          <p>JustDukkan, LLC<br>1111B S Governors Ave, Suite 46654<br>Dover, DE 19904, USA<br>EIN 38-4388070</p>
+        </div>
+        <div>
+          <span class="footer-h">Contact</span>
+          <p><a href="mailto:enes@justdukkan.com">enes@justdukkan.com</a><br><a href="tel:+19106799657">+1 (910) 679-9657</a><br><a href="https://wa.me/19106799657" target="_blank" rel="noopener">WhatsApp</a></p>
+        </div>
+        <div>
+          <span class="footer-h">Insights</span>
+          <p><a href="/insights/hub-and-spoke-agent-architecture/">Hub-and-spoke agent architecture</a><br><a href="/insights/mcp-server-and-tool-design/">MCP server & tool design</a><br><a href="/insights/process-automation-architecture/">Process automation architecture</a></p>
+        </div>
+      </div>
+      <div class="footer-bottom">© 2026 JustDukkan, LLC</div>
+    </div>
+  </footer>
+  <script>
+    (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+    Cal("init", "consultation", { origin: "https://app.cal.com" });
+    Cal.ns.consultation("ui", { theme: "auto", hideEventTypeDetails: false, layout: "month_view" });
+  </script>
+</body>
+</html>

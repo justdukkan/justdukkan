@@ -140,11 +140,73 @@
         "@id": "https://justdukkan.com/#org"
       },
       "inLanguage": "en"
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://justdukkan.com/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What does a typical engagement look like?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We start with a Solution Consultation call and a short discovery phase where we map one real process with the people who run it. From that we write a target architecture: agents, tools, data flows, security boundaries and a cost model. If it is worth building, we build it spoke by spoke, with evaluations and human checkpoints, and hand it over with monitoring, documentation and training. A first automated process typically goes live in weeks, not months."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How is pricing structured?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "There is no price list and no packages. After discovery we propose a fixed-scope phase with a clear deliverable and price, so you decide phase by phase. We only recommend building when the automation is cheaper than the work it replaces."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which models and platforms do you work with?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We design for the models companies already use: Claude, ChatGPT, Gemini, Kimi, DeepSeek, Mistral, Llama, Qwen and Grok. Architectures are model-agnostic where possible, with routing so each task uses the cheapest model that meets the quality bar. Cloud foundations run on AWS or Google Cloud, in your own account."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is a hub-and-spoke agent architecture?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A central orchestrator (the hub) plans, routes and verifies work, while specialist agents, MCP tool servers, data sources and human reviewers (the spokes) each do one bounded job. Every edge is a typed tool contract with explicit permissions and logging. It keeps multi-agent systems explainable, testable and easy to extend: adding a capability means adding a spoke, not rewriting the system."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you build the system or only design it?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Both. We architect first, then build and operate, or hand a documented architecture to your internal team and support them. Either way the design is written down before the first line of code."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do you keep AI agents safe with company data?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Agents never get raw access. They act through MCP servers and typed tools with scoped permissions, every call is logged, and steps with real risk (posting an invoice, sending a customer reply, creating a vendor) wait for human approval. Data stays in your cloud account; we design retrieval so agents answer from your documents instead of memorising them."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Where are you based and who do you work with?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "JustDukkan, LLC is registered in Delaware, USA and works remotely with companies internationally, in English and Turkish."
+          }
+        }
+      ]
     }
   ]
 }
   </script>
-  <link rel="stylesheet" href="/assets/styles.css?v=7">
+  <link rel="stylesheet" href="/assets/styles.css?v=8">
 </head>
 <body>
 
@@ -157,6 +219,7 @@
         <a href="#services">Services</a>
         <a href="#expertise">Expertise</a>
         <a href="#approach">Approach</a>
+        <a href="/insights/">Insights</a>
         <a href="#contact">Contact</a>
       </nav>
       <div class="nav-right">
@@ -357,6 +420,44 @@
       </div>
     </section>
 
+    <section id="faq">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="display">Questions we get before the first call.</h2>
+        </div>
+        <div class="faq">
+          <details class="faq-item" open>
+            <summary>What does a typical engagement look like?</summary>
+            <p>We start with a Solution Consultation call and a short discovery phase where we map one real process with the people who run it. From that we write a target architecture: agents, tools, data flows, security boundaries and a cost model. If it is worth building, we build it spoke by spoke, with evaluations and human checkpoints, and hand it over with monitoring, documentation and training. A first automated process typically goes live in weeks, not months.</p>
+          </details>
+          <details class="faq-item">
+            <summary>How is pricing structured?</summary>
+            <p>There is no price list and no packages. After discovery we propose a fixed-scope phase with a clear deliverable and price, so you decide phase by phase. We only recommend building when the automation is cheaper than the work it replaces.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Which models and platforms do you work with?</summary>
+            <p>We design for the models companies already use: Claude, ChatGPT, Gemini, Kimi, DeepSeek, Mistral, Llama, Qwen and Grok. Architectures are model-agnostic where possible, with routing so each task uses the cheapest model that meets the quality bar. Cloud foundations run on AWS or Google Cloud, in your own account.</p>
+          </details>
+          <details class="faq-item">
+            <summary>What is a hub-and-spoke agent architecture?</summary>
+            <p>A central orchestrator (the hub) plans, routes and verifies work, while specialist agents, MCP tool servers, data sources and human reviewers (the spokes) each do one bounded job. Every edge is a typed tool contract with explicit permissions and logging. It keeps multi-agent systems explainable, testable and easy to extend: adding a capability means adding a spoke, not rewriting the system.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Do you build the system or only design it?</summary>
+            <p>Both. We architect first, then build and operate, or hand a documented architecture to your internal team and support them. Either way the design is written down before the first line of code.</p>
+          </details>
+          <details class="faq-item">
+            <summary>How do you keep AI agents safe with company data?</summary>
+            <p>Agents never get raw access. They act through MCP servers and typed tools with scoped permissions, every call is logged, and steps with real risk (posting an invoice, sending a customer reply, creating a vendor) wait for human approval. Data stays in your cloud account; we design retrieval so agents answer from your documents instead of memorising them.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Where are you based and who do you work with?</summary>
+            <p>JustDukkan, LLC is registered in Delaware, USA and works remotely with companies internationally, in English and Turkish.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
     <section id="contact" class="cta">
       <div class="container">
         <div>
@@ -389,6 +490,10 @@
         <div>
           <span class="footer-h">Contact</span>
           <p><a href="mailto:enes@justdukkan.com">enes@justdukkan.com</a><br><a href="tel:+19106799657">+1 (910) 679-9657</a><br><a href="https://wa.me/19106799657" target="_blank" rel="noopener">WhatsApp</a></p>
+        </div>
+        <div>
+          <span class="footer-h">Insights</span>
+          <p><a href="/insights/hub-and-spoke-agent-architecture/">Hub-and-spoke agent architecture</a><br><a href="/insights/mcp-server-and-tool-design/">MCP server &amp; tool design</a><br><a href="/insights/process-automation-architecture/">Process automation architecture</a></p>
         </div>
       </div>
       <div class="footer-bottom">© 2026 JustDukkan, LLC</div>

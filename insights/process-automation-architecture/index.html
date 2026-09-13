@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>From manual process to automated flow: an architecture playbook — JustDukkan</title>
+  <meta name="description" content="Most automation projects fail before the first model call, in the mapping and the boundaries. This is the sequence we use to take a process like invoice intake or support triage from hours of manual work to a running system with humans only where they matter.">
+  <link rel="canonical" href="https://justdukkan.com/insights/process-automation-architecture/">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="From manual process to automated flow: an architecture playbook — JustDukkan">
+  <meta property="og:description" content="Most automation projects fail before the first model call, in the mapping and the boundaries. This is the sequence we use to take a process like invoice intake or support triage from hours of manual work to a running system with humans only where they matter.">
+  <meta property="og:url" content="https://justdukkan.com/insights/process-automation-architecture/">
+  <meta property="og:site_name" content="JustDukkan">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+  <meta name="theme-color" content="#f7f7f4" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#14120b" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="/assets/favicon.svg?v=2" type="image/svg+xml">
+  <link rel="icon" href="/assets/favicon-32.png?v=2" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png?v=2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://justdukkan.com/insights/process-automation-architecture/#article",
+      "headline": "From manual process to automated flow: an architecture playbook",
+      "description": "Most automation projects fail before the first model call, in the mapping and the boundaries. This is the sequence we use to take a process like invoice intake or support triage from hours of manual work to a running system with humans only where they matter.",
+      "url": "https://justdukkan.com/insights/process-automation-architecture/",
+      "datePublished": "2026-09-13",
+      "dateModified": "2026-09-13",
+      "inLanguage": "en",
+      "author": {
+        "@id": "https://justdukkan.com/#org"
+      },
+      "publisher": {
+        "@id": "https://justdukkan.com/#org"
+      },
+      "mainEntityOfPage": "https://justdukkan.com/insights/process-automation-architecture/",
+      "about": [
+        "Business process automation",
+        "AI automation",
+        "Solution architecture"
+      ],
+      "keywords": "process automation, AI automation, invoice processing automation, support triage automation, human in the loop, cost model"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "JustDukkan",
+          "item": "https://justdukkan.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Insights",
+          "item": "https://justdukkan.com/insights/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Process automation architecture",
+          "item": "https://justdukkan.com/insights/process-automation-architecture/"
+        }
+      ]
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://justdukkan.com/#org",
+      "name": "JustDukkan",
+      "legalName": "JustDukkan, LLC",
+      "url": "https://justdukkan.com/"
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://justdukkan.com/insights/process-automation-architecture/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Which processes are the best first candidates for AI automation?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Frequent, mostly rule-following processes with a few judgement calls and visible cost: invoice intake, support triage, vendor onboarding, order exceptions and contract intake. Avoid starting with rare or highly consequential decisions."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do we need to replace our ERP or helpdesk?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. The architecture wraps existing systems with typed tools; the process runs where the work already happens. Replacing systems of record is almost never a prerequisite."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long until the first process is live?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A read-only assistant for one process is typically live within weeks of discovery; auto-commit for the safe path follows once the evaluation set confirms accuracy and the review data supports the threshold."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <link rel="stylesheet" href="/assets/styles.css?v=8">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="brand" aria-label="JustDukkan home">
+        <span class="wordmark" role="img" aria-label="justdukkan"></span>
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="/#services">Services</a>
+        <a href="/#expertise">Expertise</a>
+        <a href="/#approach">Approach</a>
+        <a href="/insights/" aria-current="page">Insights</a>
+        <a href="/#contact">Contact</a>
+      </nav>
+      <div class="nav-right">
+        <div class="lang" aria-label="Language">
+          <a href="/" class="active" hreflang="en">EN</a>
+          <span aria-hidden="true">/</span>
+          <a href="/tr/" hreflang="tr" lang="tr">TR</a>
+        </div>
+        <a href="/#contact" class="btn btn-primary btn-sm">Book a call <span class="arrow">→</span></a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="article-hero">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">JustDukkan</a><span>/</span><a href="/insights/">Insights</a><span>/</span><span>Process automation architecture</span></nav>
+        <h1 class="display" style="margin-top:28px">From manual process to automated flow: an architecture playbook</h1>
+        <p class="lede">Most automation projects fail before the first model call, in the mapping and the boundaries. This is the sequence we use to take a process like invoice intake or support triage from hours of manual work to a running system with humans only where they matter.</p>
+        <p class="article-meta">JustDukkan · 9 min read · Updated 2026-09-13</p>
+      </div>
+    </section>
+    <section class="article" style="border-top:0;padding-top:0">
+      <div class="container">
+        <div class="prose">
+
+<h2>Start from a process, not from a model</h2>
+<p>The question "where can we use AI?" produces demos. The question "which process costs us the most hours and why?" produces systems. We begin every engagement with one process, chosen for three properties: it is frequent, it is mostly rule-following with a few judgement calls, and its cost is visible to the business. Invoice intake, support triage, vendor onboarding, order exceptions and contract intake all qualify.</p>
+
+<h2>Step 1: map the process as it actually runs</h2>
+<p>Sit with the people who do the work and record the real flow, including the workarounds. For each step capture:</p>
+<ul>
+  <li><strong>Input</strong>: where it comes from (email, portal, ERP screen, spreadsheet) and in what format.</li>
+  <li><strong>Decision</strong>: what the person checks and what rule they apply, including the unwritten ones.</li>
+  <li><strong>Output</strong>: what changes in which system.</li>
+  <li><strong>Exceptions</strong>: what happens when something does not fit, and how often.</li>
+  <li><strong>Time and volume</strong>: minutes per item, items per week, and who does it.</li>
+</ul>
+<p>The map usually shows that 70–90% of items follow a handful of paths and the remainder consume most of the time. That split is the design.</p>
+
+<h2>Step 2: draw the boundary between automation and judgement</h2>
+<p>Classify each decision in the map:</p>
+<table>
+  <tr><th>Decision type</th><th>Handled by</th><th>Example</th></tr>
+  <tr><td>Deterministic rule</td><td>Code, not a model</td><td>Invoice total equals PO total within tolerance</td></tr>
+  <tr><td>Extraction / classification</td><td>Model with structured output, verified by rules</td><td>Read vendor, total, date and PO reference from a PDF</td></tr>
+  <tr><td>Bounded judgement</td><td>Model with retrieval and a confidence threshold</td><td>Choose the best knowledge-base article for a ticket</td></tr>
+  <tr><td>Consequential judgement</td><td>Human, presented with the model's preparation</td><td>Approve a payment above a limit; reply to an angry enterprise customer</td></tr>
+</table>
+<p>The rule is simple: models prepare, rules verify, humans decide where consequences are real. Automating the last column is where projects lose trust.</p>
+
+<h2>Step 3: design the target architecture before building</h2>
+<p>Write it down; a two-page document is enough. It should contain:</p>
+<ol>
+  <li><strong>Trigger and intake</strong>: how items enter (mailbox polling, webhook, schedule) and how duplicates are handled.</li>
+  <li><strong>Orchestration</strong>: the plan for a normal item and for each known exception path. We use a <a href="/insights/hub-and-spoke-agent-architecture/">hub-and-spoke</a> structure so every step is a typed tool call.</li>
+  <li><strong>Tools</strong>: the systems touched and the exact operations, split into read, draft and commit (see <a href="/insights/mcp-server-and-tool-design/">MCP tool design</a>).</li>
+  <li><strong>Human checkpoints</strong>: which steps wait, for whom, in which tool, with what deadline and fallback.</li>
+  <li><strong>Data and retrieval</strong>: what documents the system must consult, how they are indexed, how freshness is maintained.</li>
+  <li><strong>Security</strong>: credentials per tool, what leaves your cloud account (ideally nothing), retention of logs and documents.</li>
+  <li><strong>Cost model</strong>: model cost per item, infrastructure cost per month, human review minutes per item, compared against the current cost per item.</li>
+  <li><strong>Evaluation</strong>: the test set, the accuracy bar, and who signs off.</li>
+</ol>
+
+<h2>Step 4: build the cost model honestly</h2>
+<p>An automation that costs more than the work it replaces is a science project. The numbers that matter per item:</p>
+<pre><code>current_cost   = minutes_per_item × loaded_hourly_rate / 60
+automated_cost = model_cost_per_item
+               + infra_cost_per_month / items_per_month
+               + review_rate × review_minutes × loaded_hourly_rate / 60
+savings        = (current_cost − automated_cost) × items_per_month</code></pre>
+<p>Model cost is usually the smallest term; review rate is the one to design around. A system that sends 30% of items to a human is still a large saving if those 30% took 90% of the time before.</p>
+
+<h2>Step 5: build spoke by spoke</h2>
+<p>Do not build the whole flow and then switch it on. Sequence it so that value lands early and risk stays contained:</p>
+<ol>
+  <li><strong>Read-only assistant.</strong> The system extracts, matches and prepares; a person still does every commit. This alone often halves handling time and produces the evaluation data you need.</li>
+  <li><strong>Auto-commit for the safe path.</strong> Items that pass every rule and fall under the risk threshold commit without review. Everything else goes to the queue as before.</li>
+  <li><strong>Widen the safe path.</strong> Use the review log to find exception types worth automating; add a spoke for each.</li>
+</ol>
+
+<h2>Step 6: operate it like a system, not a script</h2>
+<ul>
+  <li>Dashboards for volume, straight-through rate, review queue age, cost per item and error types.</li>
+  <li>Alerts on budget overrun, tool failures and review queue backlog.</li>
+  <li>A weekly review of rejected items; each recurring rejection is a candidate rule or spoke.</li>
+  <li>Re-run the evaluation set on every prompt, model or tool change.</li>
+  <li>Documentation and training so the process owner, not the vendor, owns the system.</li>
+</ul>
+
+<h2>Worked example: supplier invoice intake</h2>
+<p><strong>Before:</strong> two people spend most of each morning opening invoice PDFs from a shared mailbox, keying vendor, total and PO number into the ERP, checking the purchase order, and chasing mismatches by email. Roughly 12 minutes per invoice, 60 invoices a day.</p>
+<p><strong>After:</strong> a mailbox trigger hands each PDF to a documents spoke that extracts fields with structured output; a rules step checks the PO match and tolerance; matches under the approval limit post automatically; mismatches and high-value items land in a review queue with the extracted data and the reason attached. Human time drops to a few minutes per exception; the straight-through rate settles around 70% after the second month as recurring exceptions get their own rules.</p>
+<p>The architecture is not exotic. The discipline is in the mapping, the boundaries and the cost model, which is why we spend the first phase there.</p>
+
+<h2>Frequently asked questions</h2>
+<h3>Which processes are the best first candidates for AI automation?</h3>
+<p>Frequent, mostly rule-following processes with a few judgement calls and visible cost: invoice intake, support triage, vendor onboarding, order exceptions and contract intake. Avoid starting with rare or highly consequential decisions.</p>
+<h3>Do we need to replace our ERP or helpdesk?</h3>
+<p>No. The architecture wraps existing systems with typed tools; the process runs where the work already happens. Replacing systems of record is almost never a prerequisite.</p>
+<h3>How long until the first process is live?</h3>
+<p>A read-only assistant for one process is typically live within weeks of discovery; auto-commit for the safe path follows once the evaluation set confirms accuracy and the review data supports the threshold.</p>
+
+        </div>
+        <div class="article-cta">
+          <strong>Have a process like this?</strong>
+          <p>We look at the process, propose an architecture, and decide together whether it is worth building. No packages, no price list.</p>
+          <a href="/#contact" class="btn btn-primary">Book a Solution Consultation <span class="arrow">→</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <a href="/" class="brand">
+          <span class="wordmark" role="img" aria-label="justdukkan"></span>
+        </a>
+        <div class="lang">
+          <a href="/" class="active" hreflang="en" lang="en">EN</a>
+          <span aria-hidden="true">/</span>
+          <a href="/tr/" hreflang="tr" lang="tr">TR</a>
+        </div>
+      </div>
+      <div class="footer-grid">
+        <div>
+          <span class="footer-h">Company</span>
+          <p>JustDukkan, LLC<br>1111B S Governors Ave, Suite 46654<br>Dover, DE 19904, USA<br>EIN 38-4388070</p>
+        </div>
+        <div>
+          <span class="footer-h">Contact</span>
+          <p><a href="mailto:enes@justdukkan.com">enes@justdukkan.com</a><br><a href="tel:+19106799657">+1 (910) 679-9657</a><br><a href="https://wa.me/19106799657" target="_blank" rel="noopener">WhatsApp</a></p>
+        </div>
+        <div>
+          <span class="footer-h">Insights</span>
+          <p><a href="/insights/hub-and-spoke-agent-architecture/">Hub-and-spoke agent architecture</a><br><a href="/insights/mcp-server-and-tool-design/">MCP server & tool design</a><br><a href="/insights/process-automation-architecture/">Process automation architecture</a></p>
+        </div>
+      </div>
+      <div class="footer-bottom">© 2026 JustDukkan, LLC</div>
+    </div>
+  </footer>
+  <script>
+    (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+    Cal("init", "consultation", { origin: "https://app.cal.com" });
+    Cal.ns.consultation("ui", { theme: "auto", hideEventTypeDetails: false, layout: "month_view" });
+  </script>
+</body>
+</html>
