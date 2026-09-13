@@ -53,11 +53,11 @@ tasks/todo.md              İş listesi
 
 ## Cache-bust kuralı (ÖNEMLİ)
 
-Cloudflare `styles.css` ve `demo.js`'i cache'ler. CSS/JS değişince **her HTML'de** `?v=N` sürümünü artır (`index.html`, `tr/index.html`, `insights/**/index.html`; build_insights.py içindeki `styles.css?v=` de). Şu an **v=12**. Artırmazsan canlıda eski CSS + yeni HTML görünür ("site bozuldu" şikayetinin sebebi buydu).
+Cloudflare `styles.css` ve `demo.js`'i cache'ler. CSS/JS değişince **her HTML'de** `?v=N` sürümünü artır (`index.html`, `tr/index.html`, `insights/**/index.html`; build_insights.py içindeki `styles.css?v=` de). Şu an **v=13**. Artırmazsan canlıda eski CSS + yeni HTML görünür ("site bozuldu" şikayetinin sebebi buydu).
 
 ## Sayfa bölümleri (ana sayfa, EN/TR)
 
-Hero → Model logoları bandı (Claude, ChatGPT, Gemini, Kimi, DeepSeek, Mistral, Llama, Qwen, Grok — monokrom, lobehub icons) → Services (3 kart) → Expertise (8 madde) → Reference pattern: interaktif demo (sabit 460px) → Outcomes (3) → Approach (4 adım) → FAQ (7 soru, `<details>`) → Contact (Cal.com inline) → Footer (Company / Contact / Insights sütunları).
+Hero → Model logoları bandı (Claude, ChatGPT, Gemini, Kimi, DeepSeek, Mistral, Llama, Qwen, Grok — monokrom, lobehub icons) → Services (3 kart) → Expertise (8 madde) → Reference pattern: interaktif demo (sabit 460px) → Outcomes (3) → Approach (4 adım) → FAQ (7 soru, `<details>`) → Contact (önce e-posta "Write to us", sonra "or book a call" ayracı + Cal.com inline) → Footer (Company / Contact / Insights sütunları).
 
 ## SEO / GEO — yapılanlar
 
