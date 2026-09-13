@@ -276,7 +276,13 @@
     (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
     Cal("init", "consultation", { origin: "https://app.cal.com" });
     Cal.ns.consultation("inline", { elementOrSelector: "#cal-inline", calLink: "enes-ertas-5wscht/solution-consultation", config: { layout: "month_view", theme: "auto" } });
-    Cal.ns.consultation("ui", { theme: "auto", hideEventTypeDetails: false, layout: "month_view" });
+    Cal.ns.consultation("ui", {
+      theme: "auto", hideEventTypeDetails: false, layout: "month_view",
+      cssVarsPerTheme: {
+        light: { "cal-bg": "#f7f7f4", "cal-bg-muted": "#f0efeb", "cal-bg-subtle": "#f0efeb", "cal-bg-emphasis": "#ebeae5", "cal-border": "#e1e0db", "cal-border-subtle": "#ebeae5", "cal-border-emphasis": "#d6d5d2", "cal-text": "#26251e", "cal-text-emphasis": "#26251e", "cal-text-subtle": "#6b6a64", "cal-text-muted": "#8f8e88", "cal-brand": "#26251e", "cal-brand-emphasis": "#34785c", "cal-brand-text": "#f7f7f4" },
+        dark:  { "cal-bg": "#14120b", "cal-bg-muted": "#1b1913", "cal-bg-subtle": "#1b1913", "cal-bg-emphasis": "#201e18", "cal-border": "#2a2820", "cal-border-subtle": "#221f18", "cal-border-emphasis": "#3b3a33", "cal-text": "#edecec", "cal-text-emphasis": "#ffffff", "cal-text-subtle": "#a8a7a2", "cal-text-muted": "#7d7c77", "cal-brand": "#edecec", "cal-brand-emphasis": "#4fa37e", "cal-brand-text": "#14120b" }
+      }
+    });
   </script>
 <script src="/assets/demo.js?v=5" defer></script>
 </body>
