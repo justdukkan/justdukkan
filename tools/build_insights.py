@@ -156,7 +156,7 @@ def article_page(a):
         </div>
         <div class="article-cta">
           <strong>Have a process like this?</strong>
-          <p>We look at the process, propose an architecture, and decide together whether it is worth building. No packages, no price list.</p>
+          <p>We look at the process, design the agent team it needs, and decide together whether it is worth building. No packages, no price list.</p>
           <a href="mailto:enes@justdukkan.com?subject=Solution%20consultation" class="btn btn-primary">Get in touch <span class="arrow">→</span></a> <a href="/#contact" class="btn btn-ghost">Book a call</a>
         </div>
       </div>
@@ -172,7 +172,7 @@ def index_page():
     url = f'{SITE}/insights/'
     ld = {"@context": "https://schema.org", "@type": "CollectionPage", "@id": url, "url": url,
           "name": "Insights — JustDukkan", "inLanguage": "en",
-          "description": "Practical notes on AI solutions architecture: agentic systems, MCP tool design and process automation.",
+          "description": "Practical notes on building custom AI agent teams: hub-and-spoke architecture, MCP servers and tools, agent skills, API integration and what it takes to keep a system running.",
           "hasPart": [{"@type": "Article", "headline": a['title'], "url": f'{SITE}/insights/{a["slug"]}/'} for a in ARTICLES]}
     cards = ''.join(f'''          <a class="insight-card" href="/insights/{a['slug']}/">
             <span class="label">{a['kicker']}</span>
@@ -186,7 +186,7 @@ def index_page():
     <section class="article-hero">
       <div class="container">
         <h1 class="display">Notes from the architecture desk.</h1>
-        <p class="lede">How we design automation and agentic systems that hold up in production: patterns, checklists and the trade-offs behind them.</p>
+        <p class="lede">How we design, build and maintain agent teams that hold up in production: patterns, checklists and the trade-offs behind them.</p>
       </div>
     </section>
     <section style="border-top:0;padding-top:0">

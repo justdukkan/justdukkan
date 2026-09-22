@@ -1,6 +1,6 @@
 # justdukkan.com
 
-Source of [justdukkan.com](https://justdukkan.com) — JustDukkan, LLC. AI solutions architecture: process automation, system design and agentic systems.
+Source of [justdukkan.com](https://justdukkan.com) — JustDukkan, LLC. Custom AI agent teams: hierarchical agentic systems built around a company's own processes, with MCP servers, typed tools, API integrations and ongoing maintenance.
 
 Static site, no build step.
 

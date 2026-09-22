@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JustDukkan — AI Solutions Architecture</title>
-  <meta name="description" content="JustDukkan designs the AI architecture behind how companies work: process automation, system design and agentic systems built on hub-and-spoke orchestration, MCP and tools.">
+  <title>JustDukkan — Custom AI Agent Teams</title>
+  <meta name="description" content="JustDukkan builds custom hierarchical AI agent teams: an orchestrator and specialist agents connected to your APIs through MCP servers and typed tools, then kept running with regular maintenance.">
   <link rel="canonical" href="https://justdukkan.com/">
   <link rel="alternate" hreflang="en" href="https://justdukkan.com/">
   <link rel="alternate" hreflang="tr" href="https://justdukkan.com/tr/">
   <link rel="alternate" hreflang="x-default" href="https://justdukkan.com/">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="JustDukkan — AI Solutions Architecture">
-  <meta property="og:description" content="Automation, system design and agentic systems for companies that want to change how work gets done and what it costs.">
+  <meta property="og:title" content="JustDukkan — Custom AI Agent Teams">
+  <meta property="og:description" content="Custom hierarchical agent systems designed around your processes: an orchestrator, specialist agents, your APIs, MCP servers and typed tools.">
   <meta property="og:url" content="https://justdukkan.com/">
   <meta property="og:locale" content="en_US">
   <meta property="og:locale:alternate" content="tr_TR">
@@ -60,14 +60,16 @@
         "en",
         "tr"
       ],
-      "description": "AI solutions architecture: process automation, system design and agentic systems built on hub-and-spoke orchestration, MCP servers and tools.",
+      "description": "Custom agentic systems: hierarchical AI agent teams built for a company's own processes, with MCP servers, typed tools, API integrations and ongoing maintenance.",
       "knowsAbout": [
-        "AI solutions architecture",
-        "Process automation",
+        "AI agent teams",
         "Agentic systems",
         "Hub-and-spoke orchestration",
         "Model Context Protocol (MCP)",
-        "Multi-agent workflows",
+        "MCP server development",
+        "Agent tools and skills",
+        "API integration",
+        "Process automation",
         "Retrieval-augmented generation",
         "LLM evaluation and guardrails",
         "AWS",
@@ -100,24 +102,32 @@
             "@type": "Offer",
             "itemOffered": {
               "@type": "Service",
-              "name": "Process Automation",
-              "description": "Internal processes rebuilt as automated flows with AI in the loop where judgment is needed."
+              "name": "Agent Team Design",
+              "description": "Hierarchical hub-and-spoke agent teams designed around a real process: orchestrator, specialist agents, scope and authority boundaries."
             }
           },
           {
             "@type": "Offer",
             "itemOffered": {
               "@type": "Service",
-              "name": "System & Solution Architecture",
-              "description": "Target architecture, integrations, security boundaries and cost model designed before building; cloud foundations on AWS and Google Cloud."
+              "name": "Agent Build & Deployment",
+              "description": "Specialist agents, typed tools and skills written for your workflows and taken into production in stages."
             }
           },
           {
             "@type": "Offer",
             "itemOffered": {
               "@type": "Service",
-              "name": "Agentic Systems",
-              "description": "Multi-agent systems on a hub-and-spoke pattern with an orchestrator, specialist agents, MCP servers and typed tools under clear controls."
+              "name": "API & MCP Integration",
+              "description": "Agent teams connected to existing systems through API integrations and MCP servers with scoped permissions, audit logs and approval gates."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Operate & Maintain",
+              "description": "Ongoing maintenance of a running agent team: evaluations, regression checks, model and tool updates, cost and incident monitoring."
             }
           }
         ]
@@ -140,7 +150,7 @@
       "@type": "WebPage",
       "@id": "https://justdukkan.com/#webpage",
       "url": "https://justdukkan.com/",
-      "name": "JustDukkan — AI Solutions Architecture",
+      "name": "JustDukkan — Custom AI Agent Teams",
       "isPartOf": {
         "@id": "https://justdukkan.com/#website"
       },
@@ -158,7 +168,15 @@
           "name": "What does a typical engagement look like?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "We start with a Solution Consultation call and a short discovery phase where we map one real process with the people who run it. From that we write a target architecture: agents, tools, data flows, security boundaries and a cost model. If it is worth building, we build it spoke by spoke, with evaluations and human checkpoints, and hand it over with monitoring, documentation and training. A first automated process typically goes live in weeks, not months."
+            "text": "We start with a Solution Consultation call and a short discovery phase where we map one real process with the people who run it. From that we design the agent team: which specialist agents exist, what each one is allowed to do, which tools and MCP servers they call, and where a person decides. If it is worth building, we build it agent by agent, with evaluations and human checkpoints, and then keep it running. A first agent team typically goes live in weeks, not months."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you resell off-the-shelf AI agents?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. We do not connect you to someone else's ready-made agents or a generic subscription. Every agent team we build is designed around your processes, your data and your systems, and the prompts, tools, skills and integrations belong to you."
           }
         },
         {
@@ -166,7 +184,7 @@
           "name": "How is pricing structured?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "There is no price list and no packages. After discovery we propose a fixed-scope phase with a clear deliverable and price, so you decide phase by phase. We only recommend building when the automation is cheaper than the work it replaces."
+            "text": "There is no price list and no packages. After discovery we propose a fixed-scope phase with a clear deliverable and price, so you decide phase by phase. Maintenance is agreed separately once a system is live."
           }
         },
         {
@@ -179,18 +197,18 @@
         },
         {
           "@type": "Question",
-          "name": "What is a hub-and-spoke agent architecture?",
+          "name": "What is a hub-and-spoke agent team?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "A central orchestrator (the hub) plans, routes and verifies work, while specialist agents, MCP tool servers, data sources and human reviewers (the spokes) each do one bounded job. Every edge is a typed tool contract with explicit permissions and logging. It keeps multi-agent systems explainable, testable and easy to extend: adding a capability means adding a spoke, not rewriting the system."
+            "text": "A central orchestrator (the hub) plans, routes and verifies work, while specialist agents, MCP tool servers, data sources and human reviewers (the spokes) each do one bounded job. Every edge is a typed tool contract with explicit permissions and logging. It keeps the team explainable, testable and easy to extend: adding a capability means adding a spoke, not rewriting the system."
           }
         },
         {
           "@type": "Question",
-          "name": "Do you build the system or only design it?",
+          "name": "What does maintenance actually include?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Both. We architect first, then build and operate, or hand a documented architecture to your internal team and support them. Either way the design is written down before the first line of code."
+            "text": "A running agent team needs care. We keep evaluation sets current as the process changes, run regression checks when a model or an API is updated, add tools and skills as scope grows, and monitor cost, latency and failures. Changes are reported on a regular cadence so you always know what the team does today."
           }
         },
         {
@@ -250,8 +268,8 @@
 
     <section class="hero" id="top">
       <div class="container">
-        <h1 class="display">We design the AI architecture behind how your company works.</h1>
-        <p class="lede">Automation, system design and agentic systems for companies that want to change how work gets done and what it costs.</p>
+        <h1 class="display">We build the AI agent teams your company runs on.</h1>
+        <p class="lede">Custom hierarchical agent systems designed around your processes: an orchestrator, specialist agents, your APIs, MCP servers and typed tools. Built for your processes, not a subscription to someone else's agents.</p>
         <div class="hero-actions">
           <a href="mailto:enes@justdukkan.com?subject=Solution%20consultation" class="btn btn-primary">Get in touch <span class="arrow">→</span></a>
           <a href="#services" class="btn btn-ghost">What we do</a>
@@ -279,38 +297,48 @@
     <section id="services">
       <div class="container">
         <div class="section-head">
-          <h2 class="display">Three ways we change how work gets done.</h2>
-          <p>Every engagement starts from a real process and ends with a system your team runs, not a slide deck.</p>
+          <h2 class="display">From the first agent role to the maintenance that keeps it running.</h2>
+          <p>Every engagement starts from a real process and ends with an agent team your company owns, not a slide deck and not a subscription.</p>
         </div>
-        <div class="grid grid-3">
+        <div class="grid grid-4">
           <article class="card">
             <span class="num">01</span>
-            <h3>Process Automation</h3>
-            <p>We map the internal processes that consume your team's hours and rebuild them as automated flows with AI in the loop where judgment is needed.</p>
+            <h3>Agent Team Design</h3>
+            <p>We turn a real process into agent roles: an orchestrator that plans and routes, specialist agents with a bounded job, and explicit limits on what each one may do.</p>
             <ul>
-              <li>Operations, finance, sales and support workflows</li>
-              <li>Document, email and data processing</li>
-              <li>Human review only where it matters</li>
+              <li>Process mapped to agent roles</li>
+              <li>Orchestrator and specialist scope</li>
+              <li>Escalation and human decision points</li>
             </ul>
           </article>
           <article class="card">
             <span class="num">02</span>
-            <h3>System &amp; Solution Architecture</h3>
-            <p>We design the target architecture before anything is built: components, data flows, integrations, security boundaries and cost model.</p>
+            <h3>Build &amp; Deployment</h3>
+            <p>We write the agents, the typed tools they call and the skills that carry your procedures, then take the team into production one capability at a time.</p>
             <ul>
-              <li>Architecture reviews and target-state design</li>
-              <li>Cloud foundations on AWS and Google Cloud</li>
-              <li>Build-vs-buy and model selection decisions</li>
+              <li>Specialist agents, instructions and skills</li>
+              <li>Typed tools with explicit error contracts</li>
+              <li>Staged rollout with evals at every step</li>
             </ul>
           </article>
           <article class="card">
             <span class="num">03</span>
-            <h3>Agentic Systems</h3>
-            <p>We build multi-agent systems on a hub-and-spoke pattern: an orchestrator that delegates to specialist agents, tools and MCP servers under clear controls.</p>
+            <h3>Integrations: API &amp; MCP</h3>
+            <p>We connect the team to the systems you already run, through your APIs and through MCP servers that expose only what each agent is allowed to touch.</p>
             <ul>
-              <li>Orchestrator and specialist agent design</li>
-              <li>MCP servers, tool contracts and permissions</li>
-              <li>Evaluation, guardrails and observability</li>
+              <li>API integrations: CRM, ERP, ticketing, internal tools</li>
+              <li>MCP servers with scoped permissions</li>
+              <li>Auth, audit logs and approval gates</li>
+            </ul>
+          </article>
+          <article class="card">
+            <span class="num">04</span>
+            <h3>Operate &amp; Maintain</h3>
+            <p>A live agent team is not a finished project. We keep it working as your processes change, as models change and as the systems around it change.</p>
+            <ul>
+              <li>Evaluations and regression checks</li>
+              <li>Model, tool and API updates</li>
+              <li>Cost, latency and incident monitoring</li>
             </ul>
           </article>
         </div>
@@ -335,8 +363,8 @@
           </li>
           <li>
             <span class="num">03</span>
-            <strong>Multi-agent workflows</strong>
-            <p>Planning, delegation, hand-offs and retries designed as explicit workflows rather than hoping a single prompt does everything.</p>
+            <strong>Agent skills &amp; instructions</strong>
+            <p>Repeatable expertise packaged as versioned, tested skills and instructions, so agents follow your procedure instead of improvising it each time.</p>
           </li>
           <li>
             <span class="num">04</span>
@@ -355,8 +383,8 @@
           </li>
           <li>
             <span class="num">07</span>
-            <strong>Integration</strong>
-            <p>APIs, CRM/ERP, ticketing, messaging and internal tools connected so automation runs where work already happens.</p>
+            <strong>API &amp; system integration</strong>
+            <p>APIs, CRM/ERP, ticketing, messaging and internal tools connected with auth, retries and idempotency, so the team acts where work already happens.</p>
           </li>
           <li>
             <span class="num">08</span>
@@ -371,7 +399,7 @@
       <div class="container">
         <div class="section-head">
           <h2 class="display" id="arch-title">One orchestrator. Many specialists. Clear boundaries.</h2>
-          <p>This is what a hub-and-spoke system looks like while it runs: the orchestrator plans, specialist agents execute through typed tools, and people decide only where it matters.</p>
+          <p>This is what one of our agent teams looks like while it runs: the orchestrator plans, specialist agents execute through typed tools, and people decide only where it matters.</p>
         </div>
         <div class="demo" id="demo" aria-label="Interactive orchestrator demo"></div>
         <p class="diagram-caption">Pick a run on the left. Every step is an agent, a typed tool call through MCP, or a human decision, and the orchestrator waits where it should.</p>
@@ -381,23 +409,23 @@
     <section id="outcomes">
       <div class="container">
         <div class="section-head">
-          <h2 class="display">We change how work gets done and lower what it costs.</h2>
+          <h2 class="display">What changes when a team of agents owns the process.</h2>
         </div>
         <div class="outcomes">
           <div class="outcome">
+            <span class="from">generic tools</span>
+            <div class="to">A system shaped like your process</div>
+            <p>Nothing is bent to fit a product someone else designed. The agent roles follow how your work actually runs.</p>
+          </div>
+          <div class="outcome">
             <span class="from">manual hours</span>
-            <div class="to">Automated flows</div>
-            <p>Repetitive work moves to systems that run around the clock; people handle the exceptions.</p>
+            <div class="to">Work the team runs end to end</div>
+            <p>Repetitive steps move to agents that run around the clock; people handle exceptions and the decisions that need judgment.</p>
           </div>
           <div class="outcome">
-            <span class="from">cost per process</span>
-            <div class="to">Lower unit cost</div>
-            <p>Each process is redesigned with a cost model, so the automation is cheaper than the work it replaces.</p>
-          </div>
-          <div class="outcome">
-            <span class="from">days of turnaround</span>
-            <div class="to">Faster cycle time</div>
-            <p>Requests that waited in queues get handled as they arrive, with review only where risk requires it.</p>
+            <span class="from">a project that ages</span>
+            <div class="to">A system under maintenance</div>
+            <p>Evaluations, model updates and new tools keep the team working as your processes and the models around it change.</p>
           </div>
         </div>
       </div>
@@ -406,28 +434,28 @@
     <section id="approach">
       <div class="container">
         <div class="section-head">
-          <h2 class="display">From process to running system in four steps.</h2>
+          <h2 class="display">From one process to an agent team that runs it.</h2>
         </div>
         <div class="steps">
           <div class="step">
             <span class="num">01 · Discover</span>
             <h3>Map the process</h3>
-            <p>We sit with the people who do the work, map the flow, and find where hours and cost actually go.</p>
+            <p>We sit with the people who do the work, map the flow, and separate the steps that need judgment from the ones that do not.</p>
           </div>
           <div class="step">
-            <span class="num">02 · Architect</span>
-            <h3>Design the system</h3>
-            <p>Target architecture, agent and tool boundaries, data flows, security, and the cost model, written down before we build.</p>
+            <span class="num">02 · Design</span>
+            <h3>Design the agent team</h3>
+            <p>Roles, scope and authority for each agent, the tools and MCP servers they call, the data they see, and the points where a person decides.</p>
           </div>
           <div class="step">
             <span class="num">03 · Build</span>
-            <h3>Ship in increments</h3>
-            <p>We build spoke by spoke, with evals and human checkpoints, so value lands early and risk stays contained.</p>
+            <h3>Build and integrate</h3>
+            <p>Agents, typed tools, skills and MCP servers written and wired into your APIs, shipped agent by agent so value lands early and risk stays contained.</p>
           </div>
           <div class="step">
             <span class="num">04 · Operate</span>
-            <h3>Hand over and improve</h3>
-            <p>Monitoring, documentation and training so your team owns the system, and we keep improving it with you.</p>
+            <h3>Maintain and improve</h3>
+            <p>Monitoring, documentation and training, then regular maintenance: evaluations, model and API updates, and new capabilities as the scope grows.</p>
           </div>
         </div>
       </div>
@@ -441,23 +469,27 @@
         <div class="faq">
           <details class="faq-item" open>
             <summary>What does a typical engagement look like?</summary>
-            <p>We start with a Solution Consultation call and a short discovery phase where we map one real process with the people who run it. From that we write a target architecture: agents, tools, data flows, security boundaries and a cost model. If it is worth building, we build it spoke by spoke, with evaluations and human checkpoints, and hand it over with monitoring, documentation and training. A first automated process typically goes live in weeks, not months.</p>
+            <p>We start with a Solution Consultation call and a short discovery phase where we map one real process with the people who run it. From that we design the agent team: which specialist agents exist, what each one is allowed to do, which tools and MCP servers they call, and where a person decides. If it is worth building, we build it agent by agent, with evaluations and human checkpoints, and then keep it running. A first agent team typically goes live in weeks, not months.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Do you resell off-the-shelf AI agents?</summary>
+            <p>No. We do not connect you to someone else's ready-made agents or a generic subscription. Every agent team we build is designed around your processes, your data and your systems, and the prompts, tools, skills and integrations belong to you.</p>
           </details>
           <details class="faq-item">
             <summary>How is pricing structured?</summary>
-            <p>There is no price list and no packages. After discovery we propose a fixed-scope phase with a clear deliverable and price, so you decide phase by phase. We only recommend building when the automation is cheaper than the work it replaces.</p>
+            <p>There is no price list and no packages. After discovery we propose a fixed-scope phase with a clear deliverable and price, so you decide phase by phase. Maintenance is agreed separately once a system is live.</p>
           </details>
           <details class="faq-item">
             <summary>Which models and platforms do you work with?</summary>
             <p>We design for the models companies already use: Claude, ChatGPT, Gemini, Kimi, DeepSeek, Mistral, Llama, Qwen and Grok. Architectures are model-agnostic where possible, with routing so each task uses the cheapest model that meets the quality bar. Cloud foundations run on AWS or Google Cloud, in your own account.</p>
           </details>
           <details class="faq-item">
-            <summary>What is a hub-and-spoke agent architecture?</summary>
-            <p>A central orchestrator (the hub) plans, routes and verifies work, while specialist agents, MCP tool servers, data sources and human reviewers (the spokes) each do one bounded job. Every edge is a typed tool contract with explicit permissions and logging. It keeps multi-agent systems explainable, testable and easy to extend: adding a capability means adding a spoke, not rewriting the system.</p>
+            <summary>What is a hub-and-spoke agent team?</summary>
+            <p>A central orchestrator (the hub) plans, routes and verifies work, while specialist agents, MCP tool servers, data sources and human reviewers (the spokes) each do one bounded job. Every edge is a typed tool contract with explicit permissions and logging. It keeps the team explainable, testable and easy to extend: adding a capability means adding a spoke, not rewriting the system.</p>
           </details>
           <details class="faq-item">
-            <summary>Do you build the system or only design it?</summary>
-            <p>Both. We architect first, then build and operate, or hand a documented architecture to your internal team and support them. Either way the design is written down before the first line of code.</p>
+            <summary>What does maintenance actually include?</summary>
+            <p>A running agent team needs care. We keep evaluation sets current as the process changes, run regression checks when a model or an API is updated, add tools and skills as scope grows, and monitor cost, latency and failures. Changes are reported on a regular cadence so you always know what the team does today.</p>
           </details>
           <details class="faq-item">
             <summary>How do you keep AI agents safe with company data?</summary>
@@ -474,8 +506,8 @@
     <section id="contact" class="cta">
       <div class="container">
         <div>
-          <h2 class="display">Tell us about the process you want to change.</h2>
-          <p class="lede" style="margin-top:16px">No packages, no price list. We look at your process, propose an architecture, and decide together whether it is worth building.</p>
+          <h2 class="display">Tell us about the process you want an agent team to run.</h2>
+          <p class="lede" style="margin-top:16px">No packages, no price list. We look at your process, design the agent team it needs, and decide together whether it is worth building.</p>
         </div>
         <div class="contact-primary">
           <a href="mailto:enes@justdukkan.com?subject=Solution%20consultation" class="btn btn-primary">Get in touch <span class="arrow">→</span></a>
@@ -530,6 +562,6 @@
       }
     });
   </script>
-<script src="/assets/demo.js?v=8" defer></script>
+<script src="/assets/demo.js?v=9" defer></script>
 </body>
 </html>

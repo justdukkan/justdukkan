@@ -1,31 +1,34 @@
 # JustDukkan
 
-> JustDukkan, LLC is an AI solutions architecture practice. We design the AI architecture behind how companies work: process automation, system and solution architecture, and agentic systems built on hub-and-spoke orchestration, MCP (Model Context Protocol) servers and typed tools. Based in Delaware, USA; we work with companies internationally in English and Turkish.
+> JustDukkan, LLC builds custom AI agent teams. For each client we design a hierarchical (hub-and-spoke) agentic system around their own processes: an orchestrator that plans and routes, specialist agents with bounded scope, MCP (Model Context Protocol) servers, typed tools and skills, connected to the client's existing systems through their APIs, and then kept running with regular maintenance. We do not resell off-the-shelf agents or generic agent subscriptions; every system is built for the client and belongs to the client. Based in Delaware, USA; we work with companies internationally in English and Turkish.
 
 ## What we do
 
-- **Process Automation** — map the internal processes that consume a team's hours and rebuild them as automated flows with AI in the loop where judgment is needed (operations, finance, sales, support; document, email and data processing; human review only where it matters).
-- **System & Solution Architecture** — design the target architecture before anything is built: components, data flows, integrations, security boundaries and cost model; architecture reviews; cloud foundations on AWS and Google Cloud; build-vs-buy and model selection.
-- **Agentic Systems** — multi-agent systems on a hub-and-spoke pattern: an orchestrator that plans, routes and verifies, delegating to specialist agents, tools and MCP servers under clear controls; evaluation, guardrails and observability.
+- **Agent Team Design** — turn a real process into agent roles: an orchestrator that plans, routes and verifies, specialist agents with one bounded job each, explicit scope and authority limits, and the points where a person decides.
+- **Build & Deployment** — write the agents, the typed tools they call and the skills that carry the client's procedures; take the team into production one capability at a time, with evaluations at every step.
+- **Integrations: API & MCP** — connect the team to the systems the client already runs: API integrations (CRM, ERP, ticketing, internal tools) and MCP servers that expose only what each agent is allowed to touch, with auth, audit logs and approval gates.
+- **Operate & Maintain** — keep a live agent team working: evaluation sets kept current, regression checks when a model or an API changes, new tools and skills as scope grows, and monitoring for cost, latency and failures.
+
+We build custom agent teams. We do not resell off-the-shelf agents or connect clients to someone else's agent subscription.
 
 ## Expertise
 
-Hub-and-spoke orchestration · MCP servers & tool design · Multi-agent workflows · Knowledge & retrieval (RAG) pipelines · Evaluation & guardrails · Cloud architecture (AWS, Google Cloud) · Integration (APIs, CRM/ERP, ticketing, messaging, internal tools) · Cost & operations (token budgets, model routing, caching, monitoring)
+Hub-and-spoke orchestration · MCP servers & tool design · Agent skills & instructions (versioned, tested) · API & system integration (CRM/ERP, ticketing, messaging, internal tools; auth, retries, idempotency) · Knowledge & retrieval (RAG) pipelines · Evaluation & guardrails · Cloud architecture (AWS, Google Cloud) · Cost & operations (token budgets, model routing, caching, monitoring)
 
 We design for the models companies already use: Claude, ChatGPT, Gemini, Kimi, DeepSeek, Mistral, Llama, Qwen, Grok.
 
 ## How we work
 
-1. Discover — map the process with the people who do the work.
-2. Architect — target architecture, agent and tool boundaries, data flows, security, cost model, written down before building.
-3. Build — ship spoke by spoke with evals and human checkpoints.
-4. Operate — monitoring, documentation and training so the client's team owns the system.
+1. Discover — map the process with the people who do the work and separate the steps that need judgment from the ones that do not.
+2. Design the agent team — roles, scope and authority per agent, the tools and MCP servers each one calls, the data it sees, and the human decision points.
+3. Build and integrate — agents, typed tools, skills and MCP servers written and wired into the client's APIs, shipped agent by agent with evals and human checkpoints.
+4. Operate — monitoring, documentation and training, then regular maintenance: evaluations, model and API updates, new capabilities as scope grows.
 
-Outcomes we design for: manual hours → automated flows; lower cost per process; faster cycle time.
+Outcomes we design for: a system shaped like the client's process rather than a generic tool; work the agent team runs end to end with people on exceptions and decisions; a maintained system rather than a project that ages.
 
 ## Engagement
 
-No packages and no price list. We look at a process, propose an architecture and decide together with the client whether it is worth building. Start with a Solution Consultation call: https://cal.com/justdukkan/solution-consultation
+No packages and no price list. We look at a process, design the agent team it needs and decide together with the client whether it is worth building. Maintenance is agreed separately once a system is live. Start with a Solution Consultation call: https://cal.com/justdukkan/solution-consultation
 
 ## Contact
 
@@ -49,7 +52,7 @@ No packages and no price list. We look at a process, propose an architecture and
 
 ## FAQ
 
-See the FAQ section on the home page (also marked up as FAQPage schema): engagement shape, pricing (no price list; fixed-scope phases after discovery), models we work with, what hub-and-spoke means, build vs. design, data safety, location.
+See the FAQ section on the home page (also marked up as FAQPage schema): engagement shape, whether we resell off-the-shelf agents (we do not), pricing (no price list; fixed-scope phases after discovery), models we work with, what a hub-and-spoke agent team is, what maintenance includes, data safety, location.
 
 ## Pages
 

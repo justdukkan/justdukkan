@@ -5,14 +5,14 @@
   var T = {
     en: {
       title: 'JustDukkan Orchestrator · Acme Ops',
-      runs: 'Runs', spokes: 'Spokes', tools: 'Tool calls', replay: 'Replay',
+      runs: 'Runs', spokes: 'Agent team', tools: 'Tool calls', replay: 'Replay',
       approve: 'Approve', reject: 'Reject', running: 'Running', done: 'Done', waiting: 'Waiting for approval',
       rejected: 'Returned to requester, nothing changed', request: 'Request',
       orchestrator: 'Orchestrator', human: 'Human review'
     },
     tr: {
       title: 'JustDukkan Orkestratör · Acme Ops',
-      runs: 'Çalıştırmalar', spokes: 'Spoke\'lar', tools: 'Tool çağrısı', replay: 'Tekrar oynat',
+      runs: 'Çalıştırmalar', spokes: 'Agent takımı', tools: 'Tool çağrısı', replay: 'Tekrar oynat',
       approve: 'Onayla', reject: 'Reddet', running: 'Çalışıyor', done: 'Tamamlandı', waiting: 'Onay bekliyor',
       rejected: 'Talep sahibine iade edildi, hiçbir şey değişmedi', request: 'Talep',
       orchestrator: 'Orkestratör', human: 'İnsan onayı'
@@ -73,13 +73,13 @@
       {
         id: 'invoices', name: 'Fatura girişi', sub: 'Finans · 14 doküman',
         request: 'Bu sabah gelen tedarikçi faturalarını işle; satınalma siparişiyle eşleşenleri kayda al.',
-        spokes: ['Doküman ajanı', 'Finans ajanı', 'ERP (MCP)', 'İnsan onayı'],
+        spokes: ['Doküman agent'ı', 'Finans agent'ı', 'ERP (MCP)', 'İnsan onayı'],
         steps: [
-          { t: 'hub', text: '4 adım planlandı · 2 ajan · 3 tool' },
-          { t: 'agent', who: 'Doküman ajanı', text: 'inbox/invoices klasöründeki yeni dosyalar okunuyor', spoke: 0 },
+          { t: 'hub', text: '4 adım planlandı · 2 agent · 3 tool' },
+          { t: 'agent', who: 'Doküman agent'ı', text: 'inbox/invoices klasöründeki yeni dosyalar okunuyor', spoke: 0 },
           { t: 'tool', call: 'drive.list_new(folder="inbox/invoices")', out: '14 dosya', spoke: 2 },
           { t: 'tool', call: 'ocr.extract("invoice_2291.pdf")', out: 'tedarikçi=Norda Ltd · toplam=€7.420 · ref=PO-1187', spoke: 2 },
-          { t: 'agent', who: 'Finans ajanı', text: 'Açık satınalma siparişleriyle eşleştiriliyor', spoke: 1 },
+          { t: 'agent', who: 'Finans agent'ı', text: 'Açık satınalma siparişleriyle eşleştiriliyor', spoke: 1 },
           { t: 'tool', call: 'erp.match_po("PO-1187")', out: '3 yönlü eşleşme OK · mal kabul 09-11', spoke: 2 },
           { t: 'human', text: 'Toplam €5.000 üzerinde, kayıt öncesi onay gerekli', spoke: 3 },
           { t: 'tool', call: 'erp.post_invoice(vendor="Norda Ltd", total=7420)', out: 'kaydedildi · INV-30412', spoke: 2 },
@@ -89,13 +89,13 @@
       {
         id: 'support', name: 'Destek triyajı', sub: 'Destek · gece kuyruğu',
         request: 'Gece gelen ticket\'ları triyajla, basit olanlara yanıt taslağı hazırla, kalanını ekibe yönlendir.',
-        spokes: ['Destek ajanı', 'Bilgi bankası', 'Helpdesk (MCP)', 'İnsan onayı'],
+        spokes: ['Destek agent'ı', 'Bilgi bankası', 'Helpdesk (MCP)', 'İnsan onayı'],
         steps: [
-          { t: 'hub', text: '3 adım planlandı · 1 ajan · 3 tool' },
-          { t: 'agent', who: 'Destek ajanı', text: 'Yeni ticket\'lar çekiliyor', spoke: 0 },
+          { t: 'hub', text: '3 adım planlandı · 1 agent · 3 tool' },
+          { t: 'agent', who: 'Destek agent'ı', text: 'Yeni ticket\'lar çekiliyor', spoke: 0 },
           { t: 'tool', call: 'helpdesk.fetch(status="new", since="22:00")', out: '27 ticket', spoke: 2 },
           { t: 'tool', call: 'kb.search(query=<ticket özeti>) ×27', out: '19 eşleşen makale · 8 eşleşme yok', spoke: 1 },
-          { t: 'agent', who: 'Destek ajanı', text: '19 yanıt taslağı hazırlandı · 8 ticket ekibe yönlendirildi', spoke: 0 },
+          { t: 'agent', who: 'Destek agent'ı', text: '19 yanıt taslağı hazırlandı · 8 ticket ekibe yönlendirildi', spoke: 0 },
           { t: 'human', text: '19 taslak yanıt gönderilsin mi?', spoke: 3 },
           { t: 'tool', call: 'helpdesk.reply(batch=19)', out: 'gönderildi · 19 ticket "müşteri bekleniyor"', spoke: 2 },
           { t: 'done', text: 'Tamamlandı · 8 ticket ekibi bekliyor · 2 dk 10 sn · $0,31' }
@@ -104,13 +104,13 @@
       {
         id: 'vendor', name: 'Tedarikçi kaydı', sub: 'Satınalma · Norda Ltd',
         request: 'Norda Ltd\'yi 30 gün vadeli yeni tedarikçi olarak sisteme al.',
-        spokes: ['Uyum ajanı', 'Finans ajanı', 'Sicil / ERP (MCP)', 'İnsan onayı'],
+        spokes: ['Uyum agent'ı', 'Finans agent'ı', 'Sicil / ERP (MCP)', 'İnsan onayı'],
         steps: [
-          { t: 'hub', text: '4 adım planlandı · 2 ajan · 4 tool' },
-          { t: 'agent', who: 'Uyum ajanı', text: 'Şirket doğrulanıyor ve taranıyor', spoke: 0 },
+          { t: 'hub', text: '4 adım planlandı · 2 agent · 4 tool' },
+          { t: 'agent', who: 'Uyum agent'ı', text: 'Şirket doğrulanıyor ve taranıyor', spoke: 0 },
           { t: 'tool', call: 'registry.lookup("Norda Ltd")', out: 'VKN geçerli · kuruluş 2011 · Rotterdam', spoke: 2 },
           { t: 'tool', call: 'sanctions.screen("Norda Ltd")', out: 'eşleşme yok', spoke: 2 },
-          { t: 'agent', who: 'Finans ajanı', text: 'Tedarikçi kaydı hazırlanıyor', spoke: 1 },
+          { t: 'agent', who: 'Finans agent'ı', text: 'Tedarikçi kaydı hazırlanıyor', spoke: 1 },
           { t: 'human', text: '30 gün vadeli tedarikçi kaydı oluşturulsun mu?', spoke: 3 },
           { t: 'tool', call: 'erp.create_vendor(name="Norda Ltd", terms="net30")', out: 'oluşturuldu · V-2093', spoke: 2 },
           { t: 'tool', call: 'email.send(template="welcome_pack", to="ap@norda.example")', out: 'gönderildi', spoke: 2 },
