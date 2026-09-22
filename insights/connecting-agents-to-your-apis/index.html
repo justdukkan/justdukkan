@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connecting agents to your APIs: identity, idempotency and the failures nobody plans for — JustDukkan</title>
+  <meta name="description" content="An agent team is only as good as its connection to the systems that hold the work. These are the integration rules we apply when agents start calling a company's CRM, ERP, helpdesk and internal APIs: who they act as, what happens on a retry, and how failures are made legible.">
+  <link rel="canonical" href="https://justdukkan.com/insights/connecting-agents-to-your-apis/">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Connecting agents to your APIs: identity, idempotency and the failures nobody plans for — JustDukkan">
+  <meta property="og:description" content="An agent team is only as good as its connection to the systems that hold the work. These are the integration rules we apply when agents start calling a company's CRM, ERP, helpdesk and internal APIs: who they act as, what happens on a retry, and how failures are made legible.">
+  <meta property="og:url" content="https://justdukkan.com/insights/connecting-agents-to-your-apis/">
+  <meta property="og:site_name" content="JustDukkan">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+  <meta name="theme-color" content="#f7f7f4" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#14120b" media="(prefers-color-scheme: dark)">
+  <script>
+    (function () { var k = "jd-theme"; try { var t = localStorage.getItem(k); if (t) document.documentElement.setAttribute("data-theme", t); } catch (e) {}
+      window.jdTheme = { current: function () { return document.documentElement.getAttribute("data-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"); },
+        toggle: function () { var n = jdTheme.current() === "dark" ? "light" : "dark"; document.documentElement.setAttribute("data-theme", n); try { localStorage.setItem(k, n); } catch (e) {}
+          var el = document.getElementById("cal-inline"); if (el && window.Cal && Cal.ns && Cal.ns.consultation) { Cal.ns.consultation("ui", { theme: n }); el.innerHTML = ""; Cal.ns.consultation("inline", { elementOrSelector: "#cal-inline", calLink: "justdukkan/solution-consultation", config: { layout: "month_view", theme: n } }); } } }; })();
+  </script>
+  <link rel="icon" href="/assets/favicon.svg?v=2" type="image/svg+xml">
+  <link rel="icon" href="/assets/favicon-32.png?v=2" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png?v=2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://justdukkan.com/insights/connecting-agents-to-your-apis/#article",
+      "headline": "Connecting agents to your APIs: identity, idempotency and the failures nobody plans for",
+      "description": "An agent team is only as good as its connection to the systems that hold the work. These are the integration rules we apply when agents start calling a company's CRM, ERP, helpdesk and internal APIs: who they act as, what happens on a retry, and how failures are made legible.",
+      "url": "https://justdukkan.com/insights/connecting-agents-to-your-apis/",
+      "datePublished": "2026-09-22",
+      "dateModified": "2026-09-22",
+      "inLanguage": "en",
+      "author": {
+        "@id": "https://justdukkan.com/#org"
+      },
+      "publisher": {
+        "@id": "https://justdukkan.com/#org"
+      },
+      "mainEntityOfPage": "https://justdukkan.com/insights/connecting-agents-to-your-apis/",
+      "about": [
+        "API integration",
+        "AI agent security",
+        "Agentic systems"
+      ],
+      "keywords": "agent API integration, MCP server, idempotency, service account, rate limits, typed errors"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "JustDukkan",
+          "item": "https://justdukkan.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Insights",
+          "item": "https://justdukkan.com/insights/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Connecting agents to your APIs",
+          "item": "https://justdukkan.com/insights/connecting-agents-to-your-apis/"
+        }
+      ]
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://justdukkan.com/#org",
+      "name": "JustDukkan",
+      "legalName": "JustDukkan, LLC",
+      "url": "https://justdukkan.com/"
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://justdukkan.com/insights/connecting-agents-to-your-apis/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Should agents call our APIs directly instead of through MCP servers?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We do not recommend it. A tool server is where permissions, idempotency, error translation, rate limiting and logging live. Handing an agent raw HTTP access means every one of those concerns has to be enforced by prompt instructions, which is not enforcement."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What if the internal API has no idempotency support?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Then the tool server provides it: keep a record of committed idempotency keys with the result of the original call, and return that result on a repeat instead of calling the API again. It is a small table and it prevents the most expensive class of agent incident."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do we handle APIs that are slow or frequently down?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Treat unavailability as a normal path, not an exception. Queue the work, report the delay to the orchestrator so the run shows as waiting rather than failed, apply backoff with a circuit breaker, and define an escalation after a threshold so a person learns about it before the customer does."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <link rel="stylesheet" href="/assets/styles.css?v=18">
+  <script src="/assets/consent.js?v=1" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="brand" aria-label="JustDukkan home">
+        <span class="wordmark" role="img" aria-label="justdukkan"></span>
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="/#services">Services</a>
+        <a href="/#expertise">Expertise</a>
+        <a href="/#approach">Approach</a>
+        <a href="/insights/" aria-current="page">Insights</a>
+        <a href="/#contact">Contact</a>
+      </nav>
+      <div class="nav-right">
+        <button class="theme-toggle" type="button" onclick="jdTheme.toggle()" aria-label="Toggle light/dark theme">
+          <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+          <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        </button>
+        <div class="lang" aria-label="Language">
+          <a href="/" class="active" hreflang="en">EN</a>
+          <span aria-hidden="true">/</span>
+          <a href="/tr/" hreflang="tr" lang="tr">TR</a>
+        </div>
+        <a href="mailto:enes@justdukkan.com?subject=Solution%20consultation" class="btn btn-primary btn-sm">Get in touch <span class="arrow">→</span></a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="article-hero">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">JustDukkan</a><span>/</span><a href="/insights/">Insights</a><span>/</span><span>Connecting agents to your APIs</span></nav>
+        <h1 class="display" style="margin-top:28px">Connecting agents to your APIs: identity, idempotency and the failures nobody plans for</h1>
+        <p class="lede">An agent team is only as good as its connection to the systems that hold the work. These are the integration rules we apply when agents start calling a company's CRM, ERP, helpdesk and internal APIs: who they act as, what happens on a retry, and how failures are made legible.</p>
+        <p class="article-meta">JustDukkan · 8 min read · Updated 2026-09-22</p>
+      </div>
+    </section>
+    <section class="article" style="border-top:0;padding-top:0">
+      <div class="container">
+        <div class="prose">
+
+<h2>The integration is most of the work</h2>
+<p>Demos run against toy data. Production agents run against a CRM with fifteen years of exceptions in it, an ERP that rejects a posting for reasons no one can explain, and an internal API whose documentation stopped matching reality in 2022. The model is rarely the hard part. The integration is.</p>
+<p>Everything below assumes agents reach systems through typed tools, usually exposed as <a href="/insights/mcp-server-and-tool-design/">MCP servers</a>, rather than by being handed raw HTTP access. That boundary is what makes the rest of this enforceable.</p>
+
+<h2>Identity: who is the agent acting as?</h2>
+<p>Answer this before writing a line of integration code. Three options, in descending order of how much we like them:</p>
+<ul>
+  <li><strong>On behalf of a person.</strong> The agent uses a token scoped to the requesting user, so existing permissions apply unchanged and the audit trail in the target system names a real human. Best when it is available.</li>
+  <li><strong>A dedicated service identity per agent role.</strong> The posting agent has its own account with exactly the rights to post, and nothing else. Logs in the ERP show which agent role acted.</li>
+  <li><strong>One shared service account for everything.</strong> Common, and the source of most integration incidents. Every agent inherits every permission, and the audit trail says only "integration user".</li>
+</ul>
+<p>Whichever you pick, the credential lives in the tool server, never in a prompt, never in the model's context, and never in a log line.</p>
+
+<h2>Scopes follow the authority table</h2>
+<p>The permission model you drew during <a href="/insights/designing-the-agent-team/">agent team design</a> should map one to one onto API scopes. If the matching agent may read purchase orders and change nothing, its credential has read scope on purchase orders and no write scope anywhere. Do not rely on the tool implementation to be the only thing standing between an agent and a destructive call: the server should be unable to perform the call, not merely unwilling.</p>
+<p>The practical form of this is a read server and a write server, separately credentialed. Read-only agents connect to the first and cannot reach the second.</p>
+
+<h2>Idempotency: the retry problem</h2>
+<p>Agents retry. Networks time out, models produce a malformed argument and try again, an orchestrator re-plans after a partial failure. Without idempotency this means duplicate invoices, duplicate tickets, duplicate emails.</p>
+<p>Every write tool needs a deterministic idempotency key derived from the business fact, not from the attempt. For an invoice posting, something like <code>supplier_id + invoice_number</code>; for a reply, the ticket id plus a content hash. The tool passes it to the API where the API supports it, and where it does not, the tool keeps its own record of keys already committed and returns the previous result instead of acting twice.</p>
+<pre><code>post_invoice(
+  idempotency_key = "SUP-4412:INV-2026-0918",
+  ...
+)
+# second call with the same key returns the first result,
+# marked as a replay, and changes nothing</code></pre>
+<p>Make the replay visible in the return value. An agent that cannot tell "I posted it" from "it was already posted" will narrate the wrong thing to a human later.</p>
+
+<h2>Typed errors, not prose</h2>
+<p>An API that answers a bad request with a 400 and an HTML error page gives the agent nothing to act on, so it guesses. Tools should translate every failure into a small, closed set of typed errors that say what to do next:</p>
+<ul>
+  <li><code>not_found</code>: the record does not exist. Stop, report.</li>
+  <li><code>validation_failed</code>: with the offending field. Fix and retry once.</li>
+  <li><code>permission_denied</code>: never retry, escalate.</li>
+  <li><code>conflict</code>: someone else changed the record. Re-read, then decide.</li>
+  <li><code>rate_limited</code>: with a wait hint. Back off.</li>
+  <li><code>upstream_unavailable</code>: retry with backoff, then escalate.</li>
+</ul>
+<p>Each error should carry a human-readable message for the escalation path and a machine-readable code for the agent. The difference between an agent that recovers and an agent that loops is almost always the quality of this taxonomy.</p>
+
+<h2>Rate limits and backpressure</h2>
+<p>An agent can generate a year of a human's API traffic in an afternoon. Assume you will hit limits and design for it: a concurrency cap per tool server, exponential backoff with jitter, a queue with a visible depth, and a circuit breaker that stops a run rather than hammering a degraded system. Tell the orchestrator when work is deferred, so it reports "waiting on the ERP" instead of silently stalling.</p>
+
+<h2>Reads are not free either</h2>
+<p>Large result sets are a context problem, not just a cost problem. Tools should paginate, accept filters that push work to the API, and return summaries with a handle for detail rather than dumping ten thousand rows into an agent's context. A good read tool answers "which invoices are unmatched this week" with twenty rows and a count, not with the table.</p>
+
+<h2>Events coming the other way</h2>
+<p>Most integrations eventually need inbound events: a ticket created, an invoice received, a record changed. Treat webhooks as a first-class part of the integration, with the same discipline as outbound calls: verify signatures, deduplicate by event id, accept fast and process asynchronously, and make replay safe. An agent team that reacts to events needs the same idempotency guarantees as one that writes.</p>
+
+<h2>Test against something real</h2>
+<p>Mocked integrations pass and production fails, because the interesting behaviour lives in the exceptions. Get a sandbox tenant if the vendor offers one, a replica if they do not, and build the evaluation set from real historical cases including the ones that errored. Every typed error above should appear in at least one test case, with an assertion about what the agent does next.</p>
+
+<h2>Integration checklist</h2>
+<ul>
+  <li>Identity decided and scoped per agent role; credentials only in the tool server.</li>
+  <li>Read and write separated, with separate credentials.</li>
+  <li>Idempotency key on every write, replays visible in the response.</li>
+  <li>Closed set of typed errors with a defined agent reaction to each.</li>
+  <li>Backoff, concurrency cap and circuit breaker on every external call.</li>
+  <li>Pagination and filtering on every read; no unbounded result into context.</li>
+  <li>Inbound events deduplicated and signature-verified.</li>
+  <li>Evaluation set built from real cases, including failures.</li>
+  <li>Every call logged with actor, arguments, result and duration.</li>
+</ul>
+<p>None of this is specific to AI. It is ordinary integration engineering, applied to a caller that is faster, more literal and less embarrassed to retry than any human user you have integrated for before.</p>
+
+<h2>Frequently asked questions</h2>
+<h3>Should agents call our APIs directly instead of through MCP servers?</h3>
+<p>We do not recommend it. A tool server is where permissions, idempotency, error translation, rate limiting and logging live. Handing an agent raw HTTP access means every one of those concerns has to be enforced by prompt instructions, which is not enforcement.</p>
+<h3>What if the internal API has no idempotency support?</h3>
+<p>Then the tool server provides it: keep a record of committed idempotency keys with the result of the original call, and return that result on a repeat instead of calling the API again. It is a small table and it prevents the most expensive class of agent incident.</p>
+<h3>How do we handle APIs that are slow or frequently down?</h3>
+<p>Treat unavailability as a normal path, not an exception. Queue the work, report the delay to the orchestrator so the run shows as waiting rather than failed, apply backoff with a circuit breaker, and define an escalation after a threshold so a person learns about it before the customer does.</p>
+
+        </div>
+        <div class="article-cta">
+          <strong>Have a process like this?</strong>
+          <p>We look at the process, design the agent team it needs, and decide together whether it is worth building. No packages, no price list.</p>
+          <a href="mailto:enes@justdukkan.com?subject=Solution%20consultation" class="btn btn-primary">Get in touch <span class="arrow">→</span></a> <a href="/#contact" class="btn btn-ghost">Book a call</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <a href="/" class="brand">
+          <span class="wordmark" role="img" aria-label="justdukkan"></span>
+        </a>
+        <div class="lang">
+          <a href="/" class="active" hreflang="en" lang="en">EN</a>
+          <span aria-hidden="true">/</span>
+          <a href="/tr/" hreflang="tr" lang="tr">TR</a>
+        </div>
+      </div>
+      <div class="footer-grid">
+        <div>
+          <span class="footer-h">Company</span>
+          <p>JustDukkan, LLC<br>1111B S Governors Ave, Suite 46654<br>Dover, DE 19904, USA<br>EIN 38-4388070</p>
+        </div>
+        <div>
+          <span class="footer-h">Contact</span>
+          <p><a href="mailto:enes@justdukkan.com">enes@justdukkan.com</a><br><a href="tel:+19106799657">+1 (910) 679-9657</a><br><a href="https://wa.me/19106799657" target="_blank" rel="noopener">WhatsApp</a></p>
+        </div>
+        <div>
+          <span class="footer-h">Insights</span>
+          <p><a href="/insights/designing-the-agent-team/">Designing the agent team</a><br><a href="/insights/hub-and-spoke-agent-architecture/">Hub-and-spoke agent architecture</a><br><a href="/insights/agent-topologies/">Agent team topologies</a><br><a href="/insights/mcp-server-and-tool-design/">MCP server & tool design</a><br><a href="/insights/">All insights</a></p>
+        </div>
+      </div>
+      <div class="footer-bottom">© 2026 JustDukkan, LLC · <a href="/privacy/">Privacy</a></div>
+    </div>
+  </footer>
+  <script>
+    (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+    Cal("init", "consultation", { origin: "https://app.cal.com" });
+    Cal.ns.consultation("ui", { theme: jdTheme.current(), hideEventTypeDetails: false, layout: "month_view" });
+  </script>
+</body>
+</html>

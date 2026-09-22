@@ -41,11 +41,16 @@ No packages and no price list. We look at a process, design the agent team it ne
 
 ## Insights (articles)
 
+- [Designing the agent team: roles, scope and handoffs](https://justdukkan.com/insights/designing-the-agent-team/)
 - [Hub-and-spoke agent architecture: how to build multi-agent systems that stay explainable](https://justdukkan.com/insights/hub-and-spoke-agent-architecture/)
+- [Agent team topologies: which hierarchy to build, and when](https://justdukkan.com/insights/agent-topologies/)
 - [Designing MCP servers and tools that agents can use safely](https://justdukkan.com/insights/mcp-server-and-tool-design/)
+- [Connecting agents to your APIs: identity, idempotency and the failures nobody plans for](https://justdukkan.com/insights/connecting-agents-to-your-apis/)
+- [Agent skills: packaging repeatable expertise so agents stop improvising](https://justdukkan.com/insights/agent-skills/)
+- [Delegate to human: making escalation a first-class capability](https://justdukkan.com/insights/delegate-to-human/)
+- [Human-in-the-loop for agentic systems: where people belong, and where they only slow things down](https://justdukkan.com/insights/human-in-the-loop-for-agentic-systems/)
+- [Operating agentic systems: what maintenance actually means](https://justdukkan.com/insights/operating-agentic-systems/)
 - [From manual process to automated flow: an architecture playbook](https://justdukkan.com/insights/process-automation-architecture/)
-- [Human-in-the-loop for agentic systems: where people belong](https://justdukkan.com/insights/human-in-the-loop-for-agentic-systems/)
-
 ## Open source
 
 - [invoice-intake-mcp](https://github.com/justdukkan/invoice-intake-mcp) — reference MCP servers for supplier invoice intake: read/draft/commit split, typed errors, server-side approval gate, audit log, replayable evals. On PyPI (`uvx invoice-intake-mcp`) and the official MCP Registry as `com.justdukkan/invoice-intake-mcp`.

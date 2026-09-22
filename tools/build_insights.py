@@ -6,7 +6,8 @@ from articles import ARTICLES  # noqa: E402
 
 ROOT = os.path.join(os.path.dirname(__file__), '..')
 SITE = 'https://justdukkan.com'
-DATE = '2026-09-13'
+DATE = '2026-09-22'          # last site-wide update (dateModified)
+PUBLISHED = '2026-09-13'     # default first-publication date; per-article 'date' overrides
 
 THEME_JS = '''  <script>
     (function () { var k = "jd-theme"; try { var t = localStorage.getItem(k); if (t) document.documentElement.setAttribute("data-theme", t); } catch (e) {}
@@ -77,7 +78,7 @@ FOOTER = '''  <footer class="site-footer">
         </div>
         <div>
           <span class="footer-h">Insights</span>
-          <p>''' + '<br>'.join(f'<a href="/insights/{a["slug"]}/">{a["short"]}</a>' for a in ARTICLES) + '''</p>
+          <p>''' + '<br>'.join(f'<a href="/insights/{a["slug"]}/">{a["short"]}</a>' for a in ARTICLES[:4]) + '<br><a href="/insights/">All insights</a>' + '''</p>
         </div>
       </div>
       <div class="footer-bottom">© 2026 JustDukkan, LLC · <a href="/privacy/">Privacy</a></div>
@@ -123,7 +124,7 @@ def article_page(a):
     url = f'{SITE}/insights/{a["slug"]}/'
     ld = {"@context": "https://schema.org", "@graph": [
         {"@type": "Article", "@id": url + "#article", "headline": a['title'], "description": a['desc'],
-         "url": url, "datePublished": DATE, "dateModified": DATE, "inLanguage": "en",
+         "url": url, "datePublished": a.get('date', PUBLISHED), "dateModified": DATE, "inLanguage": "en",
          "author": {"@id": f"{SITE}/#org"}, "publisher": {"@id": f"{SITE}/#org"},
          "mainEntityOfPage": url, "about": a['about'], "keywords": ", ".join(a['keywords'])},
         {"@type": "BreadcrumbList", "itemListElement": [

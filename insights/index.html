@@ -38,8 +38,18 @@
   "hasPart": [
     {
       "@type": "Article",
+      "headline": "Designing the agent team: roles, scope and handoffs",
+      "url": "https://justdukkan.com/insights/designing-the-agent-team/"
+    },
+    {
+      "@type": "Article",
       "headline": "Hub-and-spoke agent architecture: how to build multi-agent systems that stay explainable",
       "url": "https://justdukkan.com/insights/hub-and-spoke-agent-architecture/"
+    },
+    {
+      "@type": "Article",
+      "headline": "Agent team topologies: which hierarchy to build, and when",
+      "url": "https://justdukkan.com/insights/agent-topologies/"
     },
     {
       "@type": "Article",
@@ -48,13 +58,33 @@
     },
     {
       "@type": "Article",
-      "headline": "From manual process to automated flow: an architecture playbook",
-      "url": "https://justdukkan.com/insights/process-automation-architecture/"
+      "headline": "Connecting agents to your APIs: identity, idempotency and the failures nobody plans for",
+      "url": "https://justdukkan.com/insights/connecting-agents-to-your-apis/"
+    },
+    {
+      "@type": "Article",
+      "headline": "Agent skills: packaging repeatable expertise so agents stop improvising",
+      "url": "https://justdukkan.com/insights/agent-skills/"
+    },
+    {
+      "@type": "Article",
+      "headline": "Delegate to human: making escalation a first-class capability",
+      "url": "https://justdukkan.com/insights/delegate-to-human/"
     },
     {
       "@type": "Article",
       "headline": "Human-in-the-loop for agentic systems: where people belong, and where they only slow things down",
       "url": "https://justdukkan.com/insights/human-in-the-loop-for-agentic-systems/"
+    },
+    {
+      "@type": "Article",
+      "headline": "Operating agentic systems: what maintenance actually means",
+      "url": "https://justdukkan.com/insights/operating-agentic-systems/"
+    },
+    {
+      "@type": "Article",
+      "headline": "From manual process to automated flow: an architecture playbook",
+      "url": "https://justdukkan.com/insights/process-automation-architecture/"
     }
   ]
 }
@@ -100,10 +130,22 @@
     <section style="border-top:0;padding-top:0">
       <div class="container">
         <div class="insights-list">
+          <a class="insight-card" href="/insights/designing-the-agent-team/">
+            <span class="label">Agent team design</span>
+            <h3>Designing the agent team: roles, scope and handoffs</h3>
+            <p>Before any code is written, an agentic system is a set of decisions about roles: which agents exist, what each one may read and change, where it must stop, and how work moves between them. This is the method we use to turn a real process into an agent team.</p>
+            <span class="more">Read →</span>
+          </a>
           <a class="insight-card" href="/insights/hub-and-spoke-agent-architecture/">
-            <span class="label">Agentic systems</span>
+            <span class="label">Architecture</span>
             <h3>Hub-and-spoke agent architecture: how to build multi-agent systems that stay explainable</h3>
             <p>A hub-and-spoke architecture puts one orchestrator in charge of planning, routing and verification, and gives every specialist agent, tool and human reviewer a bounded job. Here is how the pattern works, when to use it, and the design rules that keep it safe in production.</p>
+            <span class="more">Read →</span>
+          </a>
+          <a class="insight-card" href="/insights/agent-topologies/">
+            <span class="label">Architecture</span>
+            <h3>Agent team topologies: which hierarchy to build, and when</h3>
+            <p>Hub-and-spoke is a good default, not the only shape. Single agents, two-level hierarchies, pipelines, blackboards and swarms each solve a different problem and fail in a different way. Here is how to choose the topology before you commit to it.</p>
             <span class="more">Read →</span>
           </a>
           <a class="insight-card" href="/insights/mcp-server-and-tool-design/">
@@ -112,16 +154,40 @@
             <p>MCP gives agents a standard way to call tools, but a badly designed tool is still a badly designed tool. These are the rules we use for tool contracts, permissions, error handling and logging when we build Model Context Protocol servers for company systems.</p>
             <span class="more">Read →</span>
           </a>
-          <a class="insight-card" href="/insights/process-automation-architecture/">
-            <span class="label">Process automation</span>
-            <h3>From manual process to automated flow: an architecture playbook</h3>
-            <p>Most automation projects fail before the first model call, in the mapping and the boundaries. This is the sequence we use to take a process like invoice intake or support triage from hours of manual work to a running system with humans only where they matter.</p>
+          <a class="insight-card" href="/insights/connecting-agents-to-your-apis/">
+            <span class="label">Integration</span>
+            <h3>Connecting agents to your APIs: identity, idempotency and the failures nobody plans for</h3>
+            <p>An agent team is only as good as its connection to the systems that hold the work. These are the integration rules we apply when agents start calling a company's CRM, ERP, helpdesk and internal APIs: who they act as, what happens on a retry, and how failures are made legible.</p>
+            <span class="more">Read →</span>
+          </a>
+          <a class="insight-card" href="/insights/agent-skills/">
+            <span class="label">Build</span>
+            <h3>Agent skills: packaging repeatable expertise so agents stop improvising</h3>
+            <p>A tool is something an agent can do. A skill is how your company does it. Skills capture the procedure, the exceptions and the house rules as versioned, testable artefacts, so the same case does not get handled three different ways.</p>
+            <span class="more">Read →</span>
+          </a>
+          <a class="insight-card" href="/insights/delegate-to-human/">
+            <span class="label">Human in the loop</span>
+            <h3>Delegate to human: making escalation a first-class capability</h3>
+            <p>Approval gates are planned. Delegation is not: it is what happens when an agent meets a case it should not resolve alone. Treating "hand this to a person" as a real tool, with a payload, an owner and a return path, is what separates an agent team that degrades gracefully from one that guesses.</p>
             <span class="more">Read →</span>
           </a>
           <a class="insight-card" href="/insights/human-in-the-loop-for-agentic-systems/">
-            <span class="label">Agentic systems</span>
+            <span class="label">Human in the loop</span>
             <h3>Human-in-the-loop for agentic systems: where people belong, and where they only slow things down</h3>
             <p>"Keep a human in the loop" is easy to say and usually done badly: either every step waits for someone, or nothing does. This is how we decide which decisions get a human checkpoint, how the checkpoint is built so it is actually used, and how the loop shrinks over time without losing control.</p>
+            <span class="more">Read →</span>
+          </a>
+          <a class="insight-card" href="/insights/operating-agentic-systems/">
+            <span class="label">Operate & maintain</span>
+            <h3>Operating agentic systems: what maintenance actually means</h3>
+            <p>A live agent team is not a finished project. Models change, APIs change, and the business changes its own rules without telling anyone. This is what ongoing maintenance of an agentic system involves, what to monitor, and what a sensible cadence looks like.</p>
+            <span class="more">Read →</span>
+          </a>
+          <a class="insight-card" href="/insights/process-automation-architecture/">
+            <span class="label">Process design</span>
+            <h3>From manual process to automated flow: an architecture playbook</h3>
+            <p>Most automation projects fail before the first model call, in the mapping and the boundaries. This is the sequence we use to take a process like invoice intake or support triage from hours of manual work to a running system with humans only where they matter.</p>
             <span class="more">Read →</span>
           </a>
         </div>
@@ -151,7 +217,7 @@
         </div>
         <div>
           <span class="footer-h">Insights</span>
-          <p><a href="/insights/hub-and-spoke-agent-architecture/">Hub-and-spoke agent architecture</a><br><a href="/insights/mcp-server-and-tool-design/">MCP server & tool design</a><br><a href="/insights/process-automation-architecture/">Process automation architecture</a><br><a href="/insights/human-in-the-loop-for-agentic-systems/">Human-in-the-loop design</a></p>
+          <p><a href="/insights/designing-the-agent-team/">Designing the agent team</a><br><a href="/insights/hub-and-spoke-agent-architecture/">Hub-and-spoke agent architecture</a><br><a href="/insights/agent-topologies/">Agent team topologies</a><br><a href="/insights/mcp-server-and-tool-design/">MCP server & tool design</a><br><a href="/insights/">All insights</a></p>
         </div>
       </div>
       <div class="footer-bottom">© 2026 JustDukkan, LLC · <a href="/privacy/">Privacy</a></div>

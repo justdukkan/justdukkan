@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Delegate to human: making escalation a first-class capability — JustDukkan</title>
+  <meta name="description" content="Approval gates are planned. Delegation is not: it is what happens when an agent meets a case it should not resolve alone. Treating "hand this to a person" as a real tool, with a payload, an owner and a return path, is what separates an agent team that degrades gracefully from one that guesses.">
+  <link rel="canonical" href="https://justdukkan.com/insights/delegate-to-human/">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Delegate to human: making escalation a first-class capability — JustDukkan">
+  <meta property="og:description" content="Approval gates are planned. Delegation is not: it is what happens when an agent meets a case it should not resolve alone. Treating "hand this to a person" as a real tool, with a payload, an owner and a return path, is what separates an agent team that degrades gracefully from one that guesses.">
+  <meta property="og:url" content="https://justdukkan.com/insights/delegate-to-human/">
+  <meta property="og:site_name" content="JustDukkan">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+  <meta name="theme-color" content="#f7f7f4" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#14120b" media="(prefers-color-scheme: dark)">
+  <script>
+    (function () { var k = "jd-theme"; try { var t = localStorage.getItem(k); if (t) document.documentElement.setAttribute("data-theme", t); } catch (e) {}
+      window.jdTheme = { current: function () { return document.documentElement.getAttribute("data-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"); },
+        toggle: function () { var n = jdTheme.current() === "dark" ? "light" : "dark"; document.documentElement.setAttribute("data-theme", n); try { localStorage.setItem(k, n); } catch (e) {}
+          var el = document.getElementById("cal-inline"); if (el && window.Cal && Cal.ns && Cal.ns.consultation) { Cal.ns.consultation("ui", { theme: n }); el.innerHTML = ""; Cal.ns.consultation("inline", { elementOrSelector: "#cal-inline", calLink: "justdukkan/solution-consultation", config: { layout: "month_view", theme: n } }); } } }; })();
+  </script>
+  <link rel="icon" href="/assets/favicon.svg?v=2" type="image/svg+xml">
+  <link rel="icon" href="/assets/favicon-32.png?v=2" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png?v=2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://justdukkan.com/insights/delegate-to-human/#article",
+      "headline": "Delegate to human: making escalation a first-class capability",
+      "description": "Approval gates are planned. Delegation is not: it is what happens when an agent meets a case it should not resolve alone. Treating \"hand this to a person\" as a real tool, with a payload, an owner and a return path, is what separates an agent team that degrades gracefully from one that guesses.",
+      "url": "https://justdukkan.com/insights/delegate-to-human/",
+      "datePublished": "2026-09-22",
+      "dateModified": "2026-09-22",
+      "inLanguage": "en",
+      "author": {
+        "@id": "https://justdukkan.com/#org"
+      },
+      "publisher": {
+        "@id": "https://justdukkan.com/#org"
+      },
+      "mainEntityOfPage": "https://justdukkan.com/insights/delegate-to-human/",
+      "about": [
+        "Agentic systems",
+        "Human-in-the-loop",
+        "AI operations"
+      ],
+      "keywords": "delegate to human, agent escalation, human in the loop, agentic systems, exception handling, handoff"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "JustDukkan",
+          "item": "https://justdukkan.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Insights",
+          "item": "https://justdukkan.com/insights/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Delegating to a human",
+          "item": "https://justdukkan.com/insights/delegate-to-human/"
+        }
+      ]
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://justdukkan.com/#org",
+      "name": "JustDukkan",
+      "legalName": "JustDukkan, LLC",
+      "url": "https://justdukkan.com/"
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://justdukkan.com/insights/delegate-to-human/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How is this different from an approval gate?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "An approval gate is a planned stop: the policy says this step always needs a signature. A delegation is unplanned: the agent has met a case it should not resolve on its own. A system needs both, and they have different payloads, different routing and different metrics."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does delegation slow the process down?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It replaces an invisible wrong answer with a visible short wait. In practice, well-routed delegations with a complete payload are resolved in minutes, and the total cycle time still falls because the cases that used to be re-checked by hand no longer are."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Should the agent try to resolve ambiguity by asking more tools first?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, up to a point. Cheap, safe reads that could resolve the question should be attempted before escalating, and the delegation payload should record what was already tried. Repeating the same failing call is not investigation."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <link rel="stylesheet" href="/assets/styles.css?v=18">
+  <script src="/assets/consent.js?v=1" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="brand" aria-label="JustDukkan home">
+        <span class="wordmark" role="img" aria-label="justdukkan"></span>
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="/#services">Services</a>
+        <a href="/#expertise">Expertise</a>
+        <a href="/#approach">Approach</a>
+        <a href="/insights/" aria-current="page">Insights</a>
+        <a href="/#contact">Contact</a>
+      </nav>
+      <div class="nav-right">
+        <button class="theme-toggle" type="button" onclick="jdTheme.toggle()" aria-label="Toggle light/dark theme">
+          <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+          <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        </button>
+        <div class="lang" aria-label="Language">
+          <a href="/" class="active" hreflang="en">EN</a>
+          <span aria-hidden="true">/</span>
+          <a href="/tr/" hreflang="tr" lang="tr">TR</a>
+        </div>
+        <a href="mailto:enes@justdukkan.com?subject=Solution%20consultation" class="btn btn-primary btn-sm">Get in touch <span class="arrow">→</span></a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="article-hero">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">JustDukkan</a><span>/</span><a href="/insights/">Insights</a><span>/</span><span>Delegating to a human</span></nav>
+        <h1 class="display" style="margin-top:28px">Delegate to human: making escalation a first-class capability</h1>
+        <p class="lede">Approval gates are planned. Delegation is not: it is what happens when an agent meets a case it should not resolve alone. Treating "hand this to a person" as a real tool, with a payload, an owner and a return path, is what separates an agent team that degrades gracefully from one that guesses.</p>
+        <p class="article-meta">JustDukkan · 7 min read · Updated 2026-09-22</p>
+      </div>
+    </section>
+    <section class="article" style="border-top:0;padding-top:0">
+      <div class="container">
+        <div class="prose">
+
+<h2>Two different things called "human in the loop"</h2>
+<p>An <strong>approval gate</strong> is designed in advance. The system knows that posting an invoice over a threshold requires a signature, so the run stops there every time, by policy. That is covered in <a href="/insights/human-in-the-loop-for-agentic-systems/">human-in-the-loop for agentic systems</a>.</p>
+<p><strong>Delegation</strong> is dynamic. The agent is midway through a case, encounters something outside what it can responsibly resolve, and hands the work to a person. Nothing in the plan predicted this particular case. The question is not whether the agent is allowed to act; it is whether it should.</p>
+<p>Systems that implement only the first behave badly in the wild, because the interesting failures are exactly the unplanned ones. An agent with no way to delegate has exactly two options in an ambiguous case: guess, or fail. Both are worse than asking.</p>
+
+<h2>Escalation is a tool, not a fallback</h2>
+<p>Give the agent an actual tool, listed alongside the others, with a schema:</p>
+<pre><code>delegate_to_human(
+  reason,            # one of a closed set
+  summary,           # what the agent was doing
+  blocking_question, # what it needs decided
+  options,           # candidate answers, if any
+  evidence,          # links, record ids, extracted values
+  suggested_owner    # role or queue
+)</code></pre>
+<p>Making it a tool has three effects. The agent can choose it explicitly rather than drifting into an error path. The call is logged like any other, so you can measure it. And the payload is structured, which is what makes the human side fast.</p>
+
+<h2>When should an agent delegate?</h2>
+<p>Do not leave this to the model's judgment alone. Enumerate the reasons, and make them a closed set so they can be counted:</p>
+<ul>
+  <li><strong>Low confidence</strong> on an extraction or classification that drives a consequential step.</li>
+  <li><strong>Ambiguity</strong>: more than one plausible match, and choosing wrong is expensive.</li>
+  <li><strong>Missing information</strong> that no available tool can supply.</li>
+  <li><strong>Policy edge</strong>: the case is near a threshold or outside the documented procedure.</li>
+  <li><strong>Conflicting sources</strong>: two systems disagree about the same fact.</li>
+  <li><strong>Repeated failure</strong>: the same step has failed twice and a third attempt will not help.</li>
+  <li><strong>Novelty</strong>: no skill matches this situation at all.</li>
+</ul>
+<p>Each reason should also appear in the evaluation set, with cases that must trigger it. An agent that never delegates is not confident, it is uninstrumented.</p>
+
+<h2>What the human receives</h2>
+<p>The quality of a delegation is judged by how long it takes a person to act on it. A good handoff answers, without any clicking: what is this case, what has already happened, what exactly is being asked, what are the candidate answers, and what happens after I answer.</p>
+<p>A bad handoff says "unable to process invoice, please check". The person then repeats the agent's work from scratch, which costs more than if the agent had never started.</p>
+<p>Two practical rules. Ask <strong>one</strong> question per delegation; if two decisions are needed, either ask them together with both sets of options or split into two cases. And offer <strong>options rather than an open field</strong> wherever the answer is from a known set, because a structured answer can be fed straight back into the run.</p>
+
+<h2>The return path</h2>
+<p>Delegation is only half a mechanism. The run has to survive the wait and resume correctly, which means:</p>
+<ul>
+  <li><strong>State is persisted</strong>, not held in a conversation. The case may wait overnight.</li>
+  <li><strong>Partial work is not lost.</strong> Whatever the agent established before delegating is still valid when the answer arrives.</li>
+  <li><strong>The answer is recorded as provenance</strong>: who decided, when, what they chose, and against what evidence.</li>
+  <li><strong>There is a timeout.</strong> A case that waits three days should re-route or surface on a dashboard, not sit silently.</li>
+  <li><strong>Nothing half-applied.</strong> If the agent had already written something before it got stuck, the delegation says so explicitly.</li>
+</ul>
+
+<h2>Routing: who gets asked</h2>
+<p>"A human" is not an address. Delegations go to a role or a queue with an owner, chosen by reason and by case: a pricing question goes to the category buyer, a compliance flag to the compliance queue. If the system cannot decide, it should have a default queue rather than a default person, so that holidays and departures do not create silent black holes.</p>
+
+<h2>Delegation rate is a metric, not a defect</h2>
+<p>Track it. The number is diagnostic in both directions.</p>
+<table>
+  <thead><tr><th>Pattern</th><th>Usually means</th></tr></thead>
+  <tbody>
+    <tr><td>Rate climbing over weeks</td><td>The process changed and the skills did not</td></tr>
+    <tr><td>Rate near zero</td><td>Thresholds too loose; check for wrong answers accepted silently</td></tr>
+    <tr><td>One reason dominating</td><td>A fixable gap: a missing tool, a bad data source, an unclear rule</td></tr>
+    <tr><td>Same case type every week</td><td>A skill waiting to be written</td></tr>
+  </tbody>
+</table>
+<p>In the first weeks of a live system the delegation rate should be high and falling. Each cluster of delegations tells you what the next skill, tool or threshold change should be, which makes this one of the most useful signals a running agent team produces.</p>
+
+<h2>The design principle</h2>
+<p>An agent that can say "I should not decide this" is more useful than one that always produces an answer, because the second kind forces people to check everything, and checking everything costs more than doing it. Build the escalation path on day one, measure it, and let it shrink as the system learns the work.</p>
+
+<h2>Frequently asked questions</h2>
+<h3>How is this different from an approval gate?</h3>
+<p>An approval gate is a planned stop: the policy says this step always needs a signature. A delegation is unplanned: the agent has met a case it should not resolve on its own. A system needs both, and they have different payloads, different routing and different metrics.</p>
+<h3>Does delegation slow the process down?</h3>
+<p>It replaces an invisible wrong answer with a visible short wait. In practice, well-routed delegations with a complete payload are resolved in minutes, and the total cycle time still falls because the cases that used to be re-checked by hand no longer are.</p>
+<h3>Should the agent try to resolve ambiguity by asking more tools first?</h3>
+<p>Yes, up to a point. Cheap, safe reads that could resolve the question should be attempted before escalating, and the delegation payload should record what was already tried. Repeating the same failing call is not investigation.</p>
+
+        </div>
+        <div class="article-cta">
+          <strong>Have a process like this?</strong>
+          <p>We look at the process, design the agent team it needs, and decide together whether it is worth building. No packages, no price list.</p>
+          <a href="mailto:enes@justdukkan.com?subject=Solution%20consultation" class="btn btn-primary">Get in touch <span class="arrow">→</span></a> <a href="/#contact" class="btn btn-ghost">Book a call</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <a href="/" class="brand">
+          <span class="wordmark" role="img" aria-label="justdukkan"></span>
+        </a>
+        <div class="lang">
+          <a href="/" class="active" hreflang="en" lang="en">EN</a>
+          <span aria-hidden="true">/</span>
+          <a href="/tr/" hreflang="tr" lang="tr">TR</a>
+        </div>
+      </div>
+      <div class="footer-grid">
+        <div>
+          <span class="footer-h">Company</span>
+          <p>JustDukkan, LLC<br>1111B S Governors Ave, Suite 46654<br>Dover, DE 19904, USA<br>EIN 38-4388070</p>
+        </div>
+        <div>
+          <span class="footer-h">Contact</span>
+          <p><a href="mailto:enes@justdukkan.com">enes@justdukkan.com</a><br><a href="tel:+19106799657">+1 (910) 679-9657</a><br><a href="https://wa.me/19106799657" target="_blank" rel="noopener">WhatsApp</a></p>
+        </div>
+        <div>
+          <span class="footer-h">Insights</span>
+          <p><a href="/insights/designing-the-agent-team/">Designing the agent team</a><br><a href="/insights/hub-and-spoke-agent-architecture/">Hub-and-spoke agent architecture</a><br><a href="/insights/agent-topologies/">Agent team topologies</a><br><a href="/insights/mcp-server-and-tool-design/">MCP server & tool design</a><br><a href="/insights/">All insights</a></p>
+        </div>
+      </div>
+      <div class="footer-bottom">© 2026 JustDukkan, LLC · <a href="/privacy/">Privacy</a></div>
+    </div>
+  </footer>
+  <script>
+    (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+    Cal("init", "consultation", { origin: "https://app.cal.com" });
+    Cal.ns.consultation("ui", { theme: jdTheme.current(), hideEventTypeDetails: false, layout: "month_view" });
+  </script>
+</body>
+</html>

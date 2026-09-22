@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agent team topologies: which hierarchy to build, and when — JustDukkan</title>
+  <meta name="description" content="Hub-and-spoke is a good default, not the only shape. Single agents, two-level hierarchies, pipelines, blackboards and swarms each solve a different problem and fail in a different way. Here is how to choose the topology before you commit to it.">
+  <link rel="canonical" href="https://justdukkan.com/insights/agent-topologies/">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Agent team topologies: which hierarchy to build, and when — JustDukkan">
+  <meta property="og:description" content="Hub-and-spoke is a good default, not the only shape. Single agents, two-level hierarchies, pipelines, blackboards and swarms each solve a different problem and fail in a different way. Here is how to choose the topology before you commit to it.">
+  <meta property="og:url" content="https://justdukkan.com/insights/agent-topologies/">
+  <meta property="og:site_name" content="JustDukkan">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+  <meta name="theme-color" content="#f7f7f4" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#14120b" media="(prefers-color-scheme: dark)">
+  <script>
+    (function () { var k = "jd-theme"; try { var t = localStorage.getItem(k); if (t) document.documentElement.setAttribute("data-theme", t); } catch (e) {}
+      window.jdTheme = { current: function () { return document.documentElement.getAttribute("data-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"); },
+        toggle: function () { var n = jdTheme.current() === "dark" ? "light" : "dark"; document.documentElement.setAttribute("data-theme", n); try { localStorage.setItem(k, n); } catch (e) {}
+          var el = document.getElementById("cal-inline"); if (el && window.Cal && Cal.ns && Cal.ns.consultation) { Cal.ns.consultation("ui", { theme: n }); el.innerHTML = ""; Cal.ns.consultation("inline", { elementOrSelector: "#cal-inline", calLink: "justdukkan/solution-consultation", config: { layout: "month_view", theme: n } }); } } }; })();
+  </script>
+  <link rel="icon" href="/assets/favicon.svg?v=2" type="image/svg+xml">
+  <link rel="icon" href="/assets/favicon-32.png?v=2" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png?v=2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://justdukkan.com/insights/agent-topologies/#article",
+      "headline": "Agent team topologies: which hierarchy to build, and when",
+      "description": "Hub-and-spoke is a good default, not the only shape. Single agents, two-level hierarchies, pipelines, blackboards and swarms each solve a different problem and fail in a different way. Here is how to choose the topology before you commit to it.",
+      "url": "https://justdukkan.com/insights/agent-topologies/",
+      "datePublished": "2026-09-22",
+      "dateModified": "2026-09-22",
+      "inLanguage": "en",
+      "author": {
+        "@id": "https://justdukkan.com/#org"
+      },
+      "publisher": {
+        "@id": "https://justdukkan.com/#org"
+      },
+      "mainEntityOfPage": "https://justdukkan.com/insights/agent-topologies/",
+      "about": [
+        "Multi-agent systems",
+        "Agentic architecture",
+        "AI orchestration"
+      ],
+      "keywords": "agent topology, hierarchical agents, multi-agent architecture, orchestrator, agent pipeline, swarm agents"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "JustDukkan",
+          "item": "https://justdukkan.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Insights",
+          "item": "https://justdukkan.com/insights/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Agent team topologies",
+          "item": "https://justdukkan.com/insights/agent-topologies/"
+        }
+      ]
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://justdukkan.com/#org",
+      "name": "JustDukkan",
+      "legalName": "JustDukkan, LLC",
+      "url": "https://justdukkan.com/"
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://justdukkan.com/insights/agent-topologies/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is more agents always better?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Every agent adds a handoff, a summarisation step and latency. Add an agent when a part of the work needs a different skill set, different tools or a different risk level, not to make a diagram look thorough."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can one system use more than one topology?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Usually it should. A common production shape is a deterministic pipeline for ingestion with one orchestrated stage where judgment is required, and a human approval gate before anything is written. Use the cheapest shape that each part of the work allows."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I know the orchestrator has become a bottleneck?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Watch context size and planning cost per run. If the orchestrator spends most of its tokens restating results it just received, or if adding a step forces you to trim earlier context, it is time for a second level or for splitting the process."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <link rel="stylesheet" href="/assets/styles.css?v=18">
+  <script src="/assets/consent.js?v=1" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="brand" aria-label="JustDukkan home">
+        <span class="wordmark" role="img" aria-label="justdukkan"></span>
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="/#services">Services</a>
+        <a href="/#expertise">Expertise</a>
+        <a href="/#approach">Approach</a>
+        <a href="/insights/" aria-current="page">Insights</a>
+        <a href="/#contact">Contact</a>
+      </nav>
+      <div class="nav-right">
+        <button class="theme-toggle" type="button" onclick="jdTheme.toggle()" aria-label="Toggle light/dark theme">
+          <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+          <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        </button>
+        <div class="lang" aria-label="Language">
+          <a href="/" class="active" hreflang="en">EN</a>
+          <span aria-hidden="true">/</span>
+          <a href="/tr/" hreflang="tr" lang="tr">TR</a>
+        </div>
+        <a href="mailto:enes@justdukkan.com?subject=Solution%20consultation" class="btn btn-primary btn-sm">Get in touch <span class="arrow">→</span></a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="article-hero">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">JustDukkan</a><span>/</span><a href="/insights/">Insights</a><span>/</span><span>Agent team topologies</span></nav>
+        <h1 class="display" style="margin-top:28px">Agent team topologies: which hierarchy to build, and when</h1>
+        <p class="lede">Hub-and-spoke is a good default, not the only shape. Single agents, two-level hierarchies, pipelines, blackboards and swarms each solve a different problem and fail in a different way. Here is how to choose the topology before you commit to it.</p>
+        <p class="article-meta">JustDukkan · 8 min read · Updated 2026-09-22</p>
+      </div>
+    </section>
+    <section class="article" style="border-top:0;padding-top:0">
+      <div class="container">
+        <div class="prose">
+
+<h2>Topology is a decision, not a default</h2>
+<p>Ask five teams how their agents are wired and you will get five answers, most of them accidental: whatever the framework's tutorial did. Topology deserves an explicit decision, because it determines how the system fails, how much it costs per run, and how hard it is to add the next capability.</p>
+<p>Five shapes cover almost everything worth building. Each has a natural fit and a characteristic failure.</p>
+
+<h2>1. Single agent with tools</h2>
+<p>One model, a list of typed tools, a loop. No delegation, no sub-agents.</p>
+<p><strong>Fits:</strong> a bounded task with one skill set: classify an email and file it, extract fields from a document, answer from a knowledge base. If the whole job fits in one agent's context and permission set, adding agents adds only latency.</p>
+<p><strong>Fails when:</strong> the tool list grows past roughly a dozen and the agent starts choosing badly, or when two parts of the task need different permissions and you can no longer scope them separately.</p>
+<p><strong>Rule of thumb:</strong> start here. Most "we need a multi-agent system" requests are one agent with a well-designed tool set.</p>
+
+<h2>2. Hub-and-spoke</h2>
+<p>One orchestrator plans, routes and verifies; specialist agents, tool servers and human reviewers are spokes that only ever talk to the hub.</p>
+<p><strong>Fits:</strong> a process that crosses several systems, has steps at different risk levels, and must be explainable afterwards. This is the working default for back-office automation, and the pattern is described in detail in <a href="/insights/hub-and-spoke-agent-architecture/">hub-and-spoke agent architecture</a>.</p>
+<p><strong>Fails when:</strong> the hub becomes a bottleneck of context. Every result passes through it, so a process with dozens of steps and large payloads will strain the orchestrator's context window and cost.</p>
+
+<h2>3. Two-level hierarchy</h2>
+<p>An orchestrator delegates to team leads, each of which owns a group of specialists and returns one consolidated result.</p>
+<pre><code>orchestrator
+├── intake lead
+│   ├── document specialist
+│   └── classification specialist
+└── finance lead
+    ├── matching specialist
+    └── posting specialist</code></pre>
+<p><strong>Fits:</strong> processes too large for one hub's context, or organisations where different departments own different halves of a flow and want separate evaluation sets, permissions and release cycles.</p>
+<p><strong>Fails when:</strong> the hierarchy is built for tidiness rather than need. Every extra level adds a summarisation step, and every summarisation loses detail. Two levels is almost always enough; three is a sign the process should be split into two systems.</p>
+<p>A second level earns its place when the lead does real work: it holds context its specialists do not need, it makes routing decisions, and it can fail a whole branch without the orchestrator re-planning from scratch.</p>
+
+<h2>4. Pipeline</h2>
+<p>A fixed sequence of stages, each transforming the payload and passing it on. No planning at run time.</p>
+<p><strong>Fits:</strong> high-volume, low-variance work where the steps never change: ingest, extract, validate, enrich, store. A pipeline is cheaper and far more predictable than an orchestrated team because there is no planning token spend and no route to get wrong.</p>
+<p><strong>Fails when:</strong> real cases need to skip, repeat or branch. The moment you add conditional routing to a pipeline you are building an orchestrator, and you should build it deliberately.</p>
+<p>Many production systems are a pipeline with one orchestrated stage in the middle, which is a good outcome: keep the deterministic parts deterministic.</p>
+
+<h2>5. Blackboard (shared state)</h2>
+<p>Agents read from and write to a shared, structured workspace instead of passing payloads directly. A controller decides who runs next based on what is on the board.</p>
+<p><strong>Fits:</strong> long-running cases that accumulate evidence over hours or days: an investigation, a claim, a diligence file. State outlives any single run, and different agents contribute as information arrives.</p>
+<p><strong>Fails when:</strong> the board has no schema. Untyped shared state degrades into a junk drawer, and agents begin depending on fields they did not agree on. If you use this shape, version the board like a database, because it is one.</p>
+
+<h2>6. Swarm, and why we avoid it</h2>
+<p>Any agent may call any other agent. It demos beautifully.</p>
+<p><strong>Fails when:</strong> anything goes wrong. There is no single place that knows the plan, so you cannot answer "why did it do that", cycles are easy to create and hard to detect, permissions cannot be reasoned about (any agent can reach any capability transitively), and cost per run is unbounded. We do not build these for production processes.</p>
+
+<h2>Choosing</h2>
+<table>
+  <thead><tr><th>If the process…</th><th>Build</th></tr></thead>
+  <tbody>
+    <tr><td>Is one task with one skill set</td><td>Single agent with tools</td></tr>
+    <tr><td>Crosses systems, mixed risk, must be auditable</td><td>Hub-and-spoke</td></tr>
+    <tr><td>Is too large for one hub, or split across owners</td><td>Two-level hierarchy</td></tr>
+    <tr><td>Is high volume and never branches</td><td>Pipeline</td></tr>
+    <tr><td>Accumulates evidence over days</td><td>Blackboard with a schema</td></tr>
+  </tbody>
+</table>
+
+<h2>Migrating between shapes</h2>
+<p>Topologies are not permanent, and the migrations are asymmetric. Single agent to hub-and-spoke is easy if your tools were typed from the start: the tools stay, the loop moves into an orchestrator. Hub-and-spoke to two levels is easy if handoffs already had schemas: you insert a lead that speaks the same contract. Anything to swarm is easy and anything from swarm is a rewrite.</p>
+<p>That asymmetry is the practical argument for typed tool contracts and schema-bearing handoffs even in a system that starts as one agent: they are what makes the next shape a refactor rather than a restart.</p>
+
+<h2>Frequently asked questions</h2>
+<h3>Is more agents always better?</h3>
+<p>No. Every agent adds a handoff, a summarisation step and latency. Add an agent when a part of the work needs a different skill set, different tools or a different risk level, not to make a diagram look thorough.</p>
+<h3>Can one system use more than one topology?</h3>
+<p>Usually it should. A common production shape is a deterministic pipeline for ingestion with one orchestrated stage where judgment is required, and a human approval gate before anything is written. Use the cheapest shape that each part of the work allows.</p>
+<h3>How do I know the orchestrator has become a bottleneck?</h3>
+<p>Watch context size and planning cost per run. If the orchestrator spends most of its tokens restating results it just received, or if adding a step forces you to trim earlier context, it is time for a second level or for splitting the process.</p>
+
+        </div>
+        <div class="article-cta">
+          <strong>Have a process like this?</strong>
+          <p>We look at the process, design the agent team it needs, and decide together whether it is worth building. No packages, no price list.</p>
+          <a href="mailto:enes@justdukkan.com?subject=Solution%20consultation" class="btn btn-primary">Get in touch <span class="arrow">→</span></a> <a href="/#contact" class="btn btn-ghost">Book a call</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <a href="/" class="brand">
+          <span class="wordmark" role="img" aria-label="justdukkan"></span>
+        </a>
+        <div class="lang">
+          <a href="/" class="active" hreflang="en" lang="en">EN</a>
+          <span aria-hidden="true">/</span>
+          <a href="/tr/" hreflang="tr" lang="tr">TR</a>
+        </div>
+      </div>
+      <div class="footer-grid">
+        <div>
+          <span class="footer-h">Company</span>
+          <p>JustDukkan, LLC<br>1111B S Governors Ave, Suite 46654<br>Dover, DE 19904, USA<br>EIN 38-4388070</p>
+        </div>
+        <div>
+          <span class="footer-h">Contact</span>
+          <p><a href="mailto:enes@justdukkan.com">enes@justdukkan.com</a><br><a href="tel:+19106799657">+1 (910) 679-9657</a><br><a href="https://wa.me/19106799657" target="_blank" rel="noopener">WhatsApp</a></p>
+        </div>
+        <div>
+          <span class="footer-h">Insights</span>
+          <p><a href="/insights/designing-the-agent-team/">Designing the agent team</a><br><a href="/insights/hub-and-spoke-agent-architecture/">Hub-and-spoke agent architecture</a><br><a href="/insights/agent-topologies/">Agent team topologies</a><br><a href="/insights/mcp-server-and-tool-design/">MCP server & tool design</a><br><a href="/insights/">All insights</a></p>
+        </div>
+      </div>
+      <div class="footer-bottom">© 2026 JustDukkan, LLC · <a href="/privacy/">Privacy</a></div>
+    </div>
+  </footer>
+  <script>
+    (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+    Cal("init", "consultation", { origin: "https://app.cal.com" });
+    Cal.ns.consultation("ui", { theme: jdTheme.current(), hideEventTypeDetails: false, layout: "month_view" });
+  </script>
+</body>
+</html>
