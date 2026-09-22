@@ -14,6 +14,7 @@ Dış inceleme raporuna göre. Raporun iki iddiası (JSON-LD yok, Article/Breadc
 - [x] llms.txt: makale başına tek satır özet, yeni sayfalar; `llms-full.txt` üretiliyor, robots.txt'ten referans
 - [x] Schema: Organization image + knowsLanguage, makale publisher logo, insights index BreadcrumbList, makale başına dateModified
 - [x] sitemap 18 URL, IndexNow ping, CLAUDE.md §0/§4/§5/§8/§9/§11
+- [x] TR demo bozuktu (pivotta eklenen `agent'ı` kesme işareti JS string'ini kapatıyordu); kaçırıldı, demo.js v10
 
 ## 2026-09-22 — Pivot: şirkete özel AI agent takımları
 Konum değişikliği: "AI solutions architecture" (3 hizmet) → hiyerarşik AI agent takımları kurmak ve bakımını yapmak (4 hizmet).
