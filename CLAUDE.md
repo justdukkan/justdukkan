@@ -10,7 +10,7 @@ Bu dosya, siteye sıfır bağlamla giren birinin ihtiyaç duyacağı her şeyi i
 | **Konum** | Şirkete özel hiyerarşik AI agent takımları kurmak ve bakımını yapmak (2026-09-22 pivotu, §1) |
 | **Sayfalar** | EN `/` · TR `/tr/` · `/about/` + `/tr/hakkinda/` · `/work/` (EN) · `/insights/` + **10 makale (EN)** · `/privacy/` + `/tr/gizlilik/` |
 | **Teknoloji** | Build yok. Düz HTML + tek CSS + 2 küçük JS. Tek üretici script: `tools/build_insights.py` |
-| **Canlı sürümler** | `styles.css?v=21` · `demo.js?v=9` · `consent.js?v=1` (değiştirince artır, §7) |
+| **Canlı sürümler** | `styles.css?v=21` · `demo.js?v=10` · `consent.js?v=1` (değiştirince artır, §7) |
 | **Analytics** | GA4 `G-C8T8T596HD`, yalnız çerez onayından sonra yüklenir |
 | **Son commit'ler** | SEO/AI görünürlük turu: header taşması düzeldi, OG görselleri, `vercel.json`, `/about/` + `/work/`, `llms-full.txt` |
 | **Bilinen açık hata** | Yok. Header taşması 2026-09-23'te düzeltildi (320-1440px ölçüldü). |
@@ -117,7 +117,7 @@ Bölüm başlıklarının üstünde küçük "eyebrow" etiket **yok** (kaldırı
 
 ## 7. Cache-bust kuralı (ÖNEMLİ)
 
-Cloudflare `styles.css`, `demo.js` ve `consent.js`'i cache'ler. Bunlar değişince **`?v=N`'i artır**: `index.html`, `tr/index.html`, `tools/build_insights.py` (sonra build), **`privacy/index.html`, `tr/gizlilik/index.html`**. Şu an **styles.css?v=20**, **demo.js?v=9**, **consent.js?v=1**. Artırmazsan canlıda eski CSS + yeni HTML görünür ("site bozuldu" olayının sebebi buydu). HTML cache'lenmez; canlı kontrolde yine de `?x=<rastgele>` ekle. Favicon linkleri `?v=2`.
+Cloudflare `styles.css`, `demo.js` ve `consent.js`'i cache'ler. Bunlar değişince **`?v=N`'i artır**: `index.html`, `tr/index.html`, `tools/build_insights.py` (sonra build), **`privacy/index.html`, `tr/gizlilik/index.html`**. Şu an **styles.css?v=21**, **demo.js?v=10**, **consent.js?v=1**. `demo.js` yalnız `index.html` ve `tr/index.html`'de var. Artırmazsan canlıda eski CSS + yeni HTML görünür ("site bozuldu" olayının sebebi buydu). HTML cache'lenmez; canlı kontrolde yine de `?x=<rastgele>` ekle. Favicon linkleri `?v=2`.
 
 ## 8. SEO / GEO — yapılanlar
 
@@ -178,6 +178,7 @@ Kaynak: bu liste. `tasks/todo.md` tamamlanmış fazların kaydını tutar.
 - Cloudflare e-posta adreslerini `/cdn-cgi/l/email-protection` ile değiştirir; canlı HTML'de `enes@` aramak başarısız olabilir.
 - Cal.com embed dar ekranda (<~768px) mobil düzene geçer (takvim tek sütun).
 - **Header taşması düzeltildi** (2026-09-23, styles v21): nav ≤960px gizli, ≤1200px nav boşlukları dar, ≤560px container yan boşluğu 20px, ≤400px dil seçici gizli ve CTA küçük. 320-1440px arası tüm sayfa tiplerinde ölçülen taşma 0.
+- `demo.js` TR metinlerinde kesme işareti (`agent'ı`) tek tırnaklı JS string'ini kapatıp demoyu sessizce bozuyor; `\\'` ile kaçır ve `node --check assets/demo.js` ile doğrula. Konsolda tek satır SyntaxError, sayfa normal görünür.
 - `vercel.json`'da `source` **regex** olmalı (`/(.*)`); `"/:path*"` biçimi `/` ve `/insights/` gibi dizin URL'lerinde eşleşmiyordu.
 - Search Console'da property "Domain" tipi olduğu için Bing import'unda "https://" boş görünmüştü; normal.
 - Cal.com embed'i, Enes'in cal.com'a giriş yaptığı tarayıcıda formu hesap bilgileriyle (ad/e-posta) dolu ve hesap dilinde (TR) gösterir; ziyaretçi bunları görmez. Dil ziyaretçinin `Accept-Language`'ına göre gelir, embed'de dil zorlayan parametre yok (`lang/locale/hl/lng`, `NEXT_LOCALE` denendi, işlemiyor). Kontrol için gizli pencere kullan.
