@@ -87,7 +87,7 @@ Bölüm başlıklarının üstünde küçük "eyebrow" etiket **yok** (kaldırı
 - Tokenlar (`:root`): bg `#f7f7f4` · fg `#26251e` · card `#f0efeb` · card-hover `#ebeae5` · accent `#34785c`. Dark: bg `#14120b` · fg `#edecec` · card `#1b1913` · hover `#201e18` · accent `#4fa37e`.
 - **Tema**: varsayılan sistem tercihi. Toggle `data-theme="light|dark"` yazar, `localStorage["jd-theme"]`'de saklar. Head'deki inline `jdTheme` script'i (`current()`, `toggle()`) flash'ı önler. **Dark tokenlar CSS'te iki yerde**: `@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) }` ve `:root[data-theme="dark"]` — token eklerken ikisini de güncelle. Toggle ikonu da aynı iki seçiciyle değişir.
 - **Tek font: Inter** (Google Fonts, 400/500/600). Başlıklar Inter 400, `letter-spacing -0.03em`. Serif/JetBrains Mono YOK; kod için sistem mono.
-- Container akışkan: `padding: 0 clamp(24px, 12vw, 260px)`, `max-width 1800px`. Prose 680–720px. Demo, takvim, FAQ ~820–1040px.
+- Container akışkan: `padding: 0 clamp(24px, 12vw, 260px)`, `max-width 1360px`. Prose 680–720px. Demo, takvim, FAQ ~820–1040px.
 - Butonlar: primary (fg zemin, bg yazı, hover accent) + ghost (1px border). Kartlar 1px border, radius 12px, gölge yok.
 - Logo: yalnızca wordmark; ekstra işaret/ikon ekleme.
 - Cal.com: inline embed (`Cal.ns.consultation("inline", …)`), tema `jdTheme.current()`; toggle'da embed **yeniden oluşturulur** (Cal'ın `ui` tema güncellemesi inline'da işlemiyor). Renkler `cssVarsPerTheme` ile site paletine eşlenmiş. Alt "Cal.com" yazısı iframe'in alt 90px'i kırpılarak gizleniyor (`.cal-inline iframe { margin-bottom:-90px; clip-path: inset(0 0 90px 0) }`; `clip-path` şart, çünkü form adımında iframe 530px'e düşüyor ve `.cal-inline`'ın `min-height:560px`'i yalnız negatif margin ile kırpmayı boşa çıkarıyordu); `hideEventTypeDetails:false` (sol panelde "JustDukkan · Solution Consultation" görünür).
@@ -95,7 +95,7 @@ Bölüm başlıklarının üstünde küçük "eyebrow" etiket **yok** (kaldırı
 
 ## 7. Cache-bust kuralı (ÖNEMLİ)
 
-Cloudflare `styles.css`, `demo.js` ve `consent.js`'i cache'ler. Bunlar değişince **`?v=N`'i artır**: `index.html`, `tr/index.html`, `tools/build_insights.py` (sonra build), **`privacy/index.html`, `tr/gizlilik/index.html`**. Şu an **styles.css?v=18**, **demo.js?v=9**, **consent.js?v=1**. Artırmazsan canlıda eski CSS + yeni HTML görünür ("site bozuldu" olayının sebebi buydu). HTML cache'lenmez; canlı kontrolde yine de `?x=<rastgele>` ekle. Favicon linkleri `?v=2`.
+Cloudflare `styles.css`, `demo.js` ve `consent.js`'i cache'ler. Bunlar değişince **`?v=N`'i artır**: `index.html`, `tr/index.html`, `tools/build_insights.py` (sonra build), **`privacy/index.html`, `tr/gizlilik/index.html`**. Şu an **styles.css?v=19**, **demo.js?v=9**, **consent.js?v=1**. Artırmazsan canlıda eski CSS + yeni HTML görünür ("site bozuldu" olayının sebebi buydu). HTML cache'lenmez; canlı kontrolde yine de `?x=<rastgele>` ekle. Favicon linkleri `?v=2`.
 
 ## 8. SEO / GEO — yapılanlar
 
