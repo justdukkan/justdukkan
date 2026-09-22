@@ -50,7 +50,7 @@ Kararlar (Enes, 2026-09-13 / pivot 2026-09-22):
 - Repo **`github.com/justdukkan/justdukkan`**, **public** (Vercel Hobby org'a ait private repoyu desteklemiyor), branch `main`. Lokal: `~/projects/justdukkan`.
 - **Vercel** projesi `justdukkan` (team `enes-projects-d11e82d9`, id `prj_GkA9hqmjpvcXCZeSBcnWATODEAL6`), GitHub'a bağlı → **push = production deploy** (~1 dk). `vercel deploy` gerekmez. Vercel CLI `ertasenes` olarak giriş yapmış; `~/Library/Application Support/com.vercel.cli/auth.json` token'ı REST API için geçersiz (CLI çalışıyor).
 - Vercel GitHub App org'da **sadece `justdukkan` reposuna** erişmeli. Yeni repo eklenirse Vercel otomatik proje açıp build hatası verir (invoice-intake-mcp'de oldu, proje silindi).
-- Domain **justdukkan.com** + www. DNS **Cloudflare** (proxy açık; e-posta adreslerini obfuscate ediyor; CSS/JS'i cache'liyor → §7). HTTP→HTTPS 308 var; **www → apex 307** Vercel Domains'te tanımlı (2026-09-13; www DNS-only CNAME → vercel-dns, apex Cloudflare proxy'li → Vercel "Proxy Detected" uyarısı normal). 308'e çevirmek ve apex'i DNS-only yapmak opsiyonel.
+- Domain **justdukkan.com** + www. DNS **Cloudflare** (proxy açık; e-posta adreslerini obfuscate ediyor; CSS/JS'i cache'liyor → §7). HTTP→HTTPS 308 var; **www → apex 308** Vercel Domains'te tanımlı (2026-09-13; www DNS-only CNAME → vercel-dns, apex Cloudflare proxy'li → Vercel "Proxy Detected" uyarısı normal). 308'e çevirmek ve apex'i DNS-only yapmak opsiyonel.
 - Build/framework yok: düz statik HTML + CSS + biraz JS.
 - Cloudflare DNS'te ayrıca: Search Console TXT, **MCP Registry TXT** (`v=MCPv1; k=ed25519; p=tHH6Ral+Br4oXDYJjId2KfdlL4GnJtUgHXrgnwy4Ums=`, apex).
 
@@ -142,7 +142,7 @@ Kaynak: bu liste. `tasks/todo.md` tamamlanmış fazların kaydını tutar.
 - [ ] **GA4 → Admin → Product links → Search Console** bağla (arama sorguları GA'da görünsün).
 - [ ] **Search Console**: sitemap'i yeniden gönder (18 URL oldu); 1-2 hafta sonra pivot sonrası indeksleme kontrolü, gerekirse URL Inspection → Request indexing.
 - [ ] **Bing Webmaster**: sitemap ve IndexNow sekmesi kontrolü; URL Submission ile yeni makaleler.
-- [ ] **Vercel**: www → apex yönlendirmesi 307, istersen 308 yap (Domains → www → Edit → status code). Opsiyonel: Cloudflare'de apex'i DNS-only'ye almak cache-bust derdini bitirir.
+- [ ] Opsiyonel: Cloudflare'de apex'i DNS-only'ye almak cache-bust derdini bitirir. (www → apex **308** artık devrede, doğrulandı 2026-09-23.)
 - [ ] **LinkedIn kişisel profil**: JustDukkan deneyimi ekle (unvan pivota uygun: "Founder, JustDukkan · custom AI agent teams"); yeni makaleleri paylaş. Şirket sayfası About metnini `llms.txt` ilk paragrafıyla eşitle.
 - [ ] **Schema doğrulama**: `validator.schema.org` ve Google Rich Results Test ile `/`, `/tr/`, `/about/`, `/work/`, `/insights/` ve bir makale sayfasını geçir.
 - [ ] **invoice-intake-mcp README** son satırı hâlâ "AI solutions architecture" diyor (başka repo); pivota göre güncelle.
