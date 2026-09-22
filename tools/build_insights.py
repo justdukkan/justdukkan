@@ -36,6 +36,7 @@ def header(active=''):
         <a href="/#expertise">Expertise</a>
         <a href="/#approach">Approach</a>
         <a href="/insights/"{' aria-current="page"' if active == 'insights' else ''}>Insights</a>
+        <a href="/about/">About</a>
         <a href="/#contact">Contact</a>
       </nav>
       <div class="nav-right">
@@ -70,6 +71,7 @@ FOOTER = '''  <footer class="site-footer">
       <div class="footer-grid">
         <div>
           <span class="footer-h">Company</span>
+          <p><a href="/about/">About</a><br><a href="/work/">Open source work</a></p>
           <p>JustDukkan, LLC<br>1111B S Governors Ave, Suite 46654<br>Dover, DE 19904, USA<br>EIN 38-4388070</p>
         </div>
         <div>

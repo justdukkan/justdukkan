@@ -2,61 +2,79 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://justdukkan.com/</loc>
-    <lastmod>2026-09-13</lastmod>
+    <lastmod>2026-09-23</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://justdukkan.com/"/>
     <xhtml:link rel="alternate" hreflang="tr" href="https://justdukkan.com/tr/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://justdukkan.com/"/>
   </url>
   <url>
     <loc>https://justdukkan.com/tr/</loc>
-    <lastmod>2026-09-13</lastmod>
+    <lastmod>2026-09-23</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://justdukkan.com/"/>
     <xhtml:link rel="alternate" hreflang="tr" href="https://justdukkan.com/tr/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://justdukkan.com/"/>
   </url>
   <url>
     <loc>https://justdukkan.com/insights/</loc>
-    <lastmod>2026-09-13</lastmod>
+    <lastmod>2026-09-23</lastmod>
   </url>
   <url>
     <loc>https://justdukkan.com/insights/hub-and-spoke-agent-architecture/</loc>
-    <lastmod>2026-09-13</lastmod>
+    <lastmod>2026-09-23</lastmod>
   </url>
   <url>
     <loc>https://justdukkan.com/insights/mcp-server-and-tool-design/</loc>
-    <lastmod>2026-09-13</lastmod>
+    <lastmod>2026-09-23</lastmod>
   </url>
   <url>
     <loc>https://justdukkan.com/insights/process-automation-architecture/</loc>
-    <lastmod>2026-09-13</lastmod>
+    <lastmod>2026-09-23</lastmod>
   </url>
   <url>
     <loc>https://justdukkan.com/insights/human-in-the-loop-for-agentic-systems/</loc>
-    <lastmod>2026-09-13</lastmod>
+    <lastmod>2026-09-23</lastmod>
   </url>
   <url>
     <loc>https://justdukkan.com/insights/designing-the-agent-team/</loc>
-    <lastmod>2026-09-22</lastmod>
+    <lastmod>2026-09-23</lastmod>
   </url>
   <url>
     <loc>https://justdukkan.com/insights/agent-topologies/</loc>
-    <lastmod>2026-09-22</lastmod>
+    <lastmod>2026-09-23</lastmod>
   </url>
   <url>
     <loc>https://justdukkan.com/insights/connecting-agents-to-your-apis/</loc>
-    <lastmod>2026-09-22</lastmod>
+    <lastmod>2026-09-23</lastmod>
   </url>
   <url>
     <loc>https://justdukkan.com/insights/agent-skills/</loc>
-    <lastmod>2026-09-22</lastmod>
+    <lastmod>2026-09-23</lastmod>
   </url>
   <url>
     <loc>https://justdukkan.com/insights/delegate-to-human/</loc>
-    <lastmod>2026-09-22</lastmod>
+    <lastmod>2026-09-23</lastmod>
   </url>
   <url>
     <loc>https://justdukkan.com/insights/operating-agentic-systems/</loc>
-    <lastmod>2026-09-22</lastmod>
+    <lastmod>2026-09-23</lastmod>
+  </url>
+  <url>
+    <loc>https://justdukkan.com/about/</loc>
+    <lastmod>2026-09-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://justdukkan.com/about/"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://justdukkan.com/tr/hakkinda/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://justdukkan.com/about/"/>
+  </url>
+  <url>
+    <loc>https://justdukkan.com/tr/hakkinda/</loc>
+    <lastmod>2026-09-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://justdukkan.com/about/"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://justdukkan.com/tr/hakkinda/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://justdukkan.com/about/"/>
+  </url>
+  <url>
+    <loc>https://justdukkan.com/work/</loc>
+    <lastmod>2026-09-23</lastmod>
   </url>
   <url>
     <loc>https://justdukkan.com/privacy/</loc>
