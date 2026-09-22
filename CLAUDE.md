@@ -4,15 +4,17 @@ Bu dosya, siteye sıfır bağlamla giren birinin ihtiyaç duyacağı her şeyi i
 
 ## 1. Ne bu?
 
-**JustDukkan, LLC**'nin kurumsal sitesi. Konum: **AI solutions architecture** — süreç otomasyonu, sistem/çözüm mimarisi, agentic sistemler (hub-and-spoke orkestrasyon, MCP sunucuları, tipli tool'lar). Hedef: şirketlerin iç süreçlerini otomatikleştirip iş yapış şeklini ve maliyetini değiştirmek.
+**JustDukkan, LLC**'nin kurumsal sitesi. Konum (2026-09-22 pivotu): **şirkete özel hiyerarşik AI agent takımları kurmak ve bakımını yapmak**. Orkestratör + uzman agent'lar (hub-and-spoke), size özel yazılan tool'lar ve skill'ler, API entegrasyonları, MCP sunucuları, sonra düzenli bakım. **Hazır/abonelik agent satmıyoruz**; her sistem müşteriye özel kurulur ve müşteriye aittir.
 
-Kararlar (Enes, 2026-09-13):
+Kararlar (Enes, 2026-09-13 / pivot 2026-09-22):
 - **Kurumsal** ton; kişisel bilgi/isim yok (Enes'in adı sadece e-posta adresinde).
 - **Fiyat yok, paket yok**; talep gelince görüşülür.
 - **Birincil CTA = e-posta** ("Get in touch" / "Bize yazın" → `mailto:enes@justdukkan.com?subject=Solution%20consultation`). Cal.com görüşme takvimi **ikincil**.
 - Varsayılan dil **EN**, ikinci dil **TR** (`/tr/`). Otomatik dil yönlendirmesi yok.
 - Sertifikalar (Claude Certified Architect – Foundations alınıyor; AWS SA ve Google Cloud AI Architect planlı) sitede **gösterilmiyor**; onların yerine "designed to work with the models your business already uses" model logoları bandı var.
 - Uydurma metrik/rakam yazma; vaka çalışması gelene kadar sonuçlar nitel.
+- **4 hizmet** (ana sayfada 4 kart, JSON-LD OfferCatalog'da 4 offer): Agent Team Design · Build & Deployment · Integrations: API & MCP · Operate & Maintain. Approach adımları bunlarla birebir hizalı.
+- "Hazır agent satmıyoruz" ayrımı iki yerde geçer: hero lede son cümlesi ve FAQ'nun 2. maddesi. Rakip ismi verilmez.
 - **Google Analytics 4** yalnızca çerez banner'ında "Accept" sonrası yüklenir (Consent Mode değil; onay yokken Google'a hiç istek gitmez). Gizlilik sayfası `/privacy/` + `/tr/gizlilik/`.
 - Site sıfırdan yeniden yazıldı 2026-09-13; eski "Digital Products & Creative Services" sayfasından hiçbir şey kalmadı.
 
@@ -21,7 +23,7 @@ Kararlar (Enes, 2026-09-13):
 - Yasal ad **JustDukkan, LLC** · marka **JustDukkan** · Delaware, USA · **EIN 38-4388070**
 - Adres: **1111B S Governors Ave, Suite 46654, Dover, DE 19904, USA**
 - E-posta **enes@justdukkan.com** · Tel/WhatsApp **+1 (910) 679-9657** (`tel:+19106799657`, `https://wa.me/19106799657`)
-- Tagline: *AI solutions architecture: automation, system design and agentic systems.*
+- Tagline: *Custom agentic systems: hierarchical AI agent teams built for your company.*
 - Cal.com: **`cal.com/justdukkan/solution-consultation`** (event "Solution Consultation", profil adı "JustDukkan, LLC"/"JustDukkan AI", Google Meet, Europe/Istanbul). Eski `enes-ertas-5wscht/secret` linki ölü.
 - LinkedIn: **linkedin.com/company/justdukkan-llc** (kapak: `brand/linkedin-cover.png`, avatar: `.j` favicon)
 - GitHub org: **github.com/justdukkan** (Enes = owner; kişisel hesap `ertasenes`)
@@ -55,7 +57,7 @@ assets/favicon.svg/-32.png/-512.png, apple-touch-icon.png   ".j" glifi (wordmark
 brand/linkedin-cover.png (2256×382), linkedin-cover-1x.png  LinkedIn kapak: koyu zemin, sağda ".j"
 llms.txt                      LLM crawler'ları için şirket/hizmet/makale/iletişim özeti (markdown)
 robots.txt                    Herkese Allow; AI crawler'lar (GPTBot, ClaudeBot, PerplexityBot, Google-Extended…) açıkça Allow; Sitemap satırı
-sitemap.xml                   /, /tr/ (hreflang), /insights/ + 4 makale
+sitemap.xml                   /, /tr/ (hreflang), /insights/ + 10 makale, /privacy/ + /tr/gizlilik/ (hreflang)
 9ab21623bd51863e0413867377354055.txt   IndexNow anahtar dosyası (§8)
 README.md                     Kısa repo açıklaması
 tasks/todo.md                 İş listesi (geçmiş fazlar işaretli)
@@ -64,18 +66,18 @@ tasks/todo.md                 İş listesi (geçmiş fazlar işaretli)
 ## 5. Sayfa yapısı (ana sayfa, EN/TR aynı sıra)
 
 1. **Header** (sticky 52px): wordmark · Services · Expertise · Approach · Insights · Contact · **tema toggle** (ay/güneş) · EN/TR · **"Get in touch →"** (mailto)
-2. **Hero**: "We design the AI architecture behind how your company works." + alt metin + "Get in touch" (mailto) + "What we do" (`#services`)
+2. **Hero**: "We build the AI agent teams your company runs on." + alt metin (son cümle: hazır agent aboneliği değil) + "Get in touch" (mailto) + "What we do" (`#services`)
 3. **Models bandı**: Claude, ChatGPT, Gemini, Kimi, DeepSeek, Mistral, Llama, Qwen, Grok — monokrom inline SVG (lobehub `@lobehub/icons-static-svg`), tek satır
-4. **Services** (3 kart): Process Automation · System & Solution Architecture · Agentic Systems
-5. **Expertise** (8 madde, 2 sütun): hub-and-spoke, MCP & tool design, multi-agent workflows, knowledge/retrieval, evals & guardrails, cloud (AWS/GCP), integration, cost & operations
+4. **Services** (4 kart, `grid grid-4`): Agent Team Design · Build & Deployment · Integrations: API & MCP · Operate & Maintain
+5. **Expertise** (8 madde, 2 sütun): hub-and-spoke, MCP & tool design, agent skills & instructions, knowledge/retrieval, evals & guardrails, cloud (AWS/GCP), API & system integration, cost & operations
 6. **Reference pattern → interaktif demo** (`#demo`, `assets/demo.js`): mock "JustDukkan Orchestrator" konsolu. Sol: 3 çalıştırma (Invoice intake / Support triage / Vendor onboarding). Orta: animasyonlu log (orchestrator → agent → tool çağrısı → **Human review: Approve/Reject** → done). Sağ: spoke'lar (aktif olan yeşil), tool sayacı, Replay. Sabit yükseklik 460px, log içeride kayar. Görünür olunca otomatik başlar (scroll-rect kontrolü; IntersectionObserver arka plan sekmesinde çalışmadığı için kullanılmadı). EN/TR string'ler `document.documentElement.lang`'a göre.
-7. **Outcomes** (3): manual hours → automated flows · cost per process → lower unit cost · days → faster cycle time
-8. **Approach** (4 adım): 01 · Discover → 02 · Architect → 03 · Build → 04 · Operate
-9. **FAQ** (7 soru, `<details>` akordeon, ilki açık; FAQPage schema)
+7. **Outcomes** (3): generic tools → sürece göre şekillenen sistem · manual hours → takımın uçtan uca yürüttüğü iş · eskiyen proje → bakımda tutulan sistem
+8. **Approach** (4 adım, hizmetlerle hizalı): 01 · Discover → 02 · Design → 03 · Build → 04 · Operate
+9. **FAQ** (8 soru, `<details>` akordeon, ilki açık; FAQPage schema). **Metinler her sayfada iki yerde**: JSON-LD `mainEntity` + görünür `<details>`; EN/TR dört kopya senkron kalmalı.
 10. **Contact** (`#contact`): başlık + açıklama → **"Get in touch" butonu** (mailto) + "Tell us about the process in a few lines and we will get back to you as soon as possible." → ayraç **"or book a call"** → **Cal.com inline embed** (`#cal-inline`)
-11. **Footer**: wordmark + EN/TR; sütunlar Company (yasal ad, adres, EIN) / Contact (e-posta, tel, WhatsApp) / Insights (4 makale); "© 2026 JustDukkan, LLC"
+11. **Footer**: wordmark + EN/TR; sütunlar Company (yasal ad, adres, EIN) / Contact (e-posta, tel, WhatsApp) / Insights (ilk 4 makale + "All insights"); "© 2026 JustDukkan, LLC"
 
-**Insights** (`/insights/`, EN): liste + 4 makale — hub-and-spoke-agent-architecture, mcp-server-and-tool-design, process-automation-architecture, human-in-the-loop-for-agentic-systems. Her makale: breadcrumb, hero, prose (720px), makale sonu FAQ, CTA kutusu ("Get in touch" mailto + "Book a call" `/#contact`). TR makale yok; TR sayfasındaki Insights linki EN'e gider.
+**Insights** (`/insights/`, EN): liste + **10 makale**, `tools/articles.py`'daki sırayla: designing-the-agent-team, hub-and-spoke-agent-architecture, agent-topologies, mcp-server-and-tool-design, connecting-agents-to-your-apis, agent-skills, delegate-to-human, human-in-the-loop-for-agentic-systems, operating-agentic-systems, process-automation-architecture. Sıra = anlatı sırası; footer ilk 4'ü gösterir. Her makale: breadcrumb, hero, prose (720px), makale sonu FAQ, CTA kutusu ("Get in touch" mailto + "Book a call" `/#contact`). TR makale yok; TR sayfasındaki Insights linki EN'e gider.
 
 Bölüm başlıklarının üstünde küçük "eyebrow" etiket **yok** (kaldırıldı; sadece models bandında bir etiket var). Metinlerde uzun çizgi (—) **kullanılmıyor**.
 
@@ -93,7 +95,7 @@ Bölüm başlıklarının üstünde küçük "eyebrow" etiket **yok** (kaldırı
 
 ## 7. Cache-bust kuralı (ÖNEMLİ)
 
-Cloudflare `styles.css`, `demo.js` ve `consent.js`'i cache'ler. Bunlar değişince **`?v=N`'i artır**: `index.html`, `tr/index.html`, `tools/build_insights.py` (sonra build), **`privacy/index.html`, `tr/gizlilik/index.html`**. Şu an **styles.css?v=18**, **demo.js?v=8**, **consent.js?v=1**. Artırmazsan canlıda eski CSS + yeni HTML görünür ("site bozuldu" olayının sebebi buydu). HTML cache'lenmez; canlı kontrolde yine de `?x=<rastgele>` ekle. Favicon linkleri `?v=2`.
+Cloudflare `styles.css`, `demo.js` ve `consent.js`'i cache'ler. Bunlar değişince **`?v=N`'i artır**: `index.html`, `tr/index.html`, `tools/build_insights.py` (sonra build), **`privacy/index.html`, `tr/gizlilik/index.html`**. Şu an **styles.css?v=18**, **demo.js?v=9**, **consent.js?v=1**. Artırmazsan canlıda eski CSS + yeni HTML görünür ("site bozuldu" olayının sebebi buydu). HTML cache'lenmez; canlı kontrolde yine de `?x=<rastgele>` ekle. Favicon linkleri `?v=2`.
 
 ## 8. SEO / GEO — yapılanlar
 
@@ -120,13 +122,15 @@ Cloudflare `styles.css`, `demo.js` ve `consent.js`'i cache'ler. Bunlar değişin
 - [ ] Ayda 1–2 Insights makalesi (aday: support triage mimarisi, AI otomasyon maliyet modeli, TR "şirketler için agentic sistemler 101"); TR çeviriler.
 - [ ] İlk gerçek işten **vaka çalışması** — en güçlü sinyal.
 - [ ] Sertifikalar alındıkça siteye/LinkedIn'e rozet (Enes onayıyla).
-- [ ] Haftalık görünürlük testi: ChatGPT/Perplexity'de "AI solutions architecture consultancy", "MCP tool design consultant" vb.
+- [ ] Haftalık görünürlük testi: ChatGPT/Perplexity'de "custom AI agent team", "build AI agent team for company", "MCP server development consultant", "agentic system maintenance" vb.
+- [ ] Pivot sonrası GSC: yeni 6 makale indekslendi mi; ana sayfa yeni başlıkla yeniden taranıyor mu.
+- [ ] TR makale altyapısı (`/tr/insights/`) kurulacak mı, karar.
 
 ## 10. Rutin işlemler
 
-- **Metin/HTML değişikliği**: `index.html` + `tr/index.html` **ikisini de** güncelle → commit → push → 1 dk sonra `curl -sL "https://justdukkan.com/?x=$RANDOM" | grep …` ile doğrula.
+- **Metin/HTML değişikliği**: `index.html` + `tr/index.html` **ikisini de** güncelle (FAQ metni değişiyorsa her sayfada JSON-LD + görünür blok, yani 4 kopya) → commit → push → 1 dk sonra `curl -sL "https://justdukkan.com/?x=$RANDOM" | grep …` ile doğrula.
 - **CSS/JS değişikliği**: düzenle → `?v=N` artır (index, tr/index, build_insights, privacy ×2) → build_insights → commit/push.
-- **Yeni makale**: `tools/articles.py`'a dict ekle → `python3 tools/build_insights.py` → `sitemap.xml` + `llms.txt` + ana sayfa footer "Insights" listesi (EN ve TR) → IndexNow ping.
+- **Yeni makale**: `tools/articles.py`'a dict ekle (`date` alanı = yayın tarihi; sıra = index sırası) → `python3 tools/build_insights.py` → `sitemap.xml` + `llms.txt` makale listesi → footer ilk 4 makaleyi gösteriyor, değişirse `index.html`, `tr/index.html`, `privacy/index.html`, `tr/gizlilik/index.html` → IndexNow ping.
 - **Hizmet/şirket bilgisi değişikliği**: HTML + JSON-LD + `llms.txt` + LinkedIn/dış profiller senkron.
 - **invoice-intake-mcp yeni sürüm**: `pyproject.toml` + `server.json` version → `.venv/bin/python -m build` → Enes: `.venv/bin/twine upload dist/*` (`__token__` + PyPI token) → `mcp-publisher login dns --domain justdukkan.com --private-key "$(/opt/homebrew/opt/openssl@3/bin/openssl pkey -in ~/.config/mcp-registry/justdukkan-ed25519.pem -noout -text | grep -A3 priv: | tail -n +2 | tr -d ' :\n')" && mcp-publisher publish`.
 - **Lokal önizleme**: `python3 -m http.server 8765 --bind 127.0.0.1` (repo kökünde); Chrome MCP ile macmini tarayıcısı. Arka plan sekmesinde timer/IO throttling olur; demo testini görünür sekmede yap.

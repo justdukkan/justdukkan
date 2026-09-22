@@ -37,3 +37,15 @@
 # Açık
 - [x] www → apex yönlendirme (Vercel, 307; 308'e çevirmek opsiyonel)
 - [ ] GSC/Bing indeks kontrolü (48s), dizin profilleri, vaka çalışması — bkz. CLAUDE.md §9
+
+# 2026-09-22 — Pivot: custom AI agent teams
+- [x] Konumlandırma: "AI solutions architecture" → şirkete özel hiyerarşik AI agent takımları + bakım
+- [x] Ana sayfalar EN+TR: hero, 4 hizmet kartı, expertise, outcomes, approach, 8 maddelik FAQ
+- [x] JSON-LD: org description, knowsAbout, OfferCatalog (4 offer), FAQPage (8 Q/A), WebPage adı
+- [x] llms.txt, README, insights index metni, demo.js etiketleri (v9)
+- [x] 6 yeni makale: designing-the-agent-team, agent-topologies, connecting-agents-to-your-apis, agent-skills, delegate-to-human, operating-agentic-systems
+- [x] Mevcut 4 makalede kicker/sıra güncellemesi; footer ilk 4 makale + "All insights"
+- [x] sitemap (15 URL), IndexNow ping
+# Açık
+- [ ] Header ≤~900px'de yatay taşma (nav + CTA sığmıyor) — pivot öncesinden var, ayrı iş
+- [ ] TR makale altyapısı (/tr/insights/) kararı
