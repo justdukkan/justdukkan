@@ -24,3 +24,7 @@ User-agent: MistralAI-User
 Allow: /
 
 Sitemap: https://justdukkan.com/sitemap.xml
+
+# Plain-text summaries for LLM crawlers
+# https://justdukkan.com/llms.txt
+# https://justdukkan.com/llms-full.txt

@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """Generate /insights pages from articles.py. Run: python3 tools/build_insights.py"""
-import json, os, sys
+import html, json, os, re, sys
 sys.path.insert(0, os.path.dirname(__file__))
 from articles import ARTICLES  # noqa: E402
 
 ROOT = os.path.join(os.path.dirname(__file__), '..')
 SITE = 'https://justdukkan.com'
-DATE = '2026-09-22'          # last site-wide update (dateModified)
+DATE = '2026-09-23'          # last site-wide update (dateModified)
 PUBLISHED = '2026-09-13'     # default first-publication date; per-article 'date' overrides
 
 THEME_JS = '''  <script>
@@ -133,14 +133,15 @@ def article_page(a):
     url = f'{SITE}/insights/{a["slug"]}/'
     ld = {"@context": "https://schema.org", "@graph": [
         {"@type": "Article", "@id": url + "#article", "headline": a['title'], "description": a['desc'],
-         "url": url, "datePublished": a.get('date', PUBLISHED), "dateModified": DATE, "inLanguage": "en",
+         "url": url, "datePublished": a.get('date', PUBLISHED), "dateModified": a.get('modified', a.get('date', PUBLISHED)), "inLanguage": "en",
          "author": {"@id": f"{SITE}/#org"}, "publisher": {"@id": f"{SITE}/#org"},
          "mainEntityOfPage": url, "about": a['about'], "keywords": ", ".join(a['keywords'])},
         {"@type": "BreadcrumbList", "itemListElement": [
             {"@type": "ListItem", "position": 1, "name": "JustDukkan", "item": SITE + "/"},
             {"@type": "ListItem", "position": 2, "name": "Insights", "item": SITE + "/insights/"},
             {"@type": "ListItem", "position": 3, "name": a['short'], "item": url}]},
-        {"@type": "Organization", "@id": f"{SITE}/#org", "name": "JustDukkan", "legalName": "JustDukkan, LLC", "url": SITE + "/"},
+        {"@type": "Organization", "@id": f"{SITE}/#org", "name": "JustDukkan", "legalName": "JustDukkan, LLC", "url": SITE + "/",
+         "logo": {"@type": "ImageObject", "url": SITE + "/assets/favicon-512.png", "width": 512, "height": 512}},
     ]}
     if a.get('faq'):
         ld['@graph'].append({"@type": "FAQPage", "@id": url + "#faq", "mainEntity": [
@@ -180,10 +181,16 @@ def article_page(a):
 
 def index_page():
     url = f'{SITE}/insights/'
-    ld = {"@context": "https://schema.org", "@type": "CollectionPage", "@id": url, "url": url,
-          "name": "Insights — JustDukkan", "inLanguage": "en",
-          "description": "Practical notes on building custom AI agent teams: hub-and-spoke architecture, MCP servers and tools, agent skills, API integration and what it takes to keep a system running.",
-          "hasPart": [{"@type": "Article", "headline": a['title'], "url": f'{SITE}/insights/{a["slug"]}/'} for a in ARTICLES]}
+    desc = "Practical notes on building custom AI agent teams: hub-and-spoke architecture, MCP servers and tools, agent skills, API integration and what it takes to keep a system running."
+    ld = {"@context": "https://schema.org", "@graph": [
+        {"@type": "CollectionPage", "@id": url, "url": url, "name": "Insights — JustDukkan",
+         "inLanguage": "en", "description": desc,
+         "isPartOf": {"@type": "WebSite", "@id": SITE + "/#website"},
+         "publisher": {"@type": "Organization", "@id": SITE + "/#org"},
+         "hasPart": [{"@type": "Article", "headline": a['title'], "url": f'{SITE}/insights/{a["slug"]}/'} for a in ARTICLES]},
+        {"@type": "BreadcrumbList", "@id": url + "#breadcrumb", "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "JustDukkan", "item": SITE + "/"},
+            {"@type": "ListItem", "position": 2, "name": "Insights"}]}]}
     cards = ''.join(f'''          <a class="insight-card" href="/insights/{a['slug']}/">
             <span class="label">{a['kicker']}</span>
             <h3>{a['title']}</h3>
@@ -209,7 +216,7 @@ def index_page():
 {FOOTER}{CAL_SNIPPET}</body>
 </html>
 '''
-    return head('Insights — JustDukkan', ld['description'], url, ld) + body
+    return head('Insights — JustDukkan', desc, url, ld) + body
 
 
 def write(path, content):
@@ -219,6 +226,38 @@ def write(path, content):
     print('wrote', os.path.relpath(path, ROOT))
 
 
+def llms_full():
+    """Plain-text dump of every article, for LLM crawlers (/llms-full.txt)."""
+    out = ['# JustDukkan Insights, full text',
+           '',
+           'Every article on https://justdukkan.com/insights/ as plain text.',
+           f'Generated {DATE}. Source: tools/articles.py.', '']
+    for a in ARTICLES:
+        out += [f'# {a["title"]}', f'{SITE}/insights/{a["slug"]}/', '', a['desc'], '']
+        out.append(html_to_text(a['body']))
+        if a.get('faq'):
+            out += ['## Frequently asked questions', '']
+            for q, ans in a['faq']:
+                out += [f'Q: {q}', f'A: {ans}', '']
+        out += ['-' * 60, '']
+    return '\n'.join(out).replace('\n\n\n', '\n\n') + '\n'
+
+
+def html_to_text(html):
+    import html as _h
+    t = re.sub(r'<(script|style)[^>]*>.*?</\1>', '', html, flags=re.S)
+    t = re.sub(r'</(h2|h3|p|li|tr|pre)>', '\n', t)
+    t = re.sub(r'<li[^>]*>', '- ', t)
+    t = re.sub(r'<h2[^>]*>', '\n## ', t)
+    t = re.sub(r'<h3[^>]*>', '\n### ', t)
+    t = re.sub(r'<[^>]+>', '', t)
+    t = _h.unescape(t)
+    t = re.sub(r'[ \t]+', ' ', t)
+    t = re.sub(r'\n{3,}', '\n\n', t)
+    return '\n'.join(line.strip() for line in t.split('\n')).strip()
+
+
 write(os.path.join(ROOT, 'insights', 'index.html'), index_page())
 for a in ARTICLES:
     write(os.path.join(ROOT, 'insights', a['slug'], 'index.html'), article_page(a))
+write(os.path.join(ROOT, 'llms-full.txt'), llms_full())

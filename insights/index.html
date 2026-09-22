@@ -36,62 +36,91 @@
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "CollectionPage",
-  "@id": "https://justdukkan.com/insights/",
-  "url": "https://justdukkan.com/insights/",
-  "name": "Insights — JustDukkan",
-  "inLanguage": "en",
-  "description": "Practical notes on building custom AI agent teams: hub-and-spoke architecture, MCP servers and tools, agent skills, API integration and what it takes to keep a system running.",
-  "hasPart": [
+  "@graph": [
     {
-      "@type": "Article",
-      "headline": "Designing the agent team: roles, scope and handoffs",
-      "url": "https://justdukkan.com/insights/designing-the-agent-team/"
+      "@type": "CollectionPage",
+      "@id": "https://justdukkan.com/insights/",
+      "url": "https://justdukkan.com/insights/",
+      "name": "Insights — JustDukkan",
+      "inLanguage": "en",
+      "description": "Practical notes on building custom AI agent teams: hub-and-spoke architecture, MCP servers and tools, agent skills, API integration and what it takes to keep a system running.",
+      "isPartOf": {
+        "@type": "WebSite",
+        "@id": "https://justdukkan.com/#website"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://justdukkan.com/#org"
+      },
+      "hasPart": [
+        {
+          "@type": "Article",
+          "headline": "Designing the agent team: roles, scope and handoffs",
+          "url": "https://justdukkan.com/insights/designing-the-agent-team/"
+        },
+        {
+          "@type": "Article",
+          "headline": "Hub-and-spoke agent architecture: how to build multi-agent systems that stay explainable",
+          "url": "https://justdukkan.com/insights/hub-and-spoke-agent-architecture/"
+        },
+        {
+          "@type": "Article",
+          "headline": "Agent team topologies: which hierarchy to build, and when",
+          "url": "https://justdukkan.com/insights/agent-topologies/"
+        },
+        {
+          "@type": "Article",
+          "headline": "Designing MCP servers and tools that agents can use safely",
+          "url": "https://justdukkan.com/insights/mcp-server-and-tool-design/"
+        },
+        {
+          "@type": "Article",
+          "headline": "Connecting agents to your APIs: identity, idempotency and the failures nobody plans for",
+          "url": "https://justdukkan.com/insights/connecting-agents-to-your-apis/"
+        },
+        {
+          "@type": "Article",
+          "headline": "Agent skills: packaging repeatable expertise so agents stop improvising",
+          "url": "https://justdukkan.com/insights/agent-skills/"
+        },
+        {
+          "@type": "Article",
+          "headline": "Delegate to human: making escalation a first-class capability",
+          "url": "https://justdukkan.com/insights/delegate-to-human/"
+        },
+        {
+          "@type": "Article",
+          "headline": "Human-in-the-loop for agentic systems: where people belong, and where they only slow things down",
+          "url": "https://justdukkan.com/insights/human-in-the-loop-for-agentic-systems/"
+        },
+        {
+          "@type": "Article",
+          "headline": "Operating agentic systems: what maintenance actually means",
+          "url": "https://justdukkan.com/insights/operating-agentic-systems/"
+        },
+        {
+          "@type": "Article",
+          "headline": "From manual process to automated flow: an architecture playbook",
+          "url": "https://justdukkan.com/insights/process-automation-architecture/"
+        }
+      ]
     },
     {
-      "@type": "Article",
-      "headline": "Hub-and-spoke agent architecture: how to build multi-agent systems that stay explainable",
-      "url": "https://justdukkan.com/insights/hub-and-spoke-agent-architecture/"
-    },
-    {
-      "@type": "Article",
-      "headline": "Agent team topologies: which hierarchy to build, and when",
-      "url": "https://justdukkan.com/insights/agent-topologies/"
-    },
-    {
-      "@type": "Article",
-      "headline": "Designing MCP servers and tools that agents can use safely",
-      "url": "https://justdukkan.com/insights/mcp-server-and-tool-design/"
-    },
-    {
-      "@type": "Article",
-      "headline": "Connecting agents to your APIs: identity, idempotency and the failures nobody plans for",
-      "url": "https://justdukkan.com/insights/connecting-agents-to-your-apis/"
-    },
-    {
-      "@type": "Article",
-      "headline": "Agent skills: packaging repeatable expertise so agents stop improvising",
-      "url": "https://justdukkan.com/insights/agent-skills/"
-    },
-    {
-      "@type": "Article",
-      "headline": "Delegate to human: making escalation a first-class capability",
-      "url": "https://justdukkan.com/insights/delegate-to-human/"
-    },
-    {
-      "@type": "Article",
-      "headline": "Human-in-the-loop for agentic systems: where people belong, and where they only slow things down",
-      "url": "https://justdukkan.com/insights/human-in-the-loop-for-agentic-systems/"
-    },
-    {
-      "@type": "Article",
-      "headline": "Operating agentic systems: what maintenance actually means",
-      "url": "https://justdukkan.com/insights/operating-agentic-systems/"
-    },
-    {
-      "@type": "Article",
-      "headline": "From manual process to automated flow: an architecture playbook",
-      "url": "https://justdukkan.com/insights/process-automation-architecture/"
+      "@type": "BreadcrumbList",
+      "@id": "https://justdukkan.com/insights/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "JustDukkan",
+          "item": "https://justdukkan.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Insights"
+        }
+      ]
     }
   ]
 }
