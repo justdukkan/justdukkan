@@ -2,19 +2,19 @@
 
 Bu dosya, siteye sıfır bağlamla giren birinin ihtiyaç duyacağı her şeyi içerir. Önce §0'ı oku, sonra ilgili bölüme git. Açık işler §9'da, geçmiş `tasks/todo.md` ve git log'unda.
 
-## 0. Şu an ne durumda? (son güncelleme 2026-09-22)
+## 0. Şu an ne durumda? (son güncelleme 2026-09-23)
 
 | | |
 |---|---|
 | **Site** | https://justdukkan.com canlı, Vercel'de, `main`'e her push production deploy (~1 dk) |
 | **Konum** | Şirkete özel hiyerarşik AI agent takımları kurmak ve bakımını yapmak (2026-09-22 pivotu, §1) |
-| **Sayfalar** | EN `/` · TR `/tr/` · `/insights/` + **10 makale (EN)** · `/privacy/` + `/tr/gizlilik/` |
+| **Sayfalar** | EN `/` · TR `/tr/` · `/about/` + `/tr/hakkinda/` · `/work/` (EN) · `/insights/` + **10 makale (EN)** · `/privacy/` + `/tr/gizlilik/` |
 | **Teknoloji** | Build yok. Düz HTML + tek CSS + 2 küçük JS. Tek üretici script: `tools/build_insights.py` |
-| **Canlı sürümler** | `styles.css?v=20` · `demo.js?v=9` · `consent.js?v=1` (değiştirince artır, §7) |
+| **Canlı sürümler** | `styles.css?v=21` · `demo.js?v=9` · `consent.js?v=1` (değiştirince artır, §7) |
 | **Analytics** | GA4 `G-C8T8T596HD`, yalnız çerez onayından sonra yüklenir |
-| **Son commit'ler** | Pivot (4 hizmet + 6 yeni makale), içerik sütunu daraltıldı (`--container: 1400px`) |
-| **Bilinen açık hata** | Header 641–960px bandında yatay taşıyor (§11). Kırıcı değil ama açık. |
-| **Sırada ne var** | §9. Kısaca: Enes'te birkaç dashboard işi (GSC/GA/Vercel), kodda header taşması, içerikte TR makaleler ve ilk vaka çalışması. |
+| **Son commit'ler** | SEO/AI görünürlük turu: header taşması düzeldi, OG görselleri, `vercel.json`, `/about/` + `/work/`, `llms-full.txt` |
+| **Bilinen açık hata** | Yok. Header taşması 2026-09-23'te düzeltildi (320-1440px ölçüldü). |
+| **Sırada ne var** | §9. Kısaca: Enes'te dashboard ve dış profil işleri (GSC/GA/LinkedIn/dizinler), kodda TR makale kararı, içerikte ilk gerçek vaka çalışması. |
 
 **İlk 5 dakikada bilmen gerekenler:** metin değişiyorsa EN **ve** TR ikisini birden güncelle · FAQ metni her sayfada iki yerde duruyor (JSON-LD + görünür blok) · CSS/JS değişince `?v=N` artırmazsan canlı bozuk görünür · `insights/` altındaki HTML'ler üretilir, elle düzenleme.
 
@@ -68,6 +68,12 @@ assets/demo.js                İnteraktif "orchestrator" demosu (§5)
 assets/consent.js             Çerez banner'ı + GA4 yükleyici. Başta GA_ID; localStorage["jd-consent"]=granted|denied; banner DOM'u JS'te (EN/TR lang'a göre); window.jdConsent.open() tercihi sıfırlayıp banner'ı yeniden açar
 privacy/index.html            Gizlilik ve çerez sayfası (EN); "Change cookie choice" butonu jdConsent.open()
 tr/gizlilik/index.html        Aynısı TR. İkisi de elle yazılmış (header/footer index.html / tr/index.html'den); metin değişince ikisini de güncelle
+about/index.html              Hakkında (EN); tr/hakkinda/index.html TR eşi. Elle yazıldı, kurucu adı YOK (§1 kurumsal ton kararı)
+work/index.html               Açık kaynak vaka çalışması: invoice-intake-mcp (EN). Metrik ve müşteri adı yok
+assets/og-cover.png, og-cover-tr.png   1200×630 paylaşım görselleri. Kaynak: brand/og-source.html + brand/fonts/ (Inter woff2, gömülü)
+brand/og-source.html          OG kartlarının kaynağı; yeniden üretmek için §10'daki headless Chrome komutu
+llms-full.txt                 ÜRETİLİR: 10 makalenin düz metin hâli, build_insights.py yazar
+vercel.json                   justdukkan.vercel.app → apex 308 (host eşleşmeli; preview deploy'lar etkilenmez)
 assets/wordmark.png           ".justdukkan" logosu — beyaz harfler + alfa; CSS `mask` + currentColor ile tema rengini alır
 assets/favicon.svg/-32.png/-512.png, apple-touch-icon.png   ".j" glifi (wordmark'tan kırpıldı), koyu yuvarlak kare
 brand/linkedin-cover.png (2256×382), linkedin-cover-1x.png  LinkedIn kapak: koyu zemin, sağda ".j"
@@ -81,7 +87,7 @@ tasks/todo.md                 İş listesi (geçmiş fazlar işaretli)
 
 ## 5. Sayfa yapısı (ana sayfa, EN/TR aynı sıra)
 
-1. **Header** (sticky 52px): wordmark · Services · Expertise · Approach · Insights · Contact · **tema toggle** (ay/güneş) · EN/TR · **"Get in touch →"** (mailto)
+1. **Header** (sticky 52px): wordmark · Services · Expertise · Approach · Insights · **About** · Contact · **tema toggle** · EN/TR · **"Get in touch →"** (mailto). Nav ≤960px gizlenir; ≤400px'te dil seçici de gizlenir (footer'da kalır).
 2. **Hero**: "We build the AI agent teams your company runs on." + alt metin (son cümle: hazır agent aboneliği değil) + "Get in touch" (mailto) + "What we do" (`#services`)
 3. **Models bandı**: Claude, ChatGPT, Gemini, Kimi, DeepSeek, Mistral, Llama, Qwen, Grok — monokrom inline SVG (lobehub `@lobehub/icons-static-svg`), tek satır
 4. **Services** (4 kart, `grid grid-4`): Agent Team Design · Build & Deployment · Integrations: API & MCP · Operate & Maintain
@@ -91,7 +97,7 @@ tasks/todo.md                 İş listesi (geçmiş fazlar işaretli)
 8. **Approach** (4 adım, hizmetlerle hizalı): 01 · Discover → 02 · Design → 03 · Build → 04 · Operate
 9. **FAQ** (8 soru, `<details>` akordeon, ilki açık; FAQPage schema). **Metinler her sayfada iki yerde**: JSON-LD `mainEntity` + görünür `<details>`; EN/TR dört kopya senkron kalmalı.
 10. **Contact** (`#contact`): başlık + açıklama → **"Get in touch" butonu** (mailto) + "Tell us about the process in a few lines and we will get back to you as soon as possible." → ayraç **"or book a call"** → **Cal.com inline embed** (`#cal-inline`)
-11. **Footer**: wordmark + EN/TR; sütunlar Company (yasal ad, adres, EIN) / Contact (e-posta, tel, WhatsApp) / Insights (ilk 4 makale + "All insights"); "© 2026 JustDukkan, LLC"
+11. **Footer**: wordmark + EN/TR; sütunlar Company (About + Open source work linkleri, yasal ad, adres, EIN) / Contact (e-posta, tel, WhatsApp) / Insights (ilk 4 makale + "All insights"); "© 2026 JustDukkan, LLC"
 
 **Insights** (`/insights/`, EN): liste + **10 makale**, `tools/articles.py`'daki sırayla: designing-the-agent-team, hub-and-spoke-agent-architecture, agent-topologies, mcp-server-and-tool-design, connecting-agents-to-your-apis, agent-skills, delegate-to-human, human-in-the-loop-for-agentic-systems, operating-agentic-systems, process-automation-architecture. Sıra = anlatı sırası; footer ilk 4'ü gösterir. Her makale: breadcrumb, hero, prose (720px), makale sonu FAQ, CTA kutusu ("Get in touch" mailto + "Book a call" `/#contact`). TR makale yok; TR sayfasındaki Insights linki EN'e gider.
 
@@ -116,6 +122,7 @@ Cloudflare `styles.css`, `demo.js` ve `consent.js`'i cache'ler. Bunlar değişin
 ## 8. SEO / GEO — yapılanlar
 
 - **JSON-LD `@graph`** (ana sayfalar): `Organization`+`ProfessionalService` (yasal ad, adres, EIN=`taxID`, telefon, e-posta, diller, `knowsAbout`, **4 hizmetlik** `OfferCatalog`, `contactPoint`→Cal, `sameAs`: LinkedIn, GitHub org, Cal), `WebSite`, `WebPage`, `FAQPage`. Makalelerde `Article` + `BreadcrumbList` + `FAQPage`. Değişiklikte JSON geçerliliğini kontrol et.
+- **OG/paylaşım**: her sayfada `og:image` (EN `og-cover.png`, TR `og-cover-tr.png`), boyut, alt ve `twitter:card=summary_large_image`. Değiştirmek için `brand/og-source.html` + §10'daki komut.
 - **GA4**: Measurement ID **`G-C8T8T596HD`** (`consent.js` başında `GA_ID`; property `justdukkan.com`, time zone Türkiye, USD). Realtime'da doğrulandı (2026-09-13). Onay olmadan Google'a istek gitmez; canlı testte Chrome MCP'de `g/collect` 503 görünür (o tarayıcıda engelleyici), curl 204; GA'yı Enes'in tarayıcısından doğrula. Property Enes'in Google hesabında. Onay modeli §1.
 - `llms.txt`, `robots.txt`, `sitemap.xml` (**15 URL**: /, /tr/, /insights/ + 10 makale, /privacy/, /tr/gizlilik/), `<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">`, canonical, hreflang en/tr/x-default, OG meta, theme-color.
 - **Google Search Console**: domain property doğrulandı (DNS TXT), sitemap gönderildi (2026-09-13). İlk 4 Insights sayfası indekslendi; `/` beklemedeydi. 2026-09-22 pivotundan sonra ana sayfalar ve 6 yeni makale yeniden taranmayı bekliyor.
@@ -136,12 +143,13 @@ Kaynak: bu liste. `tasks/todo.md` tamamlanmış fazların kaydını tutar.
 - [ ] **Search Console**: sitemap'i yeniden gönder (15 URL oldu); 1-2 hafta sonra pivot sonrası indeksleme kontrolü, gerekirse URL Inspection → Request indexing.
 - [ ] **Bing Webmaster**: sitemap ve IndexNow sekmesi kontrolü; URL Submission ile yeni makaleler.
 - [ ] **Vercel**: www → apex yönlendirmesi 307, istersen 308 yap (Domains → www → Edit → status code). Opsiyonel: Cloudflare'de apex'i DNS-only'ye almak cache-bust derdini bitirir.
-- [ ] **LinkedIn kişisel profil**: JustDukkan deneyimi ekle (unvan artık "AI Solutions Architect" değil, pivota uygun bir şey: "Founder, JustDukkan · custom AI agent teams"); yeni makaleleri paylaş.
+- [ ] **LinkedIn kişisel profil**: JustDukkan deneyimi ekle (unvan pivota uygun: "Founder, JustDukkan · custom AI agent teams"); yeni makaleleri paylaş. Şirket sayfası About metnini `llms.txt` ilk paragrafıyla eşitle.
+- [ ] **Schema doğrulama**: `validator.schema.org` ve Google Rich Results Test ile `/`, `/tr/`, `/about/`, `/work/`, `/insights/` ve bir makale sayfasını geçir.
+- [ ] **invoice-intake-mcp README** son satırı hâlâ "AI solutions architecture" diyor (başka repo); pivota göre güncelle.
 - [ ] **Dizinler**: Clutch.co, GoodFirms, Crunchbase profilleri (§2 bilgileri + llms.txt özeti; hizmet ağırlığı pivota göre: AI agent development / AI consulting / system integration).
 - [ ] **awesome-mcp-servers PR #14311** merge takibi.
 
 ### 9.2 Kodda / sitede (Claude ile)
-- [ ] **Header yatay taşması** (641–960px bandı, en kötüsü 700px'te +232px; ayrıca <400px'te +40px). Muhtemel çözüm: nav linklerini ≤960px'te gizle, CTA'yı küçült. Bkz. §11.
 - [ ] **TR Insights altyapısı** (`/tr/insights/`) kurulacak mı, karar. Kurulursa `build_insights.py`'a TR modu + hreflang çiftleri + TR liste sayfası gerekir.
 - [ ] Ayda 1-2 yeni makale. Aday konular: support triage mimarisi · agent takımı maliyet modeli · TR "şirketler için agentic sistemler 101" · retrieval hatları.
 - [ ] Sertifikalar alındıkça siteye/LinkedIn'e rozet (Enes onayıyla; şu an sitede sertifika gösterilmiyor, §1).
@@ -159,6 +167,8 @@ Kaynak: bu liste. `tasks/todo.md` tamamlanmış fazların kaydını tutar.
 - **Yeni makale**: `tools/articles.py`'a dict ekle (`date` alanı = yayın tarihi; sıra = index sırası) → `python3 tools/build_insights.py` → `sitemap.xml` + `llms.txt` makale listesi → footer ilk 4 makaleyi gösteriyor, değişirse `index.html`, `tr/index.html`, `privacy/index.html`, `tr/gizlilik/index.html` → IndexNow ping.
 - **Hizmet/şirket bilgisi değişikliği**: HTML + JSON-LD + `llms.txt` + LinkedIn/dış profiller senkron.
 - **invoice-intake-mcp yeni sürüm**: `pyproject.toml` + `server.json` version → `.venv/bin/python -m build` → Enes: `.venv/bin/twine upload dist/*` (`__token__` + PyPI token) → `mcp-publisher login dns --domain justdukkan.com --private-key "$(/opt/homebrew/opt/openssl@3/bin/openssl pkey -in ~/.config/mcp-registry/justdukkan-ed25519.pem -noout -text | grep -A3 priv: | tail -n +2 | tr -d ' :\n')" && mcp-publisher publish`.
+- **OG görselini yeniden üret**: lokal sunucu açıkken
+  `"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless --disable-gpu --hide-scrollbars --force-device-scale-factor=1 --window-size=1200,630 --virtual-time-budget=8000 --screenshot=assets/og-cover.png "http://127.0.0.1:8765/brand/og-source.html"` (TR için `?lang=tr`, çıktı `og-cover-tr.png`).
 - **Lokal önizleme**: `python3 -m http.server 8765 --bind 127.0.0.1` (repo kökünde); Chrome MCP ile macmini tarayıcısı. Arka plan sekmesinde timer/IO throttling olur; demo testini görünür sekmede yap.
 - **Terminal notu (Enes)**: Claude Code prompt'unda `! komut` çalıştırılır; zsh'de `!` yazma.
 
@@ -167,6 +177,7 @@ Kaynak: bu liste. `tasks/todo.md` tamamlanmış fazların kaydını tutar.
 - Vercel CLI `vercel ls` çıktısı bazen boş görünür; deploy'u `https://justdukkan.com` içeriğinden doğrula.
 - Cloudflare e-posta adreslerini `/cdn-cgi/l/email-protection` ile değiştirir; canlı HTML'de `enes@` aramak başarısız olabilir.
 - Cal.com embed dar ekranda (<~768px) mobil düzene geçer (takvim tek sütun).
-- **Header yatay taşması** (ölçüldü 2026-09-22): nav linkleri ≤640px'te gizlendiği için 641-960px bandında header sığmıyor. Taşma 700px'te +232px, 800px'te +144px, 900px'te +56px, 960px'te +3px. 480-640px temiz; 400px'te +40px, 360px'te +75px (CTA butonu). Pivot öncesinden beri var. §9.2'de açık iş.
+- **Header taşması düzeltildi** (2026-09-23, styles v21): nav ≤960px gizli, ≤1200px nav boşlukları dar, ≤560px container yan boşluğu 20px, ≤400px dil seçici gizli ve CTA küçük. 320-1440px arası tüm sayfa tiplerinde ölçülen taşma 0.
+- `vercel.json`'da `source` **regex** olmalı (`/(.*)`); `"/:path*"` biçimi `/` ve `/insights/` gibi dizin URL'lerinde eşleşmiyordu.
 - Search Console'da property "Domain" tipi olduğu için Bing import'unda "https://" boş görünmüştü; normal.
 - Cal.com embed'i, Enes'in cal.com'a giriş yaptığı tarayıcıda formu hesap bilgileriyle (ad/e-posta) dolu ve hesap dilinde (TR) gösterir; ziyaretçi bunları görmez. Dil ziyaretçinin `Accept-Language`'ına göre gelir, embed'de dil zorlayan parametre yok (`lang/locale/hl/lng`, `NEXT_LOCALE` denendi, işlemiyor). Kontrol için gizli pencere kullan.

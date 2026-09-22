@@ -4,6 +4,17 @@
 
 ---
 
+## 2026-09-23 — SEO / AI görünürlüğü turu
+Dış inceleme raporuna göre. Raporun iki iddiası (JSON-LD yok, Article/Breadcrumb yok) repoda yanlış çıktı; ikisi (GSC/Bing/IndexNow) zaten yapılmıştı. Gerçek açıklar kapatıldı.
+
+- [x] Header yatay taşması düzeltildi (styles v21): nav ≤960px gizli, ≤1200px boşluklar daralır, ≤560px container 20px, ≤400px dil seçici gizli. 320-1440px arası 0 taşma
+- [x] 1200×630 OG görselleri (EN + TR), kaynak `brand/og-source.html` + gömülü Inter; 15 sayfada og:image, boyut, alt ve twitter:card
+- [x] `vercel.json`: justdukkan.vercel.app → apex 308 (regex source; preview deploy'lar etkilenmiyor)
+- [x] `/about/` + `/tr/hakkinda/` ve `/work/` (invoice-intake-mcp vaka çalışması); nav'a About, footer'a About + Open source work
+- [x] llms.txt: makale başına tek satır özet, yeni sayfalar; `llms-full.txt` üretiliyor, robots.txt'ten referans
+- [x] Schema: Organization image + knowsLanguage, makale publisher logo, insights index BreadcrumbList, makale başına dateModified
+- [x] sitemap 18 URL, IndexNow ping, CLAUDE.md §0/§4/§5/§8/§9/§11
+
 ## 2026-09-22 — Pivot: şirkete özel AI agent takımları
 Konum değişikliği: "AI solutions architecture" (3 hizmet) → hiyerarşik AI agent takımları kurmak ve bakımını yapmak (4 hizmet).
 
