@@ -140,7 +140,7 @@ Kaynak: bu liste. `tasks/todo.md` tamamlanmış fazların kaydını tutar.
 ### 9.1 Enes'te (dashboard / hesap işleri, kod gerekmez)
 - [ ] **GA4 → Data filters → Internal Traffic** filtresini *Testing*'den **Active**'e al (kural tanımlı: `176.88.102.0/24`). Aktif etmezsen kendi ziyaretlerin raporda kalır.
 - [ ] **GA4 → Admin → Product links → Search Console** bağla (arama sorguları GA'da görünsün).
-- [ ] **Search Console**: sitemap'i yeniden gönder (15 URL oldu); 1-2 hafta sonra pivot sonrası indeksleme kontrolü, gerekirse URL Inspection → Request indexing.
+- [ ] **Search Console**: sitemap'i yeniden gönder (18 URL oldu); 1-2 hafta sonra pivot sonrası indeksleme kontrolü, gerekirse URL Inspection → Request indexing.
 - [ ] **Bing Webmaster**: sitemap ve IndexNow sekmesi kontrolü; URL Submission ile yeni makaleler.
 - [ ] **Vercel**: www → apex yönlendirmesi 307, istersen 308 yap (Domains → www → Edit → status code). Opsiyonel: Cloudflare'de apex'i DNS-only'ye almak cache-bust derdini bitirir.
 - [ ] **LinkedIn kişisel profil**: JustDukkan deneyimi ekle (unvan pivota uygun: "Founder, JustDukkan · custom AI agent teams"); yeni makaleleri paylaş. Şirket sayfası About metnini `llms.txt` ilk paragrafıyla eşitle.
