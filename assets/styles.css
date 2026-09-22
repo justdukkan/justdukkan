@@ -438,6 +438,29 @@ section + section { border-top: 1px solid var(--border); }
 .insight-card .more { display: inline-block; margin-top: 16px; font-size: 0.9rem; font-weight: 500; }
 
 /* ---------- Responsive ---------- */
+/* Header has to fit before the layout breakpoints kick in */
+@media (max-width: 1200px) {
+  .nav-links { gap: 20px; }
+  .nav-right { gap: 14px; }
+}
+
+@media (max-width: 960px) {
+  .nav-links { display: none; }
+}
+
+@media (max-width: 560px) {
+  .container { padding: 0 20px; }
+  .nav-right { gap: 12px; }
+  .site-header .btn .arrow { display: none; }
+}
+
+@media (max-width: 400px) {
+  /* Narrow phones: the header keeps brand, theme and the CTA; the language
+     switch stays reachable in the footer. */
+  .site-header .lang { display: none; }
+  .site-header .btn-sm { padding: 0.45em 0.75em 0.47em; font-size: 0.85rem; }
+}
+
 @media (max-width: 900px) {
   .grid-3, .grid-4, .outcomes, .insights-list { grid-template-columns: 1fr 1fr; }
   .steps { grid-template-columns: 1fr 1fr; }
@@ -451,7 +474,6 @@ section + section { border-top: 1px solid var(--border); }
   .consent { left: 12px; right: 12px; bottom: 12px; max-width: none; }
   section { padding: 72px 0; }
   .hero { padding: 72px 0 64px; }
-  .nav-links { display: none; }
   .grid-3, .grid-4, .outcomes, .steps, .expertise-list, .insights-list { grid-template-columns: 1fr; }
   .expertise-list li { padding: 18px 0 !important; border-right: 0 !important; }
   .step { border-right: 0; border-bottom: 1px solid var(--border); }
