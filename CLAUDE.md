@@ -1,6 +1,22 @@
 # justdukkan.com — CLAUDE.md
 
-Bu dosya, siteye sıfır bağlamla giren birinin ihtiyaç duyacağı her şeyi içerir. Önce bunu oku; ayrıntı için `tasks/todo.md` ve git geçmişi.
+Bu dosya, siteye sıfır bağlamla giren birinin ihtiyaç duyacağı her şeyi içerir. Önce §0'ı oku, sonra ilgili bölüme git. Açık işler §9'da, geçmiş `tasks/todo.md` ve git log'unda.
+
+## 0. Şu an ne durumda? (son güncelleme 2026-09-22)
+
+| | |
+|---|---|
+| **Site** | https://justdukkan.com canlı, Vercel'de, `main`'e her push production deploy (~1 dk) |
+| **Konum** | Şirkete özel hiyerarşik AI agent takımları kurmak ve bakımını yapmak (2026-09-22 pivotu, §1) |
+| **Sayfalar** | EN `/` · TR `/tr/` · `/insights/` + **10 makale (EN)** · `/privacy/` + `/tr/gizlilik/` |
+| **Teknoloji** | Build yok. Düz HTML + tek CSS + 2 küçük JS. Tek üretici script: `tools/build_insights.py` |
+| **Canlı sürümler** | `styles.css?v=20` · `demo.js?v=9` · `consent.js?v=1` (değiştirince artır, §7) |
+| **Analytics** | GA4 `G-C8T8T596HD`, yalnız çerez onayından sonra yüklenir |
+| **Son commit'ler** | Pivot (4 hizmet + 6 yeni makale), içerik sütunu daraltıldı (`--container: 1400px`) |
+| **Bilinen açık hata** | Header 641–960px bandında yatay taşıyor (§11). Kırıcı değil ama açık. |
+| **Sırada ne var** | §9. Kısaca: Enes'te birkaç dashboard işi (GSC/GA/Vercel), kodda header taşması, içerikte TR makaleler ve ilk vaka çalışması. |
+
+**İlk 5 dakikada bilmen gerekenler:** metin değişiyorsa EN **ve** TR ikisini birden güncelle · FAQ metni her sayfada iki yerde duruyor (JSON-LD + görünür blok) · CSS/JS değişince `?v=N` artırmazsan canlı bozuk görünür · `insights/` altındaki HTML'ler üretilir, elle düzenleme.
 
 ## 1. Ne bu?
 
@@ -99,32 +115,42 @@ Cloudflare `styles.css`, `demo.js` ve `consent.js`'i cache'ler. Bunlar değişin
 
 ## 8. SEO / GEO — yapılanlar
 
-- **JSON-LD `@graph`** (ana sayfalar): `Organization`+`ProfessionalService` (yasal ad, adres, EIN=`taxID`, telefon, e-posta, diller, `knowsAbout`, 3 hizmetlik `OfferCatalog`, `contactPoint`→Cal, `sameAs`: LinkedIn, GitHub org, Cal), `WebSite`, `WebPage`, `FAQPage`. Makalelerde `Article` + `BreadcrumbList` + `FAQPage`. Değişiklikte JSON geçerliliğini kontrol et.
+- **JSON-LD `@graph`** (ana sayfalar): `Organization`+`ProfessionalService` (yasal ad, adres, EIN=`taxID`, telefon, e-posta, diller, `knowsAbout`, **4 hizmetlik** `OfferCatalog`, `contactPoint`→Cal, `sameAs`: LinkedIn, GitHub org, Cal), `WebSite`, `WebPage`, `FAQPage`. Makalelerde `Article` + `BreadcrumbList` + `FAQPage`. Değişiklikte JSON geçerliliğini kontrol et.
 - **GA4**: Measurement ID **`G-C8T8T596HD`** (`consent.js` başında `GA_ID`; property `justdukkan.com`, time zone Türkiye, USD). Realtime'da doğrulandı (2026-09-13). Onay olmadan Google'a istek gitmez; canlı testte Chrome MCP'de `g/collect` 503 görünür (o tarayıcıda engelleyici), curl 204; GA'yı Enes'in tarayıcısından doğrula. Property Enes'in Google hesabında. Onay modeli §1.
-- `llms.txt`, `robots.txt`, `sitemap.xml` (/, /tr/, insights ×5, /privacy/, /tr/gizlilik/), `<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">`, canonical, hreflang en/tr/x-default, OG meta, theme-color.
-- **Google Search Console**: domain property doğrulandı (DNS TXT), sitemap gönderildi (2026-09-13). Insights sayfaları indekslendi; `/` beklemede (eski içerikli URL yeniden değerlendiriliyor; www dublikasyonu olası neden).
+- `llms.txt`, `robots.txt`, `sitemap.xml` (**15 URL**: /, /tr/, /insights/ + 10 makale, /privacy/, /tr/gizlilik/), `<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">`, canonical, hreflang en/tr/x-default, OG meta, theme-color.
+- **Google Search Console**: domain property doğrulandı (DNS TXT), sitemap gönderildi (2026-09-13). İlk 4 Insights sayfası indekslendi; `/` beklemedeydi. 2026-09-22 pivotundan sonra ana sayfalar ve 6 yeni makale yeniden taranmayı bekliyor.
 - **Bing Webmaster**: GSC'den import edildi (sitemap 48 saat sonra görünür dendi).
-- **IndexNow**: anahtar `9ab21623bd51863e0413867377354055` (dosya repoda). 7 URL gönderildi (202). Yeni/değişen sayfa için:
+- **IndexNow**: anahtar `9ab21623bd51863e0413867377354055` (dosya repoda). Son gönderim 2026-09-22, 9 URL (pivot sonrası ana sayfalar + 6 yeni makale). Yeni/değişen sayfa için:
   `curl -X POST https://api.indexnow.org/indexnow -H 'Content-Type: application/json' -d '{"host":"justdukkan.com","key":"9ab21623bd51863e0413867377354055","keyLocation":"https://justdukkan.com/9ab21623bd51863e0413867377354055.txt","urlList":["https://justdukkan.com/…"]}'`
 - **Dış varlıklar**: LinkedIn şirket sayfası (About metni = llms.txt özeti); GitHub org; **`github.com/justdukkan/invoice-intake-mcp`** (MIT, Python, mcp 2.x `MCPServer`; read/commit iki server, tipli hatalar, sunucu tarafı onay kilidi, audit log, orkestratör, pytest + evals; lokal `~/projects/invoice-intake-mcp`, venv Python 3.12) → PyPI `invoice-intake-mcp` 0.1.1 (`uvx invoice-intake-mcp --role read|commit`) → **MCP Registry `com.justdukkan/invoice-intake-mcp` v0.1.1 active** (DNS auth; özel anahtar `~/.config/mcp-registry/justdukkan-ed25519.pem`, repoya girmez). GitHub org namespace'i (`io.github.justdukkan`) çalışmadı (OAuth app org rolünü görmedi) — DNS yolu kullan.
 - **awesome-mcp-servers PR #14311** açık (fork `justdukkan/awesome-mcp-servers`, branch `add-invoice-intake-mcp`, Finance & Fintech bölümü).
 - Cal.com profili: bio metni eklendi, isim JustDukkan, avatar wordmark.
 
-## 9. SEO / GEO — yapılacaklar
+## 9. Açık işler
 
-- [ ] Vercel www redirect 307 → 308 (Edit → status code); opsiyonel: Cloudflare apex DNS-only.
-- [ ] GA4: internal traffic (kendi IP) tanımla; Admin → Product links → Search Console bağla.
-- [ ] 48 saat sonra Search Console: `/` indekslendi mi, hata var mı; gerekirse URL Inspection → Request indexing.
-- [ ] Bing Webmaster: sitemap ve IndexNow sekmesi; URL Submission ile makaleler.
-- [ ] Clutch.co, GoodFirms, Crunchbase profilleri (Enes; §2 bilgileri + LinkedIn About metni; hizmet ağırlığı AI Consulting 40 / BPA 30 / Architecture 30).
-- [ ] LinkedIn kişisel profil → JustDukkan "Founder, AI Solutions Architect" deneyimi; makaleleri LinkedIn'de paylaş.
-- [ ] awesome-mcp-servers PR merge takibi.
-- [ ] Ayda 1–2 Insights makalesi (aday: support triage mimarisi, AI otomasyon maliyet modeli, TR "şirketler için agentic sistemler 101"); TR çeviriler.
-- [ ] İlk gerçek işten **vaka çalışması** — en güçlü sinyal.
-- [ ] Sertifikalar alındıkça siteye/LinkedIn'e rozet (Enes onayıyla).
-- [ ] Haftalık görünürlük testi: ChatGPT/Perplexity'de "custom AI agent team", "build AI agent team for company", "MCP server development consultant", "agentic system maintenance" vb.
-- [ ] Pivot sonrası GSC: yeni 6 makale indekslendi mi; ana sayfa yeni başlıkla yeniden taranıyor mu.
-- [ ] TR makale altyapısı (`/tr/insights/`) kurulacak mı, karar.
+Kaynak: bu liste. `tasks/todo.md` tamamlanmış fazların kaydını tutar.
+
+### 9.1 Enes'te (dashboard / hesap işleri, kod gerekmez)
+- [ ] **GA4 → Data filters → Internal Traffic** filtresini *Testing*'den **Active**'e al (kural tanımlı: `176.88.102.0/24`). Aktif etmezsen kendi ziyaretlerin raporda kalır.
+- [ ] **GA4 → Admin → Product links → Search Console** bağla (arama sorguları GA'da görünsün).
+- [ ] **Search Console**: sitemap'i yeniden gönder (15 URL oldu); 1-2 hafta sonra pivot sonrası indeksleme kontrolü, gerekirse URL Inspection → Request indexing.
+- [ ] **Bing Webmaster**: sitemap ve IndexNow sekmesi kontrolü; URL Submission ile yeni makaleler.
+- [ ] **Vercel**: www → apex yönlendirmesi 307, istersen 308 yap (Domains → www → Edit → status code). Opsiyonel: Cloudflare'de apex'i DNS-only'ye almak cache-bust derdini bitirir.
+- [ ] **LinkedIn kişisel profil**: JustDukkan deneyimi ekle (unvan artık "AI Solutions Architect" değil, pivota uygun bir şey: "Founder, JustDukkan · custom AI agent teams"); yeni makaleleri paylaş.
+- [ ] **Dizinler**: Clutch.co, GoodFirms, Crunchbase profilleri (§2 bilgileri + llms.txt özeti; hizmet ağırlığı pivota göre: AI agent development / AI consulting / system integration).
+- [ ] **awesome-mcp-servers PR #14311** merge takibi.
+
+### 9.2 Kodda / sitede (Claude ile)
+- [ ] **Header yatay taşması** (641–960px bandı, en kötüsü 700px'te +232px; ayrıca <400px'te +40px). Muhtemel çözüm: nav linklerini ≤960px'te gizle, CTA'yı küçült. Bkz. §11.
+- [ ] **TR Insights altyapısı** (`/tr/insights/`) kurulacak mı, karar. Kurulursa `build_insights.py`'a TR modu + hreflang çiftleri + TR liste sayfası gerekir.
+- [ ] Ayda 1-2 yeni makale. Aday konular: support triage mimarisi · agent takımı maliyet modeli · TR "şirketler için agentic sistemler 101" · retrieval hatları.
+- [ ] Sertifikalar alındıkça siteye/LinkedIn'e rozet (Enes onayıyla; şu an sitede sertifika gösterilmiyor, §1).
+
+### 9.3 En yüksek etkili iş
+- [ ] **İlk gerçek işten vaka çalışması.** Uydurma metrik yazmama kuralı yüzünden sitede hâlâ tek bir sayı yok; ilk gerçek sonuç en güçlü sinyal olacak.
+
+### 9.4 Düzenli kontrol
+- [ ] Haftalık görünürlük testi: ChatGPT / Perplexity'de "custom AI agent team", "build AI agent team for company", "MCP server development consultant", "agentic system maintenance".
 
 ## 10. Rutin işlemler
 
@@ -141,6 +167,6 @@ Cloudflare `styles.css`, `demo.js` ve `consent.js`'i cache'ler. Bunlar değişin
 - Vercel CLI `vercel ls` çıktısı bazen boş görünür; deploy'u `https://justdukkan.com` içeriğinden doğrula.
 - Cloudflare e-posta adreslerini `/cdn-cgi/l/email-protection` ile değiştirir; canlı HTML'de `enes@` aramak başarısız olabilir.
 - Cal.com embed dar ekranda (<~768px) mobil düzene geçer (takvim tek sütun).
-- ≤~410px genişlikte header'daki CTA butonu yüzünden hafif yatay taşma var (banner'dan önce de vardı).
+- **Header yatay taşması** (ölçüldü 2026-09-22): nav linkleri ≤640px'te gizlendiği için 641-960px bandında header sığmıyor. Taşma 700px'te +232px, 800px'te +144px, 900px'te +56px, 960px'te +3px. 480-640px temiz; 400px'te +40px, 360px'te +75px (CTA butonu). Pivot öncesinden beri var. §9.2'de açık iş.
 - Search Console'da property "Domain" tipi olduğu için Bing import'unda "https://" boş görünmüştü; normal.
 - Cal.com embed'i, Enes'in cal.com'a giriş yaptığı tarayıcıda formu hesap bilgileriyle (ad/e-posta) dolu ve hesap dilinde (TR) gösterir; ziyaretçi bunları görmez. Dil ziyaretçinin `Accept-Language`'ına göre gelir, embed'de dil zorlayan parametre yok (`lang/locale/hl/lng`, `NEXT_LOCALE` denendi, işlemiyor). Kontrol için gizli pencere kullan.
